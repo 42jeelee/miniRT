@@ -25,16 +25,16 @@
 			con,			// 원뿔
 			hyperboloid,		// 쌍곡선
 			paraboloid		// 포물선
-		}   t_shape;
+		}	t_shape;
 		```
 	+ `struct s_point`
 		```c
 		typedef struct s_point
 		{
-			int x;	// x 좌표
-			int y;	// y 좌표
-			int z;	// z 좌표
-		}   t_point;
+			int	x;	// x 좌표
+			int	y;	// y 좌표
+			int	z;	// z 좌표
+		}	t_point;
 		```
 	+ `struct s_light`
 		```c
@@ -43,7 +43,7 @@
 			struct s_point	point;		// 위치
 			float		light_ratio;	// 빛세기
 			uint32_t	color;		// 색상
-		}   t_light;
+		}	t_light;
 		```
 	+ `struct s_camera`
 		```c
@@ -64,5 +64,5 @@
 			size_t		diameter;	// 지름
 			size_t		height;		// 높이
 			uint32_t	color;		// 색상
-		}   t_object;
+		}	t_object;
 		```
