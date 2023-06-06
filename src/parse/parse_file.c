@@ -1,23 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   parse_file.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/06 19:47:26 by jeelee            #+#    #+#             */
-/*   Updated: 2023/06/06 23:01:11 by jeelee           ###   ########.fr       */
+/*   Created: 2023/06/06 22:58:14 by jeelee            #+#    #+#             */
+/*   Updated: 2023/06/06 23:02:06 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./include/minirt.h"
+#include "../include/minirt.h"
 
-int	main(int ac, char **av)
+int	parse_file(int ac, char **av, t_data *data)
 {
-	t_data	data;
-
-	if (parse_file(ac, av, &data))
+	if (vaild_file(ac, av))
 		return (1);
-	printf("arg: %s\nexecuting ...\n", av[1]);
+	(void)data;
 	return (0);
 }

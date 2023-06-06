@@ -6,7 +6,7 @@
 /*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 19:50:25 by jeelee            #+#    #+#             */
-/*   Updated: 2023/06/06 21:31:14 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/06/06 23:01:18 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,6 @@ typedef struct s_data
 	struct s_object	*objects;
 }	t_data;
 
-int	vaild_file(int ac, char **av);
+int	parse_file(int ac, char **av, t_data *data);
 
 #endif
