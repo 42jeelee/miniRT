@@ -6,7 +6,7 @@
 /*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 19:50:25 by jeelee            #+#    #+#             */
-/*   Updated: 2023/06/06 20:25:12 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/06/06 21:31:14 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,11 @@
 # define MINIRT_H
 
 # include <stdio.h>
-# include "./mlx/mlx.h"
+# include <unistd.h>
+# include <stdint.h>
+# include "./parse.h"
+# include "../../libft/libft.h"
+# include "../../mlx/mlx.h"
 
 # define WINDOW_X 1920;
 # define WINDOW_Y 1080;
@@ -67,5 +71,7 @@ typedef struct s_data
 	struct s_light	*lights;
 	struct s_object	*objects;
 }	t_data;
+
+int	vaild_file(int ac, char **av);
 
 #endif
