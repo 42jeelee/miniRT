@@ -6,7 +6,7 @@
 /*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 19:50:25 by jeelee            #+#    #+#             */
-/*   Updated: 2023/06/06 23:01:18 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/06/07 00:45:30 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <stdio.h>
 # include <unistd.h>
+# include <fcntl.h>
 # include <stdint.h>
 # include "./parse.h"
 # include "../../libft/libft.h"

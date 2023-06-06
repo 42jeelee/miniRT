@@ -6,7 +6,7 @@
 /*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 20:33:05 by jeelee            #+#    #+#             */
-/*   Updated: 2023/06/06 21:38:24 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/06/07 00:50:31 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,10 @@ int	vaild_filename(char *filename)
 int	vaild_file(int ac, char **av)
 {
 	if (ac == 1)
-		return (parse_perror("no arguments.", 1));
+		return (parse_error("no arguments.", 1));
 	else if (ac != 2)
-		return (parse_perror("too many arguments.", 1));
+		return (parse_error("too many arguments.", 1));
 	if (vaild_filename(av[1]))
-		return (parse_perror("invaild filename.", 1));
+		return (parse_error("invaild filename.", 1));
 	return (0);
 }
