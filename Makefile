@@ -6,7 +6,7 @@
 #    By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/06 19:47:17 by jeelee            #+#    #+#              #
-#    Updated: 2023/06/06 23:02:46 by jeelee           ###   ########.fr        #
+#    Updated: 2023/06/07 02:08:54 by jeelee           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,9 +27,10 @@ PARSEDIR	=	$(SRCDIR)/parse
 
 INC			=	$(SRCDIR)/include
 
-PARSE		=	$(PARSEDIR)/parse_file.c $(PARSEDIR)/vaild_file.c $(PARSEDIR)/parse_perror.c
+PARSE		=	parse_file.c vaild_file.c parse_utils.c parse_perror.c
+PARSEFIX	=	$(PARSE:%.c=$(PARSEDIR)/%.c)
 
-SRC			=	$(SRCDIR)/main.c $(PARSE)
+SRC			=	$(SRCDIR)/main.c $(PARSEFIX)
 
 OBJ			=	$(SRC:.c=.o)
 

@@ -6,7 +6,7 @@
 /*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 21:14:41 by jeelee            #+#    #+#             */
-/*   Updated: 2023/06/07 00:50:11 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/06/07 01:50:18 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,12 @@
 # define ANSI_MAG "\e[35m"
 # define ANSI_CYA "\e[36m"
 
-int	parse_perror_exit(void);
-int	parse_error(char *msg, int _ret);
-int	vaild_file(int ac, char **av);
+int		vaild_file(int ac, char **av);
+
+int		parse_atoi(char *str, size_t size);
+
+int		parse_error(char *msg, int _ret);
+void	parse_perror_exit(int _exitcode);
+void	parse_error_exit(char *msg, int _exitcode);
 
 #endif
