@@ -18,7 +18,7 @@ typedef struct s_data
 		plane,			// 평면
 		cylinder,		// 원기둥
 		con,			// 원뿔
-		hyperboloid,	// 쌍곡선
+		hyperboloid,		// 쌍곡선
 		paraboloid		// 포물선
 	}   t_shape;
 	```
@@ -35,9 +35,9 @@ typedef struct s_data
 	```c
 	typedef struct s_light
 	{
-		struct s_point	point;			// 위치
-		int				light_ratio;	// 빛세기
-		int				color;			// 색상
+		struct s_point	point;		// 위치
+		int		light_ratio;	// 빛세기
+		int		color;		// 색상
 	}   t_light;
 	```
 - `struct s_camera`
@@ -46,7 +46,7 @@ typedef struct s_data
 	{
 		t_point	point;		// 위치
 		t_point	n_vector;	// 방향(기울기)
-		int		fov;		// 시야폭
+		int	fov;		// 시야폭
 	}	t_camera;
 	```
 - `struct s_object`
@@ -56,8 +56,8 @@ typedef struct s_data
 		t_shape	shape;		// 모양
 		t_point	point;		// 위치
 		t_point	n_vector;	// 방향(기울기)
-		int		diameter;	// 지름
+		int	diameter;	// 지름
 		size_t	height;		// 높이
-		int		color;		// 색상
+		int	color;		// 색상
 	}   t_object;
 	```
