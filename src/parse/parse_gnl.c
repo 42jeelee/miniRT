@@ -6,7 +6,7 @@
 /*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 12:21:14 by jeelee            #+#    #+#             */
-/*   Updated: 2023/06/07 13:43:15 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/06/07 23:45:50 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,11 @@ char	*parse_gnl(int fd, t_buffer *bf)
 				break ;
 		}
 		_joining(&line, bf);
-		if ((bf->buffer)[bf->idx - 1] == '\n' || \
+		if ((bf->buffer)[bf->idx] == '\n' || \
 			bf->rd_size < BUFFER_SIZE)
 			break ;
 	}
+	if ((bf->buffer)[bf->idx] == '\n')
+		(bf->idx)++;
 	return (line);
 }
