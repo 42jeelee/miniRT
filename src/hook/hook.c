@@ -1,31 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   hook.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahkiler <ahkiler@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/06 19:47:26 by jeelee            #+#    #+#             */
-/*   Updated: 2023/06/07 18:03:18 by ahkiler          ###   ########.fr       */
+/*   Created: 2023/06/07 17:45:57 by ahkiler           #+#    #+#             */
+/*   Updated: 2023/06/07 17:58:43 by ahkiler          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "../../minirt.h"
 
-int	main(int ac, char **av)
+void	mlx_hooks(t_data *data)
 {
-	t_data	data;
-	if (ac == 1)
+	mlx_key_hook (data->params.win, &key_hook, data);
+}
+
+int	key_hook(int keycode, t_data *data)
+{
+	if (keycode == 53)
 	{
-		printf("no arguments\n");
-		return (1);
+		mlx_destroy_window (data->params.mlx, data->params.win);
+		exit (0);
 	}
-	printf("arg: %s\nexecuting ...\n", av[1]);
-
-	init_img (&data);
-	print_img (&data);
-	mlx_hooks (&data);
-	mlx_loop (&data.params.mlx);
-
 	return (0);
 }
