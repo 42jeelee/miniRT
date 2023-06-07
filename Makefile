@@ -6,7 +6,7 @@
 #    By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/06 19:47:17 by jeelee            #+#    #+#              #
-#    Updated: 2023/06/06 20:15:35 by jeelee           ###   ########.fr        #
+#    Updated: 2023/06/07 02:08:54 by jeelee           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,15 +22,23 @@ MLXDIR		=	./mlx
 MLX			=	$(MLXDIR)/libmlx.a
 LDFLAGS		=	-L./mlx/ -lmlx -framework OpenGL -framework AppKit
 
-SRC			=	main.c
+SRCDIR		=	./src
+PARSEDIR	=	$(SRCDIR)/parse
+
+INC			=	$(SRCDIR)/include
+
+PARSE		=	parse_file.c vaild_file.c parse_utils.c parse_perror.c
+PARSEFIX	=	$(PARSE:%.c=$(PARSEDIR)/%.c)
+
+SRC			=	$(SRCDIR)/main.c $(PARSEFIX)
 
 OBJ			=	$(SRC:.c=.o)
 
 $(NAME)		:	$(OBJ) $(LIBFT) $(MLX)
-	$(CC) $(CFLAGS) $(LIBFT) $(MLX) $(LDFLAGS) $(OBJ) -o $@
+	$(CC) $(LIBFT) $(MLX) $(LDFLAGS) $(OBJ) -o $@
 
 %.o			:	%.c
-	$(CC) $(CFLAGS) -c $?
+	$(CC) $(CFLAGS) -I$(INC) -c $? -o $@
 
 $(LIBFT)	:
 	make -C $(LIBDIR)
