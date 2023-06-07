@@ -31,9 +31,9 @@
 		```c
 		typedef struct s_point
 		{
-			int	x;	// x 좌표
-			int	y;	// y 좌표
-			int	z;	// z 좌표
+			float	x;	// x 좌표
+			float	y;	// y 좌표
+			float	z;	// z 좌표
 		}	t_point;
 		```
 	+ `struct s_light`
@@ -51,7 +51,7 @@
 		{
 			t_point	point;		// 위치
 			t_point	n_vector;	// 방향(기울기)
-			size_t	fov;		// 시야폭
+			int		fov;		// 시야폭
 		}	t_camera;
 		```
 	+ `struct s_object`
@@ -61,8 +61,8 @@
 			t_shape		shape;		// 모양
 			t_point		point;		// 위치
 			t_point		n_vector;	// 방향(기울기)
-			size_t		diameter;	// 지름
-			size_t		height;		// 높이
+			float		diameter;	// 지름
+			float		height;		// 높이
 			uint32_t	color;		// 색상
 		}	t_object;
 		```
