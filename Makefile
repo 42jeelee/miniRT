@@ -6,7 +6,7 @@
 #    By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/06 19:47:17 by jeelee            #+#    #+#              #
-#    Updated: 2023/06/07 23:15:06 by jeelee           ###   ########.fr        #
+#    Updated: 2023/06/09 01:29:17 by jeelee           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,13 +24,17 @@ LDFLAGS		=	-L./mlx/ -lmlx -framework OpenGL -framework AppKit
 
 SRCDIR		=	./src
 PARSEDIR	=	$(SRCDIR)/parse
+UTILSDIR	=	$(SRCDIR)/utils
 
 INC			=	$(SRCDIR)/include
 
-PARSE		=	parse_file.c vaild_file.c parse_gnl.c parse_token.c parse_setting.c parse_utils.c parse_perror.c parse_print.c
+PARSE		=	parse_file.c vaild_file.c parse_gnl.c parse_token.c parse_setting.c light_utils.c parse_utils.c parse_perror.c parse_print.c
 PARSEFIX	=	$(PARSE:%.c=$(PARSEDIR)/%.c)
 
-SRC			=	$(SRCDIR)/main.c $(PARSEFIX)
+UTILS		=	object_utils.c
+UTILSFIX	=	$(UTILS:%.c=$(UTILSDIR)/%.c)
+
+SRC			=	$(SRCDIR)/main.c $(PARSEFIX) $(UTILSFIX)
 
 OBJ			=	$(SRC:.c=.o)
 

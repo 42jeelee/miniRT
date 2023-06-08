@@ -6,7 +6,7 @@
 /*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 22:58:14 by jeelee            #+#    #+#             */
-/*   Updated: 2023/06/07 23:51:02 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/06/09 01:53:15 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ static void	parse_line(char *line, t_data *data)
 		parse_error_exit("Invalid file", 1);
 	else if (type < 3)
 		setting_bg(type, line + i, data);
-	// else
-	// 	setting_object(type, line + i, data);
+	else
+		setting_object(type, line + i, data);
 }
 
 static void	_parsing(int fd, t_data *data)

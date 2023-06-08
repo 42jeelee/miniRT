@@ -6,7 +6,7 @@
 /*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 21:14:41 by jeelee            #+#    #+#             */
-/*   Updated: 2023/06/07 23:50:17 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/06/09 01:53:43 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,10 @@ typedef struct s_buffer
 int		vaild_file(int ac, char **av);
 
 void	setting_bg(int type, char *line, t_data *data);
+void	setting_object(int type, char *line, t_data *data);
+
+t_light	**create_llist(int n);
+void	add_llist(t_light *l, t_light ***llist);
 
 int		parse_color(char *line, uint32_t *color);
 int		parse_coordi(char *line, t_point *coodi);
