@@ -11,15 +11,15 @@
 	{
 		struct s_light	a_light;	// 주변광
 		struct s_camera	camera;		// 카메라
-		struct s_light	*lights;	// 빛
-		struct s_object	*objects;	// 도형
+		struct s_light	**lights;	// 빛
+		struct s_object	**objects;	// 도형
 	}	t_data;
 	```
 	+ `enum e_shape`
 		```c
 		typedef enum e_shape
 		{
-			sphere = 0,		// 구체(원)
+			sphere = 4,		// 구체(원)
 			plane,			// 평면
 			cylinder,		// 원기둥
 			con,			// 원뿔
