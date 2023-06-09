@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minirt.h                                           :+:      :+:    :+:   */
+/*   types.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahkiler <ahkiler@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jhwang2 <jhwang2@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/06 19:50:25 by jeelee            #+#    #+#             */
-/*   Updated: 2023/06/07 18:02:24 by ahkiler          ###   ########.fr       */
+/*   Created: 2023/06/07 21:28:57 by jeelee            #+#    #+#             */
+/*   Updated: 2023/06/09 18:05:49 by jhwang2          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINIRT_H
-# define MINIRT_H
+#ifndef TYPES_H
+# define TYPES_H
 
 # include <stdio.h>
+# include <math.h>
+# include <fcntl.h>
 # include <stdint.h>
-# include <stdlib.h>
-# include "./mlx/mlx.h"
-
-# define WINDOW_X 1920;
-# define WINDOW_Y 1080;
+# include <unistd.h>
+# include "../../mlx/mlx.h"
+# define ARR_SIZE 5
 
 typedef enum e_shape
 {
-	sphere = 0,
+	sphere = 4,
 	plane,
 	cylinder,
 	con,
@@ -33,9 +33,9 @@ typedef enum e_shape
 
 typedef struct s_point
 {
-	int	x;
-	int	y;
-	int	z;
+	float	x;
+	float	y;
+	float	z;
 }	t_point;
 
 typedef struct s_light
@@ -49,7 +49,7 @@ typedef struct s_camera
 {
 	t_point	point;
 	t_point	n_vector;
-	size_t	fov;
+	int		fov;
 }	t_camera;
 
 typedef struct s_object
@@ -57,12 +57,11 @@ typedef struct s_object
 	t_shape		shape;
 	t_point		point;
 	t_point		n_vector;
-	size_t		diameter;
-	size_t		height;
+	float		diameter;
+	float		height;
 	uint32_t	color;
 }	t_object;
 
-//mlx image 관련 구조체
 typedef struct s_mlx
 {
 	void	*mlx;
@@ -81,13 +80,17 @@ typedef struct s_data
 	struct s_light	a_light;
 	struct s_camera	camera;
 	struct s_mlx	params;
-	struct s_light	*lights;
-	struct s_object	*objects;
+	struct s_light	**lights;
+	struct s_object	**objects;
 }	t_data;
 
+t_object	**create_objlist(int n);
+void		add_objlist(t_object *obj, t_object ***objlist);
+//mlx 관련 함수 선언 (추후 분리 필요하면 분리)
 int		init_img (t_data *data);
 void	print_img(t_data *data);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void	mlx_hooks(t_data *data);
 int		key_hook(int keycode, t_data *data);
+
 #endif

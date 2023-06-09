@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hook.c                                             :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jhwang2 <jhwang2@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/07 17:45:57 by ahkiler           #+#    #+#             */
-/*   Updated: 2023/06/09 18:29:19 by jhwang2          ###   ########.fr       */
+/*   Created: 2023/06/06 19:47:26 by jeelee            #+#    #+#             */
+/*   Updated: 2023/06/09 18:26:57 by jhwang2          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minirt.h"
+#include "./include/minirt.h"
 
-void	mlx_hooks(t_data *data)
+int	main(int ac, char **av)
 {
-	mlx_key_hook (data->params.win, &key_hook, data);
-}
+	t_data	data;
 
-int	key_hook(int keycode, t_data *data)
-{
-	if (keycode == 53)
-	{
-		mlx_destroy_window (data->params.mlx, data->params.win);
-		exit (0);
-	}
+	if (parse_file(ac, av, &data))
+		return (1);
+	printf("arg: %s\nexecuting ...\n", av[1]);
+	print_data(&data);
+	print_img (&data);
+	mlx_hooks (&data);
+	mlx_loop (&data.params.mlx);
 	return (0);
 }

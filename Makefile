@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ahkiler <ahkiler@student.42.fr>            +#+  +:+       +#+         #
+#    By: jhwang2 <jhwang2@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/06 19:47:17 by jeelee            #+#    #+#              #
-#    Updated: 2023/06/07 18:01:55 by ahkiler          ###   ########.fr        #
+#    Updated: 2023/06/09 18:28:43 by jhwang2          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,20 +22,35 @@ MLXDIR		=	./mlx
 MLX			=	$(MLXDIR)/libmlx.a
 LDFLAGS		=	-L./mlx/ -lmlx -framework OpenGL -framework AppKit
 
-SRCDIR		=	src
-SRC			=	main.c \
-				$(SRCDIR)/img/init_img.c \
-				$(SRCDIR)/img/print_img.c \
-				$(SRCDIR)/hook/hook.c \
+SRCDIR		=	./src
+PARSEDIR	=	$(SRCDIR)/parse
+UTILSDIR	=	$(SRCDIR)/utils
+HOOKDIR		=	$(SRCDIR)/hook
+IMGDIR		=	$(SRCDIR)/img
 
+INC			=	$(SRCDIR)/include
+
+PARSE		=	parse_file.c vaild_file.c parse_gnl.c parse_token.c parse_setting.c light_utils.c parse_utils.c parse_perror.c parse_print.c
+PARSEFIX	=	$(PARSE:%.c=$(PARSEDIR)/%.c)
+
+UTILS		=	object_utils.c
+UTILSFIX	=	$(UTILS:%.c=$(UTILSDIR)/%.c)
+
+HOOK		=	hook.c
+HOOKFIX	=	$(HOOK:%.c=$(HOOKDIR)/%.c)
+
+IMG		=	init_img.c print_img.c
+IMGFIX	=	$(IMG:%.c=$(IMGDIR)/%.c)
+
+SRC			=	$(SRCDIR)/main.c $(PARSEFIX) $(UTILSFIX) $(HOOKFIX) $(IMGFIX)
 
 OBJ			=	$(SRC:.c=.o)
 
 $(NAME)		:	$(OBJ) $(LIBFT) $(MLX)
-	$(CC) $(CFLAGS) $(LIBFT) $(MLX) $(LDFLAGS) $(OBJ) -o $@
+	$(CC) $(LIBFT) $(MLX) $(LDFLAGS) $(OBJ) -o $@
 
 %.o			:	%.c
-	@$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -I$(INC) -c $? -o $@
 
 $(LIBFT)	:
 	make -C $(LIBDIR)

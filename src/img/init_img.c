@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   init_img.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahkiler <ahkiler@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jhwang2 <jhwang2@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 17:27:27 by ahkiler           #+#    #+#             */
-/*   Updated: 2023/06/07 17:59:31 by ahkiler          ###   ########.fr       */
+/*   Updated: 2023/06/09 18:25:12 by jhwang2          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../minirt.h"
+#include "../include/minirt.h"
 
 int	init_img (t_data *data)
 {

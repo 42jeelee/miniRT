@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   print_img.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahkiler <ahkiler@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jhwang2 <jhwang2@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 17:32:47 by ahkiler           #+#    #+#             */
-/*   Updated: 2023/06/07 18:16:09 by ahkiler          ###   ########.fr       */
+/*   Updated: 2023/06/09 18:29:54 by jhwang2          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../minirt.h"
+#include "../include/minirt.h"
 
 void	print_img(t_data *data)
 {
@@ -18,6 +18,7 @@ void	print_img(t_data *data)
 	int			i;
 	int			j;
 
+	init_img(data);
 	i = 0;
 	while (i < data->params.width)
 	{
@@ -30,7 +31,7 @@ void	print_img(t_data *data)
 		}
 		i++;
 	}
-	mlx_put_image_to_window (data->params.mlx, data->params.win, data->params.img, 0, 0);
+	mlx_put_image_to_window(data->params.mlx, data->params.win, data->params.img, 0, 0);
 }
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
