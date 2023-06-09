@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+         #
+#    By: jhwang2 <jhwang2@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/06 19:47:17 by jeelee            #+#    #+#              #
-#    Updated: 2023/06/09 01:29:17 by jeelee           ###   ########.fr        #
+#    Updated: 2023/06/09 18:28:43 by jhwang2          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,8 @@ LDFLAGS		=	-L./mlx/ -lmlx -framework OpenGL -framework AppKit
 SRCDIR		=	./src
 PARSEDIR	=	$(SRCDIR)/parse
 UTILSDIR	=	$(SRCDIR)/utils
+HOOKDIR		=	$(SRCDIR)/hook
+IMGDIR		=	$(SRCDIR)/img
 
 INC			=	$(SRCDIR)/include
 
@@ -34,7 +36,13 @@ PARSEFIX	=	$(PARSE:%.c=$(PARSEDIR)/%.c)
 UTILS		=	object_utils.c
 UTILSFIX	=	$(UTILS:%.c=$(UTILSDIR)/%.c)
 
-SRC			=	$(SRCDIR)/main.c $(PARSEFIX) $(UTILSFIX)
+HOOK		=	hook.c
+HOOKFIX	=	$(HOOK:%.c=$(HOOKDIR)/%.c)
+
+IMG		=	init_img.c print_img.c
+IMGFIX	=	$(IMG:%.c=$(IMGDIR)/%.c)
+
+SRC			=	$(SRCDIR)/main.c $(PARSEFIX) $(UTILSFIX) $(HOOKFIX) $(IMGFIX)
 
 OBJ			=	$(SRC:.c=.o)
 
@@ -50,7 +58,8 @@ $(LIBFT)	:
 $(MLX)		:
 	make -C $(MLXDIR)
 
-all			:	$(NAME)
+all			:
+	@$(MAKE) -j6 $(NAME)
 
 clean		:
 	@make -C $(LIBDIR) clean
