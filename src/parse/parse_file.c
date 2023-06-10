@@ -6,7 +6,7 @@
 /*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 22:58:14 by jeelee            #+#    #+#             */
-/*   Updated: 2023/06/09 01:53:15 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/06/11 01:40:15 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static int	is_type(char *line, size_t *i)
 	return (0);
 }
 
-static void	parse_line(char *line, t_data *data)
+static void	parse_line(char *line, t_data *data, int *parsed)
 {
 	size_t	i;
 	int		type;
@@ -48,16 +48,19 @@ static void	parse_line(char *line, t_data *data)
 	if (type == 0)
 		parse_error_exit("Invalid file", 1);
 	else if (type < 3)
-		setting_bg(type, line + i, data);
+		setting_bg(type, line + i, data, parsed);
 	else
 		setting_object(type, line + i, data);
 }
 
 static void	_parsing(int fd, t_data *data)
 {
+	int			parsed[2];
 	char		*line;
 	t_buffer	bf;
 
+	parsed[0] = 0;
+	parsed[1] = 0;
 	ft_memset(&bf, 0, sizeof(t_buffer));
 	while (1)
 	{
@@ -68,7 +71,7 @@ static void	_parsing(int fd, t_data *data)
 				free(line);
 			break ;
 		}
-		parse_line(line, data);
+		parse_line(line, data, parsed);
 		free(line);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 21:14:41 by jeelee            #+#    #+#             */
-/*   Updated: 2023/06/09 01:53:43 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/06/11 01:40:07 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ typedef struct s_buffer
 
 int		vaild_file(int ac, char **av);
 
-void	setting_bg(int type, char *line, t_data *data);
+void	setting_bg(int type, char *line, t_data *data, int *parsed);
 void	setting_object(int type, char *line, t_data *data);
 
 t_light	**create_llist(int n);
