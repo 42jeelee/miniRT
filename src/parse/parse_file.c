@@ -6,7 +6,7 @@
 /*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 22:58:14 by jeelee            #+#    #+#             */
-/*   Updated: 2023/06/11 01:40:15 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/06/11 02:06:51 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static void	parse_line(char *line, t_data *data, int *parsed)
 		i++;
 	type = is_type(line, &i);
 	if (type == 0)
-		parse_error_exit("Invalid file", 1);
+		parse_error_exit("Invalid identifier.", 1);
 	else if (type < 3)
 		setting_bg(type, line + i, data, parsed);
 	else
