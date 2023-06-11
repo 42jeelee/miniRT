@@ -6,7 +6,7 @@
 /*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 21:01:47 by jeelee            #+#    #+#             */
-/*   Updated: 2023/06/11 01:39:44 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/06/11 15:46:13 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static t_light	*new_light(char *line)
 		parse_perror_exit(1);
 	idx = 0;
 	idx += parse_coordi(line, &(new_light->point));
-	idx += parse_decimal(line + idx, &(new_light->light_ratio));
+	idx += parse_ratio(line + idx, &(new_light->light_ratio));
 	idx += parse_color(line + idx, &(new_light->color));
 	return (new_light);
 }
@@ -64,7 +64,7 @@ void	setting_bg(int type, char *line, t_data *data, int *parsed)
 	idx = 0;
 	if (type == 1)
 	{
-		idx += parse_decimal(line, &((data->a_light).light_ratio));
+		idx += parse_ratio(line, &((data->a_light).light_ratio));
 		idx += parse_color(line + idx, &((data->a_light).color));
 		parsed[0] = 1;
 	}

@@ -6,7 +6,7 @@
 /*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 15:27:44 by jeelee            #+#    #+#             */
-/*   Updated: 2023/06/07 23:18:48 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/06/11 15:47:16 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,17 @@ int	parse_decimal(char *line, float *decimal)
 	return (idx);
 }
 
+int	parse_ratio(char *line, float *ratio)
+{
+	size_t	idx;
+
+	idx = 0;
+	idx = parse_decimal(line, ratio);
+	if (!(0.0 <= *ratio && *ratio <= 1.0))
+		parse_error_exit("Ratio in range: [0.0, 1.0].", 1);
+	return (idx);
+}
+
 int	parse_color(char *line, uint32_t *color)
 {
 	size_t	idx;
@@ -57,7 +68,8 @@ int	parse_color(char *line, uint32_t *color)
 		tmp = parse_atoi(line + idx, size);
 		if (!(0 <= tmp && tmp <= 255))
 			parse_error_exit("Invalid color.", 1);
-		idx++;
+		if (line[idx + size] == ',')
+			idx++;
 		*color |= (tmp << (8 * (3 - i)));
 		idx += size;
 	}

@@ -6,7 +6,7 @@
 /*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 22:58:14 by jeelee            #+#    #+#             */
-/*   Updated: 2023/06/11 02:06:51 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/06/11 15:51:55 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,8 @@ static void	_parsing(int fd, t_data *data)
 		parse_line(line, data, parsed);
 		free(line);
 	}
+	if (!parsed[0] || !parsed[1])
+		parse_error_exit("[Ambient, Camera] must exist.", 1);
 }
 
 int	parse_file(int ac, char **av, t_data *data)
