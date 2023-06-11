@@ -6,23 +6,28 @@
 /*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 22:58:14 by jeelee            #+#    #+#             */
-/*   Updated: 2023/06/11 16:23:19 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/06/11 17:13:02 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
 
-static int	valid_line(char *line, size_t *idx)
+static int	valid_line(char **line, size_t *idx)
 {
 	*idx = 0;
-	if (!line)
+	if (!(*line))
 		return (1);
-	while (line[*idx] == ' ')
+	while ((*line)[*idx] == ' ')
 		(*idx)++;
-	if (!line[*idx])
+	if (!((*line)[*idx]))
 	{
-		free(line);
+		free(*line);
 		return (1);
+	}
+	if ((*line)[*idx] == '\n')
+	{
+		free(*line);
+		*line = 0;
 	}
 	return (0);
 }
@@ -82,10 +87,13 @@ static void	_parsing(int fd, t_data *data)
 	while (1)
 	{
 		line = parse_gnl(fd, &bf);
-		if (valid_line(line, &idx))
+		if (valid_line(&line, &idx))
 			break ;
-		parse_line(line + idx, data, parsed);
-		free(line);
+		if (line)
+		{
+			parse_line(line + idx, data, parsed);
+			free(line);
+		}
 	}
 	if (!parsed[0] || !parsed[1])
 		parse_error_exit("[Ambient, Camera] must exist.", 1);

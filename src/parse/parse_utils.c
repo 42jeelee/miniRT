@@ -6,7 +6,7 @@
 /*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 01:36:02 by jeelee            #+#    #+#             */
-/*   Updated: 2023/06/11 15:20:04 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/06/11 17:10:07 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int	catchs_in_str(char *line, char *catchs)
 	size_t	i;
 
 	i = 0;
-	while (line[i])
+	while (line[i] && line[i] != '\n')
 	{
 		if (ft_strchr(catchs, line[i]))
 			return (i);
