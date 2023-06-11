@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   types.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhwang2 <jhwang2@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 21:28:57 by jeelee            #+#    #+#             */
-/*   Updated: 2023/06/09 18:05:49 by jhwang2          ###   ########.fr       */
+/*   Updated: 2023/06/11 01:59:46 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,5 +92,7 @@ void	print_img(t_data *data);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void	mlx_hooks(t_data *data);
 int		key_hook(int keycode, t_data *data);
+
+void	free_data(t_data *data);
 
 #endif
