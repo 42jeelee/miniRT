@@ -6,11 +6,26 @@
 /*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 22:58:14 by jeelee            #+#    #+#             */
-/*   Updated: 2023/06/11 15:51:55 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/06/11 16:23:19 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
+
+static int	valid_line(char *line, size_t *idx)
+{
+	*idx = 0;
+	if (!line)
+		return (1);
+	while (line[*idx] == ' ')
+		(*idx)++;
+	if (!line[*idx])
+	{
+		free(line);
+		return (1);
+	}
+	return (0);
+}
 
 static int	is_type(char *line, size_t *i)
 {
@@ -57,21 +72,19 @@ static void	_parsing(int fd, t_data *data)
 {
 	int			parsed[2];
 	char		*line;
+	size_t		idx;
 	t_buffer	bf;
 
+	idx = 0;
 	parsed[0] = 0;
 	parsed[1] = 0;
 	ft_memset(&bf, 0, sizeof(t_buffer));
 	while (1)
 	{
 		line = parse_gnl(fd, &bf);
-		if (!line || !line[0])
-		{
-			if (line)
-				free(line);
+		if (valid_line(line, &idx))
 			break ;
-		}
-		parse_line(line, data, parsed);
+		parse_line(line + idx, data, parsed);
 		free(line);
 	}
 	if (!parsed[0] || !parsed[1])
@@ -82,7 +95,7 @@ int	parse_file(int ac, char **av, t_data *data)
 {
 	int	fd;
 
-	if (vaild_file(ac, av))
+	if (valid_file(ac, av))
 		return (1);
 	ft_memset(data, 0, sizeof(t_data));
 	fd = open(av[1], O_RDONLY);

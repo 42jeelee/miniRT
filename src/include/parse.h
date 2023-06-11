@@ -6,7 +6,7 @@
 /*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 21:14:41 by jeelee            #+#    #+#             */
-/*   Updated: 2023/06/11 15:45:45 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/06/11 16:18:11 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ typedef struct s_buffer
 	size_t	idx;
 }	t_buffer;
 
-int		vaild_file(int ac, char **av);
+int		valid_file(int ac, char **av);
 
 void	setting_bg(int type, char *line, t_data *data, int *parsed);
 void	setting_object(int type, char *line, t_data *data);

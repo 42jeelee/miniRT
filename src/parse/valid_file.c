@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vaild_file.c                                       :+:      :+:    :+:   */
+/*   valid_file.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 20:33:05 by jeelee            #+#    #+#             */
-/*   Updated: 2023/06/07 01:50:45 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/06/11 16:14:13 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ size_t	count_charnum(char c, char *str)
 	return (count);
 }
 
-int	vaild_filename(char *filename)
+int	valid_filename(char *filename)
 {
 	size_t	size;
 
@@ -39,13 +39,13 @@ int	vaild_filename(char *filename)
 	return (0);
 }
 
-int	vaild_file(int ac, char **av)
+int	valid_file(int ac, char **av)
 {
 	if (ac == 1)
 		return (parse_error("No arguments.", 1));
 	else if (ac != 2)
 		return (parse_error("Too many arguments.", 1));
-	if (vaild_filename(av[1]))
-		return (parse_error("Invaild filename.", 1));
+	if (valid_filename(av[1]))
+		return (parse_error("Invalid filename.", 1));
 	return (0);
 }
