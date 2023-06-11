@@ -6,7 +6,7 @@
 /*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 01:36:02 by jeelee            #+#    #+#             */
-/*   Updated: 2023/06/11 17:10:07 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/06/11 19:13:04 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,12 @@ static void	_atof_decimal(char *str, size_t size, double *n)
 		if (!('0' <= str[i] && str[i] <= '9'))
 			parse_error_exit("Invalid number.", 1);
 		*n += (str[i] - '0') * pow(0.1, i);
+		if (*n > MAXFLOAT)
+			parse_error_exit("Too big number.", 1);
+		else if (*n < -MAXFLOAT)
+			parse_error_exit("Too small number.", 1);
 		i++;
 	}
-	if (*n > MAXFLOAT)
-		parse_error_exit("Too big number.", 1);
-	else if (*n < -MAXFLOAT)
-		parse_error_exit("Too small number.", 1);
 }
 
 float	parse_atof(char *str, size_t size)
@@ -73,12 +73,12 @@ int	parse_atoi(char *str, size_t size)
 		if (!('0' <= str[i] && str[i] <= '9'))
 			parse_error_exit("Invalid number.", 1);
 		n = (n * 10) + (str[i] - '0');
+		if (n > 2147483647)
+			parse_error_exit("Too big number.", 1);
+		else if (n < -2147483648)
+			parse_error_exit("Too small number.", 1);
 		i++;
 	}
-	if (n > 2147483647)
-		parse_error_exit("Too big number.", 1);
-	if (n < -2147483648)
-		parse_error_exit("Too small number.", 1);
 	return ((int)n * m);
 }
 
