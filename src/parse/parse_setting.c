@@ -6,7 +6,7 @@
 /*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 21:01:47 by jeelee            #+#    #+#             */
-/*   Updated: 2023/06/11 15:46:13 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/06/12 16:22:44 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static t_object	*new_object(int type, char *line)
 	new_object->shape = type;
 	idx += parse_coordi(line, &(new_object->point));
 	if (type != sphere)
-		idx += parse_coordi(line + idx, &(new_object->n_vector));
+		idx += parse_n_vector(line + idx, &(new_object->n_vector));
 	if (type == sphere || type == cylinder)
 		idx += parse_decimal(line + idx, &(new_object->diameter));
 	if (type == cylinder)
@@ -71,7 +71,7 @@ void	setting_bg(int type, char *line, t_data *data, int *parsed)
 	else if (type == 2)
 	{
 		idx += parse_coordi(line, &((data->camera).point));
-		idx += parse_coordi(line + idx, &((data->camera).n_vector));
+		idx += parse_n_vector(line + idx, &((data->camera).n_vector));
 		idx += parse_integer(line + idx, &((data->camera).fov));
 		if (!(0 <= (data->camera).fov && (data->camera).fov <= 180))
 			parse_error_exit("Invalid FOV.", 1);
