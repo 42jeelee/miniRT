@@ -19,6 +19,7 @@
 # include <stdint.h>
 # include <unistd.h>
 # include "../../mlx/mlx.h"
+# include "scene.h"
 # define ARR_SIZE 5
 
 typedef enum e_shape
@@ -44,13 +45,6 @@ typedef struct s_light
 	float			light_ratio;
 	uint32_t		color;
 }	t_light;
-
-typedef struct s_camera
-{
-	t_point	point;
-	t_point	n_vector;
-	int		fov;
-}	t_camera;
 
 typedef struct s_object
 {
