@@ -6,7 +6,7 @@
 /*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 21:14:41 by jeelee            #+#    #+#             */
-/*   Updated: 2023/06/11 16:18:11 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/06/12 16:18:56 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	add_llist(t_light *l, t_light ***llist);
 int		parse_ratio(char *line, float *ratio);
 int		parse_color(char *line, uint32_t *color);
 int		parse_coordi(char *line, t_point *coodi);
+int		parse_n_vector(char *line, t_point *coodi);
 int		parse_decimal(char *line, float *decimal);
 int		parse_integer(char *line, int *integer);
 

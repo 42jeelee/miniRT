@@ -6,39 +6,11 @@
 /*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 15:27:44 by jeelee            #+#    #+#             */
-/*   Updated: 2023/06/11 15:47:16 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/06/12 16:21:56 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
-
-int	parse_integer(char *line, int *integer)
-{
-	size_t	idx;
-	size_t	size;
-
-	idx = 0;
-	while (line[idx] == ' ')
-		idx++;
-	size = catchs_in_str(line + idx, " ");
-	*integer = parse_atoi(line + idx, size);
-	idx += size;
-	return (idx);
-}
-
-int	parse_decimal(char *line, float *decimal)
-{
-	size_t	idx;
-	size_t	size;
-
-	idx = 0;
-	while (line[idx] == ' ')
-		idx++;
-	size = catchs_in_str(line + idx, " ");
-	*decimal = parse_atof(line + idx, size);
-	idx += size;
-	return (idx);
-}
 
 int	parse_ratio(char *line, float *ratio)
 {
@@ -99,5 +71,17 @@ int	parse_coordi(char *line, t_point *coodi)
 	size = catchs_in_str(line + idx, ", ");
 	coodi->z = parse_atof(line + idx, size);
 	idx += size;
+	return (idx);
+}
+
+int	parse_n_vector(char *line, t_point *coodi)
+{
+	size_t	idx;
+
+	idx = parse_coordi(line, coodi);
+	if (!(-1.0 <= coodi->x && coodi->x <= 1.0) || \
+		!(-1.0 <= coodi->y && coodi->y <= 1.0) || \
+		!(-1.0 <= coodi->z && coodi->z <= 1.0))
+		parse_error_exit("Normal Vector In range [-1,1].", 1);
 	return (idx);
 }
