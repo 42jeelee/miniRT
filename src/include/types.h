@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   types.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhwang2 <jhwang2@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jhwang2 <jhwang2@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 21:28:57 by jeelee            #+#    #+#             */
-/*   Updated: 2023/06/09 18:05:49 by jhwang2          ###   ########.fr       */
+/*   Updated: 2023/06/12 15:14:00 by jhwang2          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <stdint.h>
 # include <unistd.h>
 # include "../../mlx/mlx.h"
+# include "scene.h"
 # define ARR_SIZE 5
 
 typedef enum e_shape
@@ -44,13 +45,6 @@ typedef struct s_light
 	float			light_ratio;
 	uint32_t		color;
 }	t_light;
-
-typedef struct s_camera
-{
-	t_point	point;
-	t_point	n_vector;
-	int		fov;
-}	t_camera;
 
 typedef struct s_object
 {
