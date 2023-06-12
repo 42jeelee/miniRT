@@ -6,11 +6,19 @@
 /*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 21:01:47 by jeelee            #+#    #+#             */
-/*   Updated: 2023/06/09 01:58:35 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/06/12 16:22:44 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
+
+static void	vaild_bg(int type, int *parsed)
+{
+	if (type == 1 && parsed[0])
+		parse_error_exit("Ambient Can't be two objects.", 1);
+	else if (type == 2 && parsed[1])
+		parse_error_exit("Camera Can't be two objects.", 1);
+}
 
 static t_light	*new_light(char *line)
 {
@@ -22,7 +30,7 @@ static t_light	*new_light(char *line)
 		parse_perror_exit(1);
 	idx = 0;
 	idx += parse_coordi(line, &(new_light->point));
-	idx += parse_decimal(line + idx, &(new_light->light_ratio));
+	idx += parse_ratio(line + idx, &(new_light->light_ratio));
 	idx += parse_color(line + idx, &(new_light->color));
 	return (new_light);
 }
@@ -39,7 +47,7 @@ static t_object	*new_object(int type, char *line)
 	new_object->shape = type;
 	idx += parse_coordi(line, &(new_object->point));
 	if (type != sphere)
-		idx += parse_coordi(line + idx, &(new_object->n_vector));
+		idx += parse_n_vector(line + idx, &(new_object->n_vector));
 	if (type == sphere || type == cylinder)
 		idx += parse_decimal(line + idx, &(new_object->diameter));
 	if (type == cylinder)
@@ -48,23 +56,26 @@ static t_object	*new_object(int type, char *line)
 	return (new_object);
 }
 
-void	setting_bg(int type, char *line, t_data *data)
+void	setting_bg(int type, char *line, t_data *data, int *parsed)
 {
 	size_t	idx;
 
+	vaild_bg(type, parsed);
 	idx = 0;
 	if (type == 1)
 	{
-		idx += parse_decimal(line, &((data->a_light).light_ratio));
+		idx += parse_ratio(line, &((data->a_light).light_ratio));
 		idx += parse_color(line + idx, &((data->a_light).color));
+		parsed[0] = 1;
 	}
 	else if (type == 2)
 	{
 		idx += parse_coordi(line, &((data->camera).point));
-		idx += parse_coordi(line + idx, &((data->camera).n_vector));
+		idx += parse_n_vector(line + idx, &((data->camera).n_vector));
 		idx += parse_integer(line + idx, &((data->camera).fov));
 		if (!(0 <= (data->camera).fov && (data->camera).fov <= 180))
 			parse_error_exit("Invalid FOV.", 1);
+		parsed[1] = 1;
 	}
 	while (line[idx] == ' ')
 		idx++;
