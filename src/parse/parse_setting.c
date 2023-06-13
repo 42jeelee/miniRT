@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_setting.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: jhwang2 <jhwang2@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 21:01:47 by jeelee            #+#    #+#             */
-/*   Updated: 2023/06/12 16:22:44 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/06/13 12:38:56 by jhwang2          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	setting_bg(int type, char *line, t_data *data, int *parsed)
 	}
 	else if (type == 2)
 	{
-		idx += parse_coordi(line, &((data->camera).point));
+		idx += parse_coordi(line, &((data->camera).center));
 		idx += parse_n_vector(line + idx, &((data->camera).n_vector));
 		idx += parse_integer(line + idx, &((data->camera).fov));
 		if (!(0 <= (data->camera).fov && (data->camera).fov <= 180))

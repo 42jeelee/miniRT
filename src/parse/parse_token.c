@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parse_token.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: jhwang2 <jhwang2@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 15:27:44 by jeelee            #+#    #+#             */
-/*   Updated: 2023/06/12 16:21:56 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/06/13 19:48:33 by jhwang2          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
 
-int	parse_ratio(char *line, float *ratio)
+int	parse_ratio(char *line, double *ratio)
 {
 	size_t	idx;
 

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+         #
+#    By: jhwang2 <jhwang2@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/06 19:47:17 by jeelee            #+#    #+#              #
-#    Updated: 2023/06/12 16:19:24 by jeelee           ###   ########.fr        #
+#    Updated: 2023/06/13 19:59:01 by jhwang2          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,8 +25,10 @@ LDFLAGS		=	-L./mlx/ -lmlx -framework OpenGL -framework AppKit
 SRCDIR		=	./src
 PARSEDIR	=	$(SRCDIR)/parse
 UTILSDIR	=	$(SRCDIR)/utils
+V_UTILSDIR	=	$(SRCDIR)/v_utils
 HOOKDIR		=	$(SRCDIR)/hook
 IMGDIR		=	$(SRCDIR)/img
+SCENEDIR	=	$(SRCDIR)/scene
 
 INC			=	$(SRCDIR)/include
 
@@ -36,13 +38,19 @@ PARSEFIX	=	$(PARSE:%.c=$(PARSEDIR)/%.c)
 UTILS		=	object_utils.c data_free.c
 UTILSFIX	=	$(UTILS:%.c=$(UTILSDIR)/%.c)
 
+V_UTILS		=	add_and_sub.c dot_and_cross.c length_and_unit.c mul_and_div.c
+V_UTILSFIX	=	$(V_UTILS:%.c=$(V_UTILSDIR)/%.c)
+
 HOOK		=	hook.c
-HOOKFIX	=	$(HOOK:%.c=$(HOOKDIR)/%.c)
+HOOKFIX		=	$(HOOK:%.c=$(HOOKDIR)/%.c)
 
-IMG		=	init_img.c print_img.c
-IMGFIX	=	$(IMG:%.c=$(IMGDIR)/%.c)
+IMG			=	init_img.c print_img.c
+IMGFIX		=	$(IMG:%.c=$(IMGDIR)/%.c)
 
-SRC			=	$(SRCDIR)/main.c $(PARSEFIX) $(UTILSFIX) $(HOOKFIX) $(IMGFIX)
+SCENE		=	scene.c
+SCENEFIX	=	$(SCENE:%.c=$(SCENEDIR)/%.c)
+
+SRC			=	$(SRCDIR)/main.c $(PARSEFIX) $(UTILSFIX) $(V_UTILSFIX) $(HOOKFIX) $(IMGFIX) $(SCENEFIX)
 
 OBJ			=	$(SRC:.c=.o)
 
