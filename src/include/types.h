@@ -6,7 +6,7 @@
 /*   By: jhwang2 <jhwang2@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 21:28:57 by jeelee            #+#    #+#             */
-/*   Updated: 2023/06/13 16:42:38 by jhwang2          ###   ########.fr       */
+/*   Updated: 2023/06/13 17:31:07 by jhwang2          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 # include <fcntl.h>
 # include <stdint.h>
 # include <unistd.h>
+# include "../../libft/libft.h"
 # include "../../mlx/mlx.h"
-# include "scene.h"
 # define ARR_SIZE 5
 
 typedef enum e_shape
@@ -34,15 +34,15 @@ typedef enum e_shape
 
 typedef struct s_point
 {
-	float	x;
-	float	y;
-	float	z;
+	double	x;
+	double	y;
+	double	z;
 }	t_point;
 
 typedef struct s_light
 {
 	struct s_point	point;
-	float			light_ratio;
+	double			light_ratio;
 	uint32_t		color;
 }	t_light;
 
@@ -51,8 +51,8 @@ typedef struct s_object
 	t_shape		shape;
 	t_point		point;
 	t_point		n_vector;
-	float		diameter;
-	float		height;
+	double		diameter;
+	double		height;
 	uint32_t	color;
 }	t_object;
 
@@ -104,10 +104,9 @@ void		add_objlist(t_object *obj, t_object ***objlist);
 //mlx 관련 함수 선언 (추후 분리 필요하면 분리)
 int		init_img (t_data *data);
 void	print_img(t_data *data);
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
+void	my_mlx_pixel_put(t_data *data, int x, int y, u_int32_t color);
 void	mlx_hooks(t_data *data);
 int		key_hook(int keycode, t_data *data);
-
 void	free_data(t_data *data);
 
 #endif

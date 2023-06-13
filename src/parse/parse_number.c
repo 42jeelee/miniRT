@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_number.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: jhwang2 <jhwang2@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 16:14:17 by jeelee            #+#    #+#             */
-/*   Updated: 2023/06/12 16:14:51 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/06/13 19:49:07 by jhwang2          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	parse_integer(char *line, int *integer)
 	return (idx);
 }
 
-int	parse_decimal(char *line, float *decimal)
+int	parse_decimal(char *line, double *decimal)
 {
 	size_t	idx;
 	size_t	size;

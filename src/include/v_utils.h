@@ -6,12 +6,14 @@
 /*   By: jhwang2 <jhwang2@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 12:30:17 by ahkiler           #+#    #+#             */
-/*   Updated: 2023/06/12 15:40:04 by jhwang2          ###   ########.fr       */
+/*   Updated: 2023/06/13 19:54:36 by jhwang2          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef V_UTILS_H
  #define V_UTILS_H
+
+# include "./types.h"
 
 t_point	set_vec(double x, double y, double z);
 t_point	v_add_vec(t_point vec_origin, t_point vec_value); //벡터 합

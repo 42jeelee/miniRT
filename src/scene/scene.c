@@ -6,11 +6,11 @@
 /*   By: jhwang2 <jhwang2@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 15:14:24 by jhwang2           #+#    #+#             */
-/*   Updated: 2023/06/13 12:31:45 by jhwang2          ###   ########.fr       */
+/*   Updated: 2023/06/13 19:55:49 by jhwang2          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/scene.h"
+#include "../include/minirt.h"
 
 void	init_origin_point(t_ray *ray, t_point center)
 {
