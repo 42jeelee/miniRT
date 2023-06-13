@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_img.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhwang2 <jhwang2@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jhwang2 <jhwang2@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 17:32:47 by ahkiler           #+#    #+#             */
-/*   Updated: 2023/06/09 18:29:54 by jhwang2          ###   ########.fr       */
+/*   Updated: 2023/06/13 12:31:50 by jhwang2          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,14 @@ void	print_img(t_data *data)
 	int			j;
 
 	init_img(data);
-	i = 0;
-	while (i < data->params.width)
+	init_cam(data, (double)data->params.width / data->params.height);
+	i = data->params.height - 1;
+	while (i >= 0)
 	{
 		j = 0;
-		while (j < data->params.height)
+		while (j < data->params.width)
 		{
-			color = 0X00112233;
+			init_dir(&data->camera, (double)j / data->params.width - 1, (double)i / data->params.height - 1);
 			my_mlx_pixel_put (data, i, j, color);
 			j++;
 		}
