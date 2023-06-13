@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   types.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: jhwang2 <jhwang2@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 21:28:57 by jeelee            #+#    #+#             */
-/*   Updated: 2023/06/11 01:59:46 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/06/13 16:42:38 by jhwang2          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,27 @@ typedef struct s_mlx
 	int		line_length;
 	int		endian;
 }	t_mlx;
+
+typedef struct s_ray //P(t) = A + tb; t_min(뷰포트 시작점)과 t_max고려
+{
+	t_point	origin_point;//원점
+	t_point	dir;//b, 방향과 크기. t가 증가할수록 원점에서 거리가 더 먼 점을 나타냄
+}	t_ray;
+
+typedef struct s_camera
+{
+	t_ray	ray;
+	t_point	n_vector; //카메라가 보는 방향
+	t_point	center;
+	t_point	view_port_lb; //left bottom
+	t_point	horizontal;//수평길이
+	t_point	vertical;//수직길이
+	double	view_port_w; //fov 증가시 같이 증가
+	double	view_port_h; //fov 증가시 같이 증가
+	double	ratio; //종횡비, mlx의 width / height; view port의 한 길이를 설정했을때 다른 부분을 비율로 정함
+	double	focal_length; //뷰포인트까지의 거리, 1.0으로 고정
+	int		fov; //시야각
+}	t_camera;
 
 typedef struct s_data
 {

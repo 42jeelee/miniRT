@@ -6,7 +6,7 @@
 /*   By: jhwang2 <jhwang2@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 19:50:25 by jeelee            #+#    #+#             */
-/*   Updated: 2023/06/11 14:20:43 by jhwang2          ###   ########.fr       */
+/*   Updated: 2023/06/13 16:42:23 by jhwang2          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "./types.h"
 # include "./parse.h"
-# include "v_utils.h"
+# include "./v_utils.h"
 # include "../../libft/libft.h"
 # include "../../mlx/mlx.h"
 
