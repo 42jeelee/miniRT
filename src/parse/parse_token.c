@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_token.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhwang2 <jhwang2@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 15:27:44 by jeelee            #+#    #+#             */
-/*   Updated: 2023/06/13 19:48:33 by jhwang2          ###   ########.fr       */
+/*   Updated: 2023/06/14 14:52:41 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,5 +83,8 @@ int	parse_n_vector(char *line, t_point *coodi)
 		!(-1.0 <= coodi->y && coodi->y <= 1.0) || \
 		!(-1.0 <= coodi->z && coodi->z <= 1.0))
 		parse_error_exit("Normal Vector In range [-1,1].", 1);
+	else if (coodi->x == 0.0 && \
+		coodi->y == 0.0 && coodi->z == 0.0)
+		parse_error_exit("Normal vector has no direction.", 1);
 	return (idx);
 }

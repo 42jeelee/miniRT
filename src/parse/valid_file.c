@@ -6,11 +6,25 @@
 /*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 20:33:05 by jeelee            #+#    #+#             */
-/*   Updated: 2023/06/11 16:14:13 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/06/14 15:11:58 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
+
+void	print_help(void)
+{
+	printf(ANSI_BLU "[miniRT]: " ANSI_YEL "./miniRT <filename>.rt" ANSI_RES "\n");
+	printf("\n----------------[ file.rt form ]----------------\n");
+	printf("| " ANSI_GRE "A\t[ratio_range]\t[color]" ANSI_RES "\n");
+	printf("| " ANSI_GRE "C\t[point]\t\t[n_vector]\t[FOV]" ANSI_RES "\n");
+	printf("| " ANSI_GRE "L\t[point]\t\t[ratio_range]\t[color]" ANSI_RES "\n");
+	printf("| " ANSI_GRE "sp\t[point]\t\t[diameter]\t[color]" ANSI_RES "\n");
+	printf("| " ANSI_GRE "pl\t[point]\t\t[n_vector]\t[color]" ANSI_RES "\n");
+	printf("| " ANSI_GRE "cy\t[point]\t\t[n_vector]\t[diameter]\t[height]\t[color]" ANSI_RES "\n");
+	printf("------------------------------------------------\n");
+	exit(0);
+}
 
 size_t	count_charnum(char c, char *str)
 {
@@ -31,8 +45,12 @@ int	valid_filename(char *filename)
 	size_t	size;
 
 	size = ft_strlen(filename);
-	if (!size || count_charnum('.', filename) != 1)
+	if (size < 4 || count_charnum('.', filename) != 1)
+	{
+		if (!ft_strncmp(filename, "help", size))
+			print_help();
 		return (1);
+	}
 	if (filename[size - 3] != '.' || \
 		filename[size - 2] != 'r' || filename[size - 1] != 't')
 		return (1);
