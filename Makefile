@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jhwang2 <jhwang2@student.42seoul.kr>       +#+  +:+       +#+         #
+#    By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/06 19:47:17 by jeelee            #+#    #+#              #
-#    Updated: 2023/06/13 19:59:01 by jhwang2          ###   ########.fr        #
+#    Updated: 2023/06/14 17:42:44 by jeelee           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ LDFLAGS		=	-L./mlx/ -lmlx -framework OpenGL -framework AppKit
 
 SRCDIR		=	./src
 PARSEDIR	=	$(SRCDIR)/parse
+RAYDIR		=	$(SRCDIR)/ray
 UTILSDIR	=	$(SRCDIR)/utils
 V_UTILSDIR	=	$(SRCDIR)/v_utils
 HOOKDIR		=	$(SRCDIR)/hook
@@ -34,6 +35,9 @@ INC			=	$(SRCDIR)/include
 
 PARSE		=	parse_file.c valid_file.c parse_gnl.c parse_token.c parse_setting.c light_utils.c parse_number.c parse_utils.c parse_perror.c parse_print.c
 PARSEFIX	=	$(PARSE:%.c=$(PARSEDIR)/%.c)
+
+RAY			=	hit_objects.c
+RAYFIX		=	$(RAY:%.c=$(RAYDIR)/%.c)
 
 UTILS		=	object_utils.c data_free.c
 UTILSFIX	=	$(UTILS:%.c=$(UTILSDIR)/%.c)
@@ -50,7 +54,7 @@ IMGFIX		=	$(IMG:%.c=$(IMGDIR)/%.c)
 SCENE		=	scene.c
 SCENEFIX	=	$(SCENE:%.c=$(SCENEDIR)/%.c)
 
-SRC			=	$(SRCDIR)/main.c $(PARSEFIX) $(UTILSFIX) $(V_UTILSFIX) $(HOOKFIX) $(IMGFIX) $(SCENEFIX)
+SRC			=	$(SRCDIR)/main.c $(PARSEFIX) $(UTILSFIX) $(V_UTILSFIX) $(HOOKFIX) $(IMGFIX) $(SCENEFIX) $(RAYFIX)
 
 OBJ			=	$(SRC:.c=.o)
 
