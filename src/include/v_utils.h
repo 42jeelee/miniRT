@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   v_utils.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhwang2 <jhwang2@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 12:30:17 by ahkiler           #+#    #+#             */
-/*   Updated: 2023/06/13 19:54:36 by jhwang2          ###   ########.fr       */
+/*   Updated: 2023/06/14 16:48:00 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,10 @@ double	v_length(t_point vec_origin); //길이
 t_point	v_unit(t_point vec_origin); //단위벡터
 double	v_dot(t_point vec_origin, t_point vec_value); //내적
 t_point	v_cross(t_point vec_origin, t_point vec_value); //외적
+
+double	hit_sphere(t_ray *ray, t_object *obj);
+double	hit_plane(t_ray *ray, t_object *obj);
+double	hit_cylinder(t_ray *ray, t_object *obj);
+double	hit_con(t_ray *ray, t_object *obj);
+
 #endif
