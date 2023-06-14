@@ -6,7 +6,7 @@
 /*   By: jhwang2 <jhwang2@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 17:32:47 by ahkiler           #+#    #+#             */
-/*   Updated: 2023/06/13 19:49:51 by jhwang2          ###   ########.fr       */
+/*   Updated: 2023/06/14 15:58:15 by jhwang2          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@ void	print_img(t_data *data)
 		j = 0;
 		while (j < data->params.width)
 		{
-			init_dir(&data->camera, (double)j / data->params.width - 1, (double)i / data->params.height - 1);
-			my_mlx_pixel_put (data, i, j, color);
+			init_dir(&data->camera, (double)j / (data->params.width - 1), (double)i / (data->params.height - 1));
+			my_mlx_pixel_put (data, j, i, color);
 			j++;
 		}
-		i++;
+		i--;
 	}
 	mlx_put_image_to_window(data->params.mlx, data->params.win, data->params.img, 0, 0);
 }
