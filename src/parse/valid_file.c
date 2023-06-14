@@ -6,7 +6,7 @@
 /*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 20:33:05 by jeelee            #+#    #+#             */
-/*   Updated: 2023/06/14 15:11:58 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/06/14 15:14:58 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,16 @@
 
 void	print_help(void)
 {
-	printf(ANSI_BLU "[miniRT]: " ANSI_YEL "./miniRT <filename>.rt" ANSI_RES "\n");
+	printf(ANSI_BLU "[miniRT]: " ANSI_YEL \
+		"./miniRT <filename>.rt" ANSI_RES "\n");
 	printf("\n----------------[ file.rt form ]----------------\n");
 	printf("| " ANSI_GRE "A\t[ratio_range]\t[color]" ANSI_RES "\n");
 	printf("| " ANSI_GRE "C\t[point]\t\t[n_vector]\t[FOV]" ANSI_RES "\n");
 	printf("| " ANSI_GRE "L\t[point]\t\t[ratio_range]\t[color]" ANSI_RES "\n");
 	printf("| " ANSI_GRE "sp\t[point]\t\t[diameter]\t[color]" ANSI_RES "\n");
 	printf("| " ANSI_GRE "pl\t[point]\t\t[n_vector]\t[color]" ANSI_RES "\n");
-	printf("| " ANSI_GRE "cy\t[point]\t\t[n_vector]\t[diameter]\t[height]\t[color]" ANSI_RES "\n");
+	printf("| " ANSI_GRE \
+		"cy\t[point]\t\t[n_vector]\t[diameter]\t[height]\t[color]" ANSI_RES "\n");
 	printf("------------------------------------------------\n");
 	exit(0);
 }
