@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   create_trbg.c                                      :+:      :+:    :+:   */
+/*   create_trgb.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 15:11:06 by jeelee            #+#    #+#             */
-/*   Updated: 2023/06/15 18:17:34 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/06/16 16:11:47 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ static int	hit_objs(t_ray *ray, t_object *obj, double value[])
 	if (obj->shape == sphere)
 		value_num = hit_sphere(ray, obj, value);
 	else if (obj->shape == plane)
-		value_num = hit_sphere(ray, obj, value);
+		value_num = hit_plane(ray, obj, value);
 	else if (obj->shape == cylinder)
-		value_num = hit_sphere(ray, obj, value);
+		value_num = hit_cylinder(ray, obj, value);
 	else
-		value_num = hit_sphere(ray, obj, value);
+		value_num = hit_con(ray, obj, value);
 	return (value_num);
 }
 
@@ -44,8 +44,8 @@ static double	calc_tmin(int value_num, double value[], const double t_min)
 static double	is_flag(t_camera *cam, t_object *obj, \
 									double value[], int value_num)
 {
-	const double	t_min = v_dot(cam->n_vector, (cam->ray).dir) \
-							/ cos(v_dot(cam->n_vector, (cam->ray).dir));
+	const double	t_min = cam->focal_length \
+							/ v_dot(cam->n_vector, (cam->ray).dir);
 	double			ret;
 	t_ray			viewport_ray;
 
@@ -55,14 +55,14 @@ static double	is_flag(t_camera *cam, t_object *obj, \
 		viewport_ray.dir = (cam->ray).dir;
 		viewport_ray.origin_point = v_mul_val((cam->ray).dir, t_min);
 		value_num = hit_objs(&viewport_ray, obj, value);
-		ret = calc_tmin(value_num, value, t_min);
+		ret = calc_tmin(value_num, value, 0);
 	}
 	return (ret);
 }
 
 static double	get_tmp(t_camera *cam, t_object *obj, int flag)
 {
-	double			value_num;
+	int				value_num;
 	double			value[2];
 
 	value_num = hit_objs(&(cam->ray), obj, value);
@@ -84,7 +84,7 @@ u_int32_t	create_trgb(t_data *data, int flag)
 	while ((data->objects)[i])
 	{
 		tmp = get_tmp(&(data->camera), data->objects[i], flag);
-		if (t > tmp)
+		if (tmp >= 0 && t > tmp)
 		{
 			t = tmp;
 			color = (data->objects)[i]->color;
