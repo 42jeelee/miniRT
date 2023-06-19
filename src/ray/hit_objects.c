@@ -6,7 +6,7 @@
 /*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 16:44:45 by jeelee            #+#    #+#             */
-/*   Updated: 2023/06/15 18:06:45 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/06/19 18:54:46 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ int	r_formula(double a, double b, double c, double value[])
 		value[0] = -1.0 * b / (2 * a);
 		return (1);
 	}
-	value[0] = (-1.0 * b + sqrt (determinant)) / (2 * a);
-	value[1] = (-1.0 * b - sqrt (determinant)) / (2 * a);
+	value[0] = (-1.0 * b - sqrt (determinant)) / (2 * a);
+	value[1] = (-1.0 * b + sqrt (determinant)) / (2 * a);
 	return (2);
 }
 
@@ -37,9 +37,9 @@ int	hit_sphere(t_ray *ray, t_object *obj, double value[])
 	double	c;
 
 	o_sub_c = v_sub_vec (ray->origin_point, obj->point);
-	a = v_dot (ray->dir, ray->dir);
-	b = -2.0 * v_dot (o_sub_c, ray->dir);
-	c = v_dot (o_sub_c, o_sub_c) - pow (obj->diameter / 2, 2);
+	a = fabs(v_dot (ray->dir, ray->dir));
+	b = v_dot (o_sub_c, v_mul_val(ray->dir, 2.0));
+	c = fabs(v_dot (o_sub_c, o_sub_c)) - pow (obj->diameter / 2, 2);
 	return (r_formula(a, b, c, value));
 }
 
@@ -72,6 +72,11 @@ int	hit_cylinder(t_ray *ray, t_object *obj, double value[])
 		(v_dot(ray->dir, obj->n_vector) * v_dot(o_sub_c, obj->n_vector)));
 	c = v_dot(o_sub_c, o_sub_c) - \
 		pow(v_dot(o_sub_c, obj->n_vector), 2) - pow(obj->diameter / 2, 2);
+	if ((b * b - 4 * a * c) == 0 && fabs(v_dot(ray->dir, obj->n_vector)) == 1)
+	{
+		value[0] = 0;
+		return (1);
+	}
 	return (r_formula(a, b, c, value));
 }
 
