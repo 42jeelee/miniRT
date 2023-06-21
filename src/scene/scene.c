@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scene.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhwang2 <jhwang2@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 15:14:24 by jhwang2           #+#    #+#             */
-/*   Updated: 2023/06/14 15:58:11 by jhwang2          ###   ########.fr       */
+/*   Updated: 2023/06/19 18:30:11 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,11 @@ void	init_cam(t_data *data, double ratio)
 	init_origin_point (&data->camera.ray, data->camera.center);
 	data->camera.focal_length = 1.0;
 	data->camera.ratio = ratio;
-	data->camera.view_port_w = 4.0;
+	data->camera.view_port_w = 2.0;
 	data->camera.view_port_h = data->camera.view_port_w / data->camera.ratio;
-	focal = set_vec (0, 0, data->camera.focal_length);
-	data->camera.horizontal = set_vec (data->camera.view_port_h, 0, 0);
+	focal = set_vec (0, 0, -data->camera.focal_length);
+	data->camera.horizontal = set_vec (data->camera.view_port_w, 0, 0);
 	data->camera.vertical = set_vec (0, data->camera.view_port_h, 0);
-	data->camera.view_port_lb = v_sub_vec (v_sub_vec (v_sub_vec (data->camera.ray.origin_point, focal)
+	data->camera.view_port_lb = v_sub_vec (v_sub_vec (v_add_vec (data->camera.ray.origin_point, focal)
 		, v_div_val (data->camera.horizontal, 2)), v_div_val (data->camera.vertical, 2));
 }

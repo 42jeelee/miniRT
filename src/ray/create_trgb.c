@@ -6,7 +6,7 @@
 /*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 15:11:06 by jeelee            #+#    #+#             */
-/*   Updated: 2023/06/16 16:11:47 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/06/19 18:25:09 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,12 @@ static double	get_tmp(t_camera *cam, t_object *obj, int flag)
 	value_num = hit_objs(&(cam->ray), obj, value);
 	if (flag)
 		return (is_flag(cam, obj, value, value_num));
+	if (value[0] < 0)
+	{
+		if (value_num == 2 && value[1] >= 0)
+			return (value[1]);
+		return (-1);
+	}
 	return (value[0]);
 }
 
