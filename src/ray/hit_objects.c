@@ -6,7 +6,7 @@
 /*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 16:44:45 by jeelee            #+#    #+#             */
-/*   Updated: 2023/06/19 18:54:46 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/06/20 17:32:08 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,36 +57,4 @@ int	hit_plane(t_ray *ray, t_object *obj, double value[])
 	else
 		value[0] = numer / denom;
 	return (1);
-}
-
-int	hit_cylinder(t_ray *ray, t_object *obj, double value[])
-{
-	t_point	o_sub_c;
-	double	a;
-	double	b;
-	double	c;
-
-	o_sub_c = v_sub_vec(ray->origin_point, obj->point);
-	a = v_dot(ray->dir, ray->dir) - pow(v_dot(ray->dir, obj->n_vector), 2);
-	b = 2 * (v_dot(ray->dir, o_sub_c) - \
-		(v_dot(ray->dir, obj->n_vector) * v_dot(o_sub_c, obj->n_vector)));
-	c = v_dot(o_sub_c, o_sub_c) - \
-		pow(v_dot(o_sub_c, obj->n_vector), 2) - pow(obj->diameter / 2, 2);
-	if ((b * b - 4 * a * c) == 0 && fabs(v_dot(ray->dir, obj->n_vector)) == 1)
-	{
-		value[0] = 0;
-		return (1);
-	}
-	return (r_formula(a, b, c, value));
-}
-
-int	hit_con(t_ray *ray, t_object *obj, double value[])
-{
-	int	t;
-
-	t = 0;
-	(void)ray;
-	(void)obj;
-	(void)value;
-	return (t);
 }

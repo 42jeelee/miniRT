@@ -6,7 +6,7 @@
 #    By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/06 19:47:17 by jeelee            #+#    #+#              #
-#    Updated: 2023/06/15 18:17:53 by jeelee           ###   ########.fr        #
+#    Updated: 2023/06/20 17:35:43 by jeelee           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,7 @@ INC			=	$(SRCDIR)/include
 PARSE		=	parse_file.c valid_file.c parse_gnl.c parse_token.c parse_setting.c light_utils.c parse_number.c parse_utils.c parse_perror.c parse_print.c
 PARSEFIX	=	$(PARSE:%.c=$(PARSEDIR)/%.c)
 
-RAY			=	hit_objects.c create_trgb.c
+RAY			=	hit_objects.c hit_objects2.c create_trgb.c
 RAYFIX		=	$(RAY:%.c=$(RAYDIR)/%.c)
 
 UTILS		=	object_utils.c data_free.c
