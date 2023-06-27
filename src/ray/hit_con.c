@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hit_objects2.c                                     :+:      :+:    :+:   */
+/*   hit_con.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/20 17:31:14 by jeelee            #+#    #+#             */
-/*   Updated: 2023/06/26 16:32:48 by jeelee           ###   ########.fr       */
+/*   Created: 2023/06/26 18:38:03 by jeelee            #+#    #+#             */
+/*   Updated: 2023/06/27 13:45:35 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
 
-int	cylinder_height(t_ray *ray, t_object *obj, double *value)
+int	con_height(t_ray *ray, t_object *obj, double *value)
 {
 	t_point	p;
 	t_point	p_sub_c;
@@ -30,16 +30,20 @@ int	cylinder_height(t_ray *ray, t_object *obj, double *value)
 	return (0);
 }
 
-int	cylinder_inf(t_ray *ray, t_object *obj, double *value)
+int	con_inf(t_ray *ray, t_object *obj, double *value)
 {
-	t_point	c_sub_p;
+	t_point	h;
+	double	h_o;
+	double	p_h;
 
-	c_sub_p = v_sub_vec(obj->point, ray->origin_point);
-	*value = v_dot(c_sub_p, ray->dir);
+	h = v_sub_vec(obj->point, v_mul_val(v_unit(obj->n_vector), obj->height));
+	h_o = v_length(v_sub_vec(ray->origin_point, h));
+	p_h = sqrt(pow(obj->diameter / 2, 2) + pow(obj->height, 2));
+	*value = h_o - p_h;
 	return (1);
 }
 
-int	hit_cylinder(t_ray *ray, t_object *obj, double value[])
+int	hit_con(t_ray *ray, t_object *obj, double value[])
 {
 	t_point	o_sub_c;
 	double	a;
@@ -49,29 +53,22 @@ int	hit_cylinder(t_ray *ray, t_object *obj, double value[])
 
 	o_sub_c = v_sub_vec(ray->origin_point, obj->point);
 	a = v_dot(ray->dir, ray->dir) - \
-		pow(v_dot(ray->dir, v_unit(obj->n_vector)), 2);
+		((pow(obj->diameter / 2, 2) / pow(obj->height, 2)) * \
+			pow(v_dot(ray->dir, v_unit(obj->n_vector)), 2) - \
+				pow(v_dot(ray->dir, v_unit(obj->n_vector)), 2));
 	b = 2 * (v_dot(ray->dir, o_sub_c) - \
-		(v_dot(ray->dir, v_unit(obj->n_vector)) * \
+		((pow(obj->diameter / 2, 2) / pow(obj->height, 2)) * \
+			v_dot(ray->dir, v_unit(obj->n_vector)) * \
+			v_dot(o_sub_c, v_unit(obj->n_vector))) - \
+			(v_dot(ray->dir, v_unit(obj->n_vector)) * \
 			v_dot(o_sub_c, v_unit(obj->n_vector))));
-	c = v_dot(o_sub_c, o_sub_c) - \
-		pow(v_dot(o_sub_c, v_unit(obj->n_vector)), 2) - \
-			pow(obj->diameter / 2, 2);
+	c = v_dot(o_sub_c, o_sub_c) - ((pow(obj->diameter / 2, 2) / \
+		pow(obj->height, 2)) * pow(v_dot(o_sub_c, v_unit(obj->n_vector)), 2)) - \
+			pow(v_dot(o_sub_c, v_unit(obj->n_vector)), 2);
 	if ((b * b - 4 * a * c) == 0 && \
 		fabs(v_dot(ray->dir, v_unit(obj->n_vector))) == 1)
-		return (cylinder_inf(ray, obj, &value[0]));
+		return (con_inf(ray, obj, &value[0]));
 	value_num = r_formula(a, b, c, value);
-	value_num += cylinder_height(ray, obj, &value[0]) + \
-		cylinder_height(ray, obj, &value[1]);
+	value_num += con_height(ray, obj, &value[0]) + con_height(ray, obj, &value[1]);
 	return (value_num);
-}
-
-int	hit_con(t_ray *ray, t_object *obj, double value[])
-{
-	int	t;
-
-	t = 0;
-	(void)ray;
-	(void)obj;
-	(void)value;
-	return (t);
 }
