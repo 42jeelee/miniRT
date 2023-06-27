@@ -6,28 +6,45 @@
 /*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 18:38:03 by jeelee            #+#    #+#             */
-/*   Updated: 2023/06/27 16:26:17 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/06/27 20:57:45 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
 
-int	con_height(t_ray *ray, t_object *obj, double *value)
+static int	get_tmin(double value[])
 {
+	if (value[0] == -1 && value[1] >= 0)
+	{
+		value[0] = value[1];
+		value[1] = -1;
+	}
+	if (value[0] == -1)
+		return (-2);
+	else if (value[1] == -1)
+		return (-1);
+	return (0);
+}
+
+static int	con_height(t_ray *ray, t_object *obj, double value[])
+{
+	int		i;
 	t_point	p;
-	t_point	p_sub_c;
+	t_point	c;
 	double	p_height;
 
-	p = v_add_vec(ray->origin_point, v_mul_val(ray->dir, *value));
-	p_sub_c = v_sub_vec(p, obj->point);
-	p_height = v_dot(p_sub_c, obj->n_vector);
-	if (0 > p_height || obj->height <= p_height)
+	i = -1;
+	while (++i < 2)
 	{
-		*value = -1;
-		return (-1);
+		p = v_add_vec(ray->origin_point, v_mul_val(ray->dir, value[i]));
+		c = v_add_vec(obj->point, v_mul_val(obj->n_vector, -(obj->height / 2)));
+		p_height = v_dot(v_sub_vec(p, c), obj->n_vector);
+		if (0 > p_height || obj->height < p_height)
+			value[i] = -1;
+		else
+			value[i] = v_length(p);
 	}
-	*value = v_length(p);
-	return (0);
+	return (get_tmin(value));
 }
 
 int	con_inf(t_ray *ray, t_object *obj, double *value)
@@ -66,7 +83,6 @@ int	hit_con(t_ray *ray, t_object *obj, double value[])
 	if ((b * b - 4 * a * c) == 0 && fabs(v_dot(ray->dir, obj->n_vector)) == 1)
 		return (con_inf(ray, obj, &value[0]));
 	value_num = r_formula(a, b, c, value);
-	value_num += con_height(ray, obj, &value[0]) + \
-		con_height(ray, obj, &value[1]);
+	value_num += con_height(ray, obj, value);
 	return (value_num);
 }
