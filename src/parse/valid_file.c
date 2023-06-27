@@ -6,7 +6,7 @@
 /*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 20:33:05 by jeelee            #+#    #+#             */
-/*   Updated: 2023/06/14 15:14:58 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/06/27 16:27:34 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ void	print_help(void)
 	printf("| " ANSI_GRE "pl\t[point]\t\t[n_vector]\t[color]" ANSI_RES "\n");
 	printf("| " ANSI_GRE \
 		"cy\t[point]\t\t[n_vector]\t[diameter]\t[height]\t[color]" ANSI_RES "\n");
+	printf("| " ANSI_GRE \
+		"co\t[point]\t\t[n_vector]\t[diameter]\t[height]\t[color]" ANSI_RES "\n");
 	printf("------------------------------------------------\n");
 	exit(0);
 }

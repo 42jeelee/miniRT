@@ -6,7 +6,7 @@
 /*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 15:27:44 by jeelee            #+#    #+#             */
-/*   Updated: 2023/06/14 14:52:41 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/06/27 15:27:57 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,5 +86,6 @@ int	parse_n_vector(char *line, t_point *coodi)
 	else if (coodi->x == 0.0 && \
 		coodi->y == 0.0 && coodi->z == 0.0)
 		parse_error_exit("Normal vector has no direction.", 1);
+	*coodi = v_unit(*coodi);
 	return (idx);
 }

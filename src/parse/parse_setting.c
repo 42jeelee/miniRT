@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_setting.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhwang2 <jhwang2@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 21:01:47 by jeelee            #+#    #+#             */
-/*   Updated: 2023/06/13 12:38:56 by jhwang2          ###   ########.fr       */
+/*   Updated: 2023/06/27 16:03:34 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ static t_light	*new_light(char *line)
 	new_light = (t_light *)malloc(sizeof(t_light));
 	if (!new_light)
 		parse_perror_exit(1);
+	ft_memset(new_light, 0, sizeof(t_light));
 	idx = 0;
 	idx += parse_coordi(line, &(new_light->point));
 	idx += parse_ratio(line + idx, &(new_light->light_ratio));
@@ -43,14 +44,15 @@ static t_object	*new_object(int type, char *line)
 	new_object = (t_object *)malloc(sizeof(t_object));
 	if (!new_object)
 		parse_perror_exit(1);
+	ft_memset(new_object, 0, sizeof(t_object));
 	idx = 0;
 	new_object->shape = type;
 	idx += parse_coordi(line, &(new_object->point));
 	if (type != sphere)
 		idx += parse_n_vector(line + idx, &(new_object->n_vector));
-	if (type == sphere || type == cylinder)
+	if (type == sphere || type == cylinder || type == con)
 		idx += parse_decimal(line + idx, &(new_object->diameter));
-	if (type == cylinder)
+	if (type == cylinder || type == con)
 		idx += parse_decimal(line + idx, &(new_object->height));
 	idx += parse_color(line + idx, &(new_object->color));
 	return (new_object);

@@ -6,7 +6,7 @@
 /*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 15:11:06 by jeelee            #+#    #+#             */
-/*   Updated: 2023/06/26 16:24:11 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/06/27 16:17:03 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static double	is_flag(t_camera *cam, t_object *obj, \
 									double value[], int value_num)
 {
 	const double	t_min = cam->focal_length \
-							/ v_dot(v_unit(cam->n_vector), (cam->ray).dir);
+							/ v_dot(cam->n_vector, (cam->ray).dir);
 	double			ret;
 	t_ray			viewport_ray;
 
