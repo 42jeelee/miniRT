@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_trgb.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: jhwang2 <jhwang2@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 15:11:06 by jeelee            #+#    #+#             */
-/*   Updated: 2023/06/19 18:25:09 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/06/28 22:50:41 by jhwang2          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ u_int32_t	create_trgb(t_data *data, int flag)
 	while ((data->objects)[i])
 	{
 		tmp = get_tmp(&(data->camera), data->objects[i], flag);
-		if (tmp >= 0 && t > tmp)
+		if (tmp >= 0 && t > tmp && is_front (&data->camera, data->objects[i], tmp))
 		{
 			t = tmp;
 			color = (data->objects)[i]->color;

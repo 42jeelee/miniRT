@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_img.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: jhwang2 <jhwang2@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 17:32:47 by ahkiler           #+#    #+#             */
-/*   Updated: 2023/06/15 18:16:52 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/06/28 12:53:22 by jhwang2          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,7 @@ void	print_img(t_data *data)
 	int			i;
 	int			j;
 
-	init_img(data);
-	init_cam(data, (double)data->params.width / data->params.height);
+	set_cposition(data, (double)data->params.width / data->params.height);
 	i = data->params.height - 1;
 	color = 0;
 	while (i >= 0)

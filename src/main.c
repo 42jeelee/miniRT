@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: jhwang2 <jhwang2@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 19:47:26 by jeelee            #+#    #+#             */
-/*   Updated: 2023/06/11 02:10:59 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/06/28 13:01:09 by jhwang2          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int	main(int ac, char **av)
 		return (1);
 	printf("arg: %s\nexecuting ...\n", av[1]);
 	print_data(&data);
+	init_img(&data);
 	print_img (&data);
 	mlx_hooks (&data);
 	mlx_loop (&data.params.mlx);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hit_objects2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: jhwang2 <jhwang2@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 17:31:14 by jeelee            #+#    #+#             */
-/*   Updated: 2023/06/20 17:56:53 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/06/26 18:28:33 by jhwang2          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,12 @@ int	hit_cylinder(t_ray *ray, t_object *obj, double value[])
 	int		value_num;
 
 	o_sub_c = v_sub_vec(ray->origin_point, obj->point);
-	a = v_dot(ray->dir, ray->dir) - pow(v_dot(ray->dir, obj->n_vector), 2);
+	a = v_dot(ray->dir, ray->dir) - pow(v_dot(ray->dir, v_unit (obj->n_vector)), 2);
 	b = 2 * (v_dot(ray->dir, o_sub_c) - \
-		(v_dot(ray->dir, obj->n_vector) * v_dot(o_sub_c, obj->n_vector)));
+		(v_dot(ray->dir, v_unit (obj->n_vector)) * v_dot(o_sub_c, v_unit (obj->n_vector))));
 	c = v_dot(o_sub_c, o_sub_c) - \
-		pow(v_dot(o_sub_c, obj->n_vector), 2) - pow(obj->diameter / 2, 2);
-	if ((b * b - 4 * a * c) == 0 && fabs(v_dot(ray->dir, obj->n_vector)) == 1)
+		pow(v_dot(o_sub_c, v_unit (obj->n_vector)), 2) - pow(obj->diameter / 2, 2);
+	if ((b * b - 4 * a * c) == 0 && fabs(v_dot(ray->dir, v_unit (obj->n_vector))) == 1)
 		return (cylinder_inf(ray, obj, &value[0]));
 	value_num = r_formula(a, b, c, value);
 	value_num += cylinder_height(ray, obj, &value[0]) + \

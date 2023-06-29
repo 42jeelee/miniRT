@@ -6,7 +6,7 @@
 /*   By: jhwang2 <jhwang2@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 21:28:57 by jeelee            #+#    #+#             */
-/*   Updated: 2023/06/13 17:31:07 by jhwang2          ###   ########.fr       */
+/*   Updated: 2023/06/28 12:46:23 by jhwang2          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,13 @@
 # include "../../libft/libft.h"
 # include "../../mlx/mlx.h"
 # define ARR_SIZE 5
+# define KEY_PRESS 2
+# define UP 126
+# define DOWN 125
+# define RIGHT 124
+# define LEFT 123
+# define CLOSE_WIN 17
+# define PI 3.1415926535
 
 typedef enum e_shape
 {
@@ -75,9 +82,18 @@ typedef struct s_ray //P(t) = A + tb; t_min(뷰포트 시작점)과 t_max고려
 	t_point	dir;//b, 방향과 크기. t가 증가할수록 원점에서 거리가 더 먼 점을 나타냄
 }	t_ray;
 
+typedef struct s_rot
+{
+	t_point	rotate_x;
+	t_point	rotate_y;
+	t_point	rotate_z;
+	t_point	value;
+}	t_rot;
+
 typedef struct s_camera
 {
 	t_ray	ray;
+	t_rot	rotate;
 	t_point	n_vector; //카메라가 보는 방향
 	t_point	center;
 	t_point	view_port_lb; //left bottom
@@ -87,7 +103,7 @@ typedef struct s_camera
 	double	view_port_h; //fov 증가시 같이 증가
 	double	ratio; //종횡비, mlx의 width / height; view port의 한 길이를 설정했을때 다른 부분을 비율로 정함
 	double	focal_length; //뷰포인트까지의 거리, 1.0으로 고정
-	int		fov; //시야각
+	int		fov;
 }	t_camera;
 
 typedef struct s_data
@@ -102,11 +118,12 @@ typedef struct s_data
 t_object	**create_objlist(int n);
 void		add_objlist(t_object *obj, t_object ***objlist);
 //mlx 관련 함수 선언 (추후 분리 필요하면 분리)
-int		init_img (t_data *data);
-void	print_img(t_data *data);
-void	my_mlx_pixel_put(t_data *data, int x, int y, u_int32_t color);
-void	mlx_hooks(t_data *data);
-int		key_hook(int keycode, t_data *data);
-void	free_data(t_data *data);
+int			init_img(t_data *data);
+void		print_img(t_data *data);
+void		my_mlx_pixel_put(t_data *data, int x, int y, u_int32_t color);
+void		mlx_hooks(t_data *data);
+int			key_hook(int keycode, t_data *data);
+int			close_win(t_data *data);
+void		free_data(t_data *data);
 
 #endif
