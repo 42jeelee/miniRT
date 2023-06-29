@@ -6,7 +6,7 @@
 /*   By: jhwang2 <jhwang2@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 21:28:57 by jeelee            #+#    #+#             */
-/*   Updated: 2023/06/28 12:46:23 by jhwang2          ###   ########.fr       */
+/*   Updated: 2023/06/29 18:18:31 by jhwang2          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ typedef enum e_shape
 	sphere = 4,
 	plane,
 	cylinder,
-	con,
+	cone,
 	hyperboloid,
 	paraboloid
 }	t_shape;

@@ -6,7 +6,7 @@
 /*   By: jhwang2 <jhwang2@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 15:11:06 by jeelee            #+#    #+#             */
-/*   Updated: 2023/06/28 22:50:41 by jhwang2          ###   ########.fr       */
+/*   Updated: 2023/06/29 18:18:52 by jhwang2          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ static int	hit_objs(t_ray *ray, t_object *obj, double value[])
 	else if (obj->shape == plane)
 		value_num = hit_plane(ray, obj, value);
 	else if (obj->shape == cylinder)
-		value_num = hit_cylinder(ray, obj, value);
-	else
-		value_num = hit_con(ray, obj, value);
+		value_num = hit_cylinder(ray, obj, value) + hit_circle(ray, obj, value);
+	else if (obj->shape == cone)
+		value_num = hit_cone(ray, obj, value) + hit_circle(ray, obj, value);
 	return (value_num);
 }
 
