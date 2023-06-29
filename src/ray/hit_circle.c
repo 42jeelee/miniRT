@@ -6,7 +6,7 @@
 /*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 14:58:16 by jeelee            #+#    #+#             */
-/*   Updated: 2023/06/28 16:51:25 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/06/29 13:40:04 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,11 @@ int	hit_circle(t_ray *ray, t_object *obj, double value[])
 
 	if (v_dot(ray->dir, obj->n_vector) == 0)
 		return (0);
-	h = v_add_vec(obj->point, v_mul_val(obj->n_vector, -(obj->height / 2)));
+	h = v_add_vec(obj->point, v_mul_val(obj->n_vector, obj->height / 2));
 	b_value = _hit_circle(h, ray, obj);
 	if (obj->shape == cylinder)
 	{
-		h = v_add_vec(obj->point, v_mul_val(obj->n_vector, obj->height / 2));
+		h = v_add_vec(obj->point, v_mul_val(obj->n_vector, -(obj->height / 2)));
 		t_value = _hit_circle(h, ray, obj);
 		if (t_value != -1 && t_value < b_value)
 			b_value = t_value;

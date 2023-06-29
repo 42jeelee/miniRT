@@ -6,7 +6,7 @@
 /*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 18:38:03 by jeelee            #+#    #+#             */
-/*   Updated: 2023/06/28 16:54:23 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/06/29 13:28:27 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int	hit_cone(t_ray *ray, t_object *obj, double value[])
 	int		value_num;
 
 	o_sub_h = v_sub_vec(ray->origin_point, \
-		v_sub_vec(obj->point, v_mul_val(obj->n_vector, obj->height)));
+		v_sub_vec(obj->point, v_mul_val(obj->n_vector, obj->height / 2)));
 	a = v_dot(ray->dir, ray->dir) - ((pow(obj->diameter / 2, 2) / \
 		pow(obj->height, 2)) * pow(v_dot(ray->dir, obj->n_vector), 2)) - \
 		pow(v_dot(ray->dir, obj->n_vector), 2);
