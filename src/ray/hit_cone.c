@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hit_con.c                                          :+:      :+:    :+:   */
+/*   hit_cone.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 18:38:03 by jeelee            #+#    #+#             */
-/*   Updated: 2023/06/27 20:57:45 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/06/28 16:54:23 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int	get_tmin(double value[])
 	return (0);
 }
 
-static int	con_height(t_ray *ray, t_object *obj, double value[])
+static int	cone_height(t_ray *ray, t_object *obj, double value[])
 {
 	int		i;
 	t_point	p;
@@ -47,7 +47,7 @@ static int	con_height(t_ray *ray, t_object *obj, double value[])
 	return (get_tmin(value));
 }
 
-int	con_inf(t_ray *ray, t_object *obj, double *value)
+int	cone_inf(t_ray *ray, t_object *obj, double *value)
 {
 	t_point	h;
 	double	h_o;
@@ -60,7 +60,7 @@ int	con_inf(t_ray *ray, t_object *obj, double *value)
 	return (1);
 }
 
-int	hit_con(t_ray *ray, t_object *obj, double value[])
+int	hit_cone(t_ray *ray, t_object *obj, double value[])
 {
 	t_point	o_sub_h;
 	double	a;
@@ -81,8 +81,8 @@ int	hit_con(t_ray *ray, t_object *obj, double value[])
 		pow(obj->height, 2)) * pow(v_dot(o_sub_h, obj->n_vector), 2)) - \
 		pow(v_dot(o_sub_h, obj->n_vector), 2);
 	if ((b * b - 4 * a * c) == 0 && fabs(v_dot(ray->dir, obj->n_vector)) == 1)
-		return (con_inf(ray, obj, &value[0]));
+		return (cone_inf(ray, obj, &value[0]));
 	value_num = r_formula(a, b, c, value);
-	value_num += con_height(ray, obj, value);
+	value_num += cone_height(ray, obj, value);
 	return (value_num);
 }

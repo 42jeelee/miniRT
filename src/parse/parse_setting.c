@@ -6,7 +6,7 @@
 /*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 21:01:47 by jeelee            #+#    #+#             */
-/*   Updated: 2023/06/27 16:03:34 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/06/28 16:57:33 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,9 @@ static t_object	*new_object(int type, char *line)
 	idx += parse_coordi(line, &(new_object->point));
 	if (type != sphere)
 		idx += parse_n_vector(line + idx, &(new_object->n_vector));
-	if (type == sphere || type == cylinder || type == con)
+	if (type == sphere || type == cylinder || type == cone)
 		idx += parse_decimal(line + idx, &(new_object->diameter));
-	if (type == cylinder || type == con)
+	if (type == cylinder || type == cone)
 		idx += parse_decimal(line + idx, &(new_object->height));
 	idx += parse_color(line + idx, &(new_object->color));
 	return (new_object);
