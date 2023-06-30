@@ -37,7 +37,7 @@ void	set_cposition(t_data *data, double ratio)
 		vup = set_vec (0, 1, 0.1);
 	w = v_unit (v_mul_val (data->camera.n_vector, -1));
 	u = v_unit (v_cross (data->camera.n_vector, vup));
-	v = v_unit (v_cross (data->camera.n_vector, u));
+	v = v_unit (v_cross (u, data->camera.n_vector));
 	data->camera.ratio = ratio;
 	init_screen (&data->camera, u, v, w);
 	data->camera.rotate.rotate_x = set_vec (u.x, v.x, data->camera.n_vector.x); //나중에 회전 적용시 사용
