@@ -3,14 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   hit_objects.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: jhwang2 <jhwang2@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 16:44:45 by jeelee            #+#    #+#             */
-/*   Updated: 2023/06/20 17:32:08 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/06/28 22:53:22 by jhwang2          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
+
+int	is_front(t_camera *cam, t_object *obj, double t)
+{
+	t_point	hit_point;
+	t_point	obj_nv;
+
+	hit_point = v_add_vec (cam->ray.origin_point, v_mul_val (cam->ray.dir, t));
+	obj_nv = v_sub_vec (hit_point, obj->point);
+	if (v_dot (cam->ray.dir, obj_nv) < 0)
+		return (1);
+	return (0);
+}
 
 int	r_formula(double a, double b, double c, double value[])
 {

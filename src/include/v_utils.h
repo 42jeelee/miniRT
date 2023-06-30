@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   v_utils.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: jhwang2 <jhwang2@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 12:30:17 by ahkiler           #+#    #+#             */
-/*   Updated: 2023/06/14 17:38:23 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/06/28 17:24:16 by jhwang2          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef V_UTILS_H
- #define V_UTILS_H
-
+# define V_UTILS_H
 # include "./types.h"
 
 t_point	set_vec(double x, double y, double z);
@@ -28,5 +27,5 @@ double	v_length(t_point vec_origin); //길이
 t_point	v_unit(t_point vec_origin); //단위벡터
 double	v_dot(t_point vec_origin, t_point vec_value); //내적
 t_point	v_cross(t_point vec_origin, t_point vec_value); //외적
-
+int		v_null(t_point vec);
 #endif

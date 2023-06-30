@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hit_circle.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: jhwang2 <jhwang2@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 14:58:16 by jeelee            #+#    #+#             */
-/*   Updated: 2023/06/29 13:40:04 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/06/29 18:21:47 by jhwang2          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,6 @@ static int	_hit_circle(t_point h, t_ray *ray, t_object *obj)
 
 static int	parse_value(double c_value, double value[])
 {
-	int	ret;
-
-	ret = 0;
 	if (c_value < 0)
 		return (0);
 	else if (value[0] < 0)
