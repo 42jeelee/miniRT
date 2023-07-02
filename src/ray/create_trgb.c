@@ -6,7 +6,7 @@
 /*   By: jhwang2 <jhwang2@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 15:11:06 by jeelee            #+#    #+#             */
-/*   Updated: 2023/06/29 18:18:52 by jhwang2          ###   ########.fr       */
+/*   Updated: 2023/07/02 21:18:51 by jhwang2          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static double	calc_tmin(int value_num, double value[], const double t_min)
 static double	is_flag(t_camera *cam, t_object *obj, \
 									double value[], int value_num)
 {
-	const double	t_min = cam->focal_length \
+	const double	t_min = v_length (cam->n_vector) \
 							/ v_dot(cam->n_vector, (cam->ray).dir);
 	double			ret;
 	t_ray			viewport_ray;
@@ -53,7 +53,7 @@ static double	is_flag(t_camera *cam, t_object *obj, \
 	if (ret == -1)
 	{
 		viewport_ray.dir = (cam->ray).dir;
-		viewport_ray.origin_point = v_mul_val((cam->ray).dir, t_min);
+		viewport_ray.origin_point = v_add_vec (cam->ray.origin_point, v_mul_val((cam->ray).dir, t_min));
 		value_num = hit_objs(&viewport_ray, obj, value);
 		ret = calc_tmin(value_num, value, 0);
 	}
@@ -90,7 +90,7 @@ u_int32_t	create_trgb(t_data *data, int flag)
 	while ((data->objects)[i])
 	{
 		tmp = get_tmp(&(data->camera), data->objects[i], flag);
-		if (tmp >= 0 && t > tmp && is_front (&data->camera, data->objects[i], tmp))
+		if (tmp >= 0 && t > tmp)
 		{
 			t = tmp;
 			color = (data->objects)[i]->color;
