@@ -6,7 +6,7 @@
 /*   By: jhwang2 <jhwang2@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 15:11:06 by jeelee            #+#    #+#             */
-/*   Updated: 2023/07/01 14:33:01 by ahkiler          ###   ########.fr       */
+/*   Updated: 2023/07/02 21:18:51 by jhwang2          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,4 +99,3 @@ u_int32_t	create_trgb(t_data *data, int flag)
 	}
 	return (color);
 }
-
