@@ -6,7 +6,7 @@
 /*   By: jhwang2 <jhwang2@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 15:11:06 by jeelee            #+#    #+#             */
-/*   Updated: 2023/07/02 21:18:51 by jhwang2          ###   ########.fr       */
+/*   Updated: 2023/07/03 21:43:06 by jhwang2          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static double	is_flag(t_camera *cam, t_object *obj, \
 									double value[], int value_num)
 {
 	const double	t_min = v_length (cam->n_vector) \
-							/ v_dot(cam->n_vector, (cam->ray).dir);
+							/ (v_dot(cam->n_vector, (cam->ray).dir));
 	double			ret;
 	t_ray			viewport_ray;
 
@@ -77,7 +77,7 @@ static double	get_tmp(t_camera *cam, t_object *obj, int flag)
 	return (value[0]);
 }
 
-u_int32_t	create_trgb(t_data *data, int flag)
+u_int32_t	create_trgb(t_data *data, t_rec *rec, int flag)
 {
 	u_int32_t	color;
 	size_t		i;
@@ -93,7 +93,11 @@ u_int32_t	create_trgb(t_data *data, int flag)
 		if (tmp >= 0 && t > tmp)
 		{
 			t = tmp;
-			color = (data->objects)[i]->color;
+			rec->color = (data->objects)[i]->color;
+			rec->frag_point = v_add_vec (data->camera.ray.origin_point, v_mul_val(data->camera.ray.dir, t));
+			rec->n_vector = data->objects[i]->n_vector;
+			if (data->objects[i]->shape == sphere)
+				rec->n_vector = v_div_val (v_sub_vec (rec->frag_point, data->objects[i]->point), data->objects[i]->diameter / 2);
 		}
 		i++;
 	}

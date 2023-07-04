@@ -6,7 +6,7 @@
 /*   By: jhwang2 <jhwang2@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 21:28:57 by jeelee            #+#    #+#             */
-/*   Updated: 2023/06/29 18:18:31 by jhwang2          ###   ########.fr       */
+/*   Updated: 2023/07/03 17:12:10 by jhwang2          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,13 @@ typedef struct s_data
 	struct s_light	**lights;
 	struct s_object	**objects;
 }	t_data;
+
+typedef struct s_rec
+{
+	t_point		frag_point;
+	t_point		n_vector;
+	u_int32_t	color;
+}	t_rec;
 
 t_object	**create_objlist(int n);
 void		add_objlist(t_object *obj, t_object ***objlist);
