@@ -6,7 +6,7 @@
 /*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 15:19:17 by jhwang2           #+#    #+#             */
-/*   Updated: 2023/07/05 21:31:18 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/07/05 22:35:45 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,6 @@ u_int32_t	diffuse(t_data *data, t_rec *rec)
 	b = ((rec->hit_obj->color & 255));
 	g = (((rec->hit_obj->color >> 8) & 255));
 	r = (((rec->hit_obj->color >> 16) & 255));
-	return (0 | (int)(r * diff) << 16 | (int)(g * diff) << 8 | (int)(b * diff));
+	return (mul_color(\
+		mul_color(rec->hit_obj->color, data->a_light.light_ratio), diff));
 }
