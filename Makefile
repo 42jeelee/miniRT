@@ -6,14 +6,14 @@
 #    By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/06 19:47:17 by jeelee            #+#    #+#              #
-#    Updated: 2023/07/05 15:47:45 by jeelee           ###   ########.fr        #
+#    Updated: 2023/07/05 21:29:46 by jeelee           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		=	miniRT
 
 CC			=	CC
-#CFLAGS		=	-Wall -Wextra -Werror
+CFLAGS		=	-Wall -Wextra -Werror
 
 LIBDIR		=	./libft
 LIBFT		=	$(LIBDIR)/libft.a
@@ -36,7 +36,7 @@ INC			=	$(SRCDIR)/include
 PARSE		=	parse_file.c valid_file.c parse_gnl.c parse_token.c parse_setting.c light_utils.c parse_number.c parse_utils.c parse_perror.c parse_print.c
 PARSEFIX	=	$(PARSE:%.c=$(PARSEDIR)/%.c)
 
-RAY			=	hit_objects.c hit_cylinder.c hit_cone.c hit_circle.c create_trgb.c ray_utils.c
+RAY			=	hit_objects.c hit_cylinder.c hit_cone.c hit_circle.c create_trgb.c ray_utils.c phong.c
 RAYFIX		=	$(RAY:%.c=$(RAYDIR)/%.c)
 
 UTILS		=	object_utils.c data_free.c
