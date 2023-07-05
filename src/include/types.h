@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   types.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhwang2 <jhwang2@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 21:28:57 by jeelee            #+#    #+#             */
-/*   Updated: 2023/07/03 17:12:10 by jhwang2          ###   ########.fr       */
+/*   Updated: 2023/07/05 15:44:49 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ typedef enum e_shape
 	cylinder,
 	cone,
 	hyperboloid,
-	paraboloid
+	paraboloid,
+	circle
 }	t_shape;
 
 typedef struct s_point
@@ -117,9 +118,11 @@ typedef struct s_data
 
 typedef struct s_rec
 {
+	double		t;
 	t_point		frag_point;
+	t_shape		hit_shape;
 	t_point		n_vector;
-	u_int32_t	color;
+	t_object	*hit_obj;
 }	t_rec;
 
 t_object	**create_objlist(int n);
