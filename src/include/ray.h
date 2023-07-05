@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhwang2 <jhwang2@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 17:37:53 by jeelee            #+#    #+#             */
-/*   Updated: 2023/07/04 15:18:45 by jhwang2          ###   ########.fr       */
+/*   Updated: 2023/07/05 15:45:59 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,8 @@ int			is_front(t_camera *cam, t_object *obj, double t);
 int			hit_cone(t_ray *ray, t_object *obj, double value[]);
 int			hit_circle(t_ray *ray, t_object *obj, double value[]);
 int			r_formula(double a, double b, double c, double value[]);
+
+t_rec		get_intersection(t_ray *ray, t_object *obj);	ray와 obj의 교점을 가지고 온다.
+t_rec		find_closestobj(t_ray *ray, t_object *objs);	교점 중 가장 가까운 오브젝트
 
 #endif
