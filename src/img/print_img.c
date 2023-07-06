@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_img.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: jhwang2 <jhwang2@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 17:32:47 by ahkiler           #+#    #+#             */
-/*   Updated: 2023/07/05 20:50:30 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/07/06 18:31:49 by jhwang2          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	print_img(t_data *data)
 			init_dir(&data->camera, (double)j / (data->params.width - 1),
 				(double)i / (data->params.height - 1));
 			color = create_trgb (data, &rec);
-			color = diffuse (data, &rec);
+			color = get_color (data, &rec);
 			my_mlx_pixel_put (data, j, i, color);
 			j++;
 		}

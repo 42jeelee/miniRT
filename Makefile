@@ -3,17 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+         #
+#    By: jhwang2 <jhwang2@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/06 19:47:17 by jeelee            #+#    #+#              #
-#    Updated: 2023/07/05 22:02:10 by jeelee           ###   ########.fr        #
+#    Updated: 2023/07/06 18:30:16 by jhwang2          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		=	miniRT
 
 CC			=	CC
-CFLAGS		=	-Wall -Wextra -Werror
+#CFLAGS		=	-Wall -Wextra -Werror
 
 LIBDIR		=	./libft
 LIBFT		=	$(LIBDIR)/libft.a
@@ -36,10 +36,10 @@ INC			=	$(SRCDIR)/include
 PARSE		=	parse_file.c valid_file.c parse_gnl.c parse_token.c parse_setting.c light_utils.c parse_number.c parse_utils.c parse_perror.c parse_print.c
 PARSEFIX	=	$(PARSE:%.c=$(PARSEDIR)/%.c)
 
-RAY			=	hit_objects.c hit_cylinder.c hit_cone.c hit_circle.c create_trgb.c ray_utils.c phong.c
+RAY			=	hit_objects.c hit_cylinder.c hit_cone.c hit_circle.c create_trgb.c ray_utils.c phong.c shadow.c
 RAYFIX		=	$(RAY:%.c=$(RAYDIR)/%.c)
 
-UTILS		=	object_utils.c data_free.c color_utils.c
+UTILS		=	object_utils.c data_free.c color_utils.c utils.c
 UTILSFIX	=	$(UTILS:%.c=$(UTILSDIR)/%.c)
 
 V_UTILS		=	add_and_sub.c dot_and_cross.c length_and_unit.c mul_and_div.c
