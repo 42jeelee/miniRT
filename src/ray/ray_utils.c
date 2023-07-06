@@ -3,40 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   ray_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: jhwang2 <jhwang2@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 15:46:49 by jeelee            #+#    #+#             */
-/*   Updated: 2023/07/05 21:28:37 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/07/06 16:24:05 by jhwang2          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
 
-static double	hit_objs(t_ray *ray, t_object *obj, t_rec *rec)
+t_ray	get_ray(t_point origin, t_point dir)
 {
-	int		value_num;
-	double	value[2];
+	t_ray	ray;
 
-	value_num = 0;
-	value[0] = -1;
-	value[1] = -1;
-	if (obj->shape == sphere)
-		value_num = hit_sphere(ray, obj, value);
-	else if (obj->shape == plane)
-		value_num = hit_plane(ray, obj, value);
-	else if (obj->shape == cylinder)
-		value_num = hit_cylinder(ray, obj, value) + \
-			hit_circle(ray, obj, value, rec);
-	else if (obj->shape == cone)
-		value_num = hit_cone(ray, obj, value) + \
-			hit_circle(ray, obj, value, rec);
-	if (value[0] < 0)
-	{
-		if (value_num == 2 && value[1] >= 0)
-			return (value[1]);
-		return (-1);
-	}
-	return (value[0]);
+	ray.origin_point = origin;
+	ray.dir = v_unit (dir);
+	ray.t = v_length (dir);
+	return (ray);
 }
 
 static t_point	_get_n_vector(t_ray *ray, t_point p, \
