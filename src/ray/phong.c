@@ -6,7 +6,7 @@
 /*   By: jhwang2 <jhwang2@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 15:19:17 by jhwang2           #+#    #+#             */
-/*   Updated: 2023/07/06 19:13:40 by jhwang2          ###   ########.fr       */
+/*   Updated: 2023/07/06 19:27:29 by jhwang2          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ u_int32_t	get_color(t_data *data, t_rec *rec)
 	{
 		ray_to_light = get_ray (rec->frag_point,
 				v_sub_vec (data->lights[i]->point, rec->frag_point));
-		// rec->shadow = is_shadow (rec, data->objects, ray_to_light);
-		// if (rec->shadow == 1)
-		// 	continue ;
+		rec->shadow = is_shadow (data->objects, ray_to_light);
+		if (rec->shadow == 1)
+			continue ;
 		color = add_color_col (color, apply_phong (&data->a_light, data->lights[i], rec, flag));
 		flag = 0;
 	}

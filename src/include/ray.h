@@ -6,7 +6,7 @@
 /*   By: jhwang2 <jhwang2@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 17:37:53 by jeelee            #+#    #+#             */
-/*   Updated: 2023/07/06 18:47:54 by jhwang2          ###   ########.fr       */
+/*   Updated: 2023/07/06 19:26:11 by jhwang2          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,6 @@ int			r_formula(double a, double b, double c, double value[]);
 t_ray		get_ray(t_point origin, t_point dir);
 t_rec		get_intersection(t_ray *ray, t_object *obj);// ray와 obj의 교점을 가지고 온다.
 t_rec		find_closestobj(t_ray *ray, t_object **objs);// 교점 중 가장 가까운 오브젝트
-int			is_shadow(t_rec *rec, t_object **obj, t_ray ray_to_light);
-int			check_block(t_rec *rec, t_object *obj, t_ray ray_to_light);
+int			is_shadow(t_object **obj, t_ray ray_to_light);
+int			check_block(t_object *obj, t_ray ray_to_light);
 #endif
