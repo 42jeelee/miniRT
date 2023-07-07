@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   phong.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhwang2 <jhwang2@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 15:19:17 by jhwang2           #+#    #+#             */
-/*   Updated: 2023/07/06 19:27:29 by jhwang2          ###   ########.fr       */
+/*   Updated: 2023/07/07 15:44:56 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ u_int32_t	get_color(t_data *data, t_rec *rec)
 	int			i;
 	int			flag;
 
+	if (rec->t < 0)
+		return (0);
 	i = -1;
 	color = 0;
 	flag = 1;
@@ -62,8 +64,6 @@ u_int32_t	diffuse(t_light *light, t_rec *rec, u_int32_t color)
 {
 	double	diff;
 
-	if (rec->t < 0)
-		return (0);
 	diff = max (v_dot (rec->n_vector,
 				v_unit (v_sub_vec (light->point,
 						rec->frag_point))), 0.0);

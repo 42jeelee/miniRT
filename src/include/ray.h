@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhwang2 <jhwang2@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 17:37:53 by jeelee            #+#    #+#             */
-/*   Updated: 2023/07/06 19:26:11 by jhwang2          ###   ########.fr       */
+/*   Updated: 2023/07/07 15:41:13 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,13 @@
 
 # include "./types.h"
 
-u_int32_t	create_trgb(t_data *data, t_rec *rec);
+t_rec		get_rec(t_data *data);
+
 u_int32_t	get_color(t_data *data, t_rec *rec);
 u_int32_t	apply_phong(t_light *a_light, t_light *light, t_rec *rec, int flag);
 u_int32_t	ambient(t_light *a_light, t_rec *rec);
 u_int32_t	diffuse(t_light *light, t_rec *rec, u_int32_t color);
+
 double		max(double a, double b);
 double		hit_objs(t_ray *ray, t_object *obj, t_rec *rec);
 int			hit_sphere(t_ray *ray, t_object *obj, double value[]);
