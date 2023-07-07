@@ -3,24 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ray_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhwang2 <jhwang2@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 15:46:49 by jeelee            #+#    #+#             */
-/*   Updated: 2023/07/06 16:24:05 by jhwang2          ###   ########.fr       */
+/*   Updated: 2023/07/07 21:04:40 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
-
-t_ray	get_ray(t_point origin, t_point dir)
-{
-	t_ray	ray;
-
-	ray.origin_point = origin;
-	ray.dir = v_unit (dir);
-	ray.t = v_length (dir);
-	return (ray);
-}
 
 static t_point	_get_n_vector(t_ray *ray, t_point p, \
 										t_shape hit_shape, t_object *obj)

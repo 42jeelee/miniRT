@@ -6,14 +6,14 @@
 #    By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/06 19:47:17 by jeelee            #+#    #+#              #
-#    Updated: 2023/07/07 19:55:00 by jeelee           ###   ########.fr        #
+#    Updated: 2023/07/07 21:31:46 by jeelee           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		=	miniRT
 
 CC			=	CC
-#CFLAGS		=	-Wall -Wextra -Werror
+CFLAGS		=	-Wall -Wextra -Werror
 
 LIBDIR		=	./libft
 LIBFT		=	$(LIBDIR)/libft.a

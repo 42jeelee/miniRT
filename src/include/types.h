@@ -6,7 +6,7 @@
 /*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 21:28:57 by jeelee            #+#    #+#             */
-/*   Updated: 2023/07/07 20:35:56 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/07/07 21:33:05 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,6 @@ typedef struct s_ray
 {
 	t_point	origin_point;
 	t_point	dir;
-	double	t;
 }	t_ray;
 
 typedef struct s_rot
@@ -103,15 +102,14 @@ typedef struct s_camera
 {
 	t_ray	ray;
 	t_rot	rotate;
-	t_point	n_vector; //카메라가 보는 방향
+	t_point	n_vector;
 	t_point	center;
-	t_point	view_port_lb; //left bottom
-	t_point	horizontal;//수평길이
-	t_point	vertical;//수직길이
-	double	view_port_w; //fov 증가시 같이 증가
-	double	view_port_h; //fov 증가시 같이 증가
-	double	ratio; //종횡비, mlx의 width / height; view port의 한 길이를 설정했을때 다른 부분을 비율로 정함
-	double	focal_length; //뷰포인트까지의 거리, 1.0으로 고정
+	t_point	view_port_lb;
+	t_point	horizontal;
+	t_point	vertical;
+	double	view_port_w;
+	double	view_port_h;
+	double	ratio;
 	int		fov;
 }	t_camera;
 
@@ -127,7 +125,6 @@ typedef struct s_data
 typedef struct s_rec
 {
 	double		t;
-	int			shadow;
 	t_point		frag_point;
 	t_shape		hit_shape;
 	t_point		n_vector;
@@ -136,7 +133,7 @@ typedef struct s_rec
 
 t_object	**create_objlist(int n);
 void		add_objlist(t_object *obj, t_object ***objlist);
-//mlx 관련 함수 선언 (추후 분리 필요하면 분리)
+
 int			init_img(t_data *data);
 void		print_img(t_data *data);
 void		my_mlx_pixel_put(t_data *data, int x, int y, uint32_t color);
