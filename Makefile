@@ -6,7 +6,7 @@
 #    By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/06 19:47:17 by jeelee            #+#    #+#              #
-#    Updated: 2023/07/07 15:42:03 by jeelee           ###   ########.fr        #
+#    Updated: 2023/07/07 19:55:00 by jeelee           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,7 @@ PARSEFIX	=	$(PARSE:%.c=$(PARSEDIR)/%.c)
 RAY			=	hit_objects.c hit_cylinder.c hit_cone.c hit_circle.c get_rec.c ray_utils.c phong.c shadow.c
 RAYFIX		=	$(RAY:%.c=$(RAYDIR)/%.c)
 
-UTILS		=	object_utils.c data_free.c color_utils.c utils.c
+UTILS		=	object_utils.c data_free.c add_color.c create_color.c trans_color.c ratio_color.c utils.c
 UTILSFIX	=	$(UTILS:%.c=$(UTILSDIR)/%.c)
 
 V_UTILS		=	add_and_sub.c dot_and_cross.c length_and_unit.c mul_and_div.c

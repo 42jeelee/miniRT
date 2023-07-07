@@ -6,7 +6,7 @@
 /*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 17:32:47 by ahkiler           #+#    #+#             */
-/*   Updated: 2023/07/07 15:44:02 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/07/07 20:22:47 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	print_img(t_data *data)
 {
-	u_int32_t	color;
+	uint32_t	color;
 	t_rec		rec;
 	int			i;
 	int			j;
@@ -40,7 +40,7 @@ void	print_img(t_data *data)
 		data->params.win, data->params.img, 0, 0);
 }
 
-void	my_mlx_pixel_put(t_data *data, int x, int y, u_int32_t color)
+void	my_mlx_pixel_put(t_data *data, int x, int y, uint32_t color)
 {
 	char	*dst;
 

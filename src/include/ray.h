@@ -6,7 +6,7 @@
 /*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 17:37:53 by jeelee            #+#    #+#             */
-/*   Updated: 2023/07/07 15:41:13 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/07/07 20:22:38 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,11 @@
 
 t_rec		get_rec(t_data *data);
 
-u_int32_t	get_color(t_data *data, t_rec *rec);
-u_int32_t	apply_phong(t_light *a_light, t_light *light, t_rec *rec, int flag);
-u_int32_t	ambient(t_light *a_light, t_rec *rec);
-u_int32_t	diffuse(t_light *light, t_rec *rec, u_int32_t color);
+uint32_t	get_color(t_data *data, t_rec *rec);
+t_color		apply_phong(t_light *light, t_rec *rec, t_ray *ray);
+t_color		ambient(t_light *a_light);
+t_color		diffuse(t_light *light, t_rec *rec);
+t_color		specular(t_light *light, t_rec *rec, t_ray *ray);
 
 double		max(double a, double b);
 double		hit_objs(t_ray *ray, t_object *obj, t_rec *rec);

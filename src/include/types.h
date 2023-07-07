@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   types.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhwang2 <jhwang2@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 21:28:57 by jeelee            #+#    #+#             */
-/*   Updated: 2023/07/06 16:04:18 by jhwang2          ###   ########.fr       */
+/*   Updated: 2023/07/07 20:35:56 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,13 @@ typedef struct s_point
 	double	y;
 	double	z;
 }	t_point;
+
+typedef struct s_color
+{
+	double	r;
+	double	g;
+	double	b;
+}	t_color;
 
 typedef struct s_light
 {
@@ -132,7 +139,7 @@ void		add_objlist(t_object *obj, t_object ***objlist);
 //mlx 관련 함수 선언 (추후 분리 필요하면 분리)
 int			init_img(t_data *data);
 void		print_img(t_data *data);
-void		my_mlx_pixel_put(t_data *data, int x, int y, u_int32_t color);
+void		my_mlx_pixel_put(t_data *data, int x, int y, uint32_t color);
 void		mlx_hooks(t_data *data);
 int			key_hook(int keycode, t_data *data);
 int			close_win(t_data *data);
