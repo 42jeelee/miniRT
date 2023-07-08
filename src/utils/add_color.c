@@ -6,29 +6,25 @@
 /*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 19:52:50 by jeelee            #+#    #+#             */
-/*   Updated: 2023/07/07 19:53:12 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/07/08 19:05:58 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
 
-static double	max_ratio(double value)
+uint32_t	add_color(uint32_t old_col, uint32_t add_col)
 {
-	if (0.0 > value)
-		return (0.0);
-	else if (value < 1.0)
-		return (value);
-	else
-		return (1.0);
+	return (max_color(((old_col >> 16) & 0xFF) + ((add_col >> 16) & 0xFF)) << 16 | \
+		max_color(((old_col >> 8) & 0xFF) + ((add_col >> 8) & 0xFF)) << 8|
+		max_color((old_col & 0xFF) + (add_col & 0xFF)));
 }
 
-t_color	add_color(t_color color, t_color add_color)
+t_color	add_ratio_color(t_color old_col, t_color add_col)
 {
-	t_color	ret_color;
+	t_color	color;
 
-	ret_color.r = max_ratio(color.r + add_color.r);
-	ret_color.g = max_ratio(color.g + add_color.g);
-	ret_color.b = max_ratio(color.b + add_color.b);
-	return (ret_color);
+	color.r = max_ratio(old_col.r + add_col.r);
+	color.g = max_ratio(old_col.g + add_col.g);
+	color.b = max_ratio(old_col.b + add_col.b);
+	return (color);
 }
-

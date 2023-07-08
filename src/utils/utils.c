@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhwang2 <jhwang2@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 21:36:04 by jeelee            #+#    #+#             */
-/*   Updated: 2023/07/06 16:22:00 by jhwang2          ###   ########.fr       */
+/*   Updated: 2023/07/08 19:06:14 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,4 +17,22 @@ double	max(double a, double b)
 	if (a >= b)
 		return (a);
 	return (b);
+}
+
+double	max_ratio(double value)
+{
+	if (0.0 > value)
+		return (0.0);
+	else if (value < 1.0)
+		return (value);
+	return (1.0);
+}
+
+int	max_color(int value)
+{
+	if (0 > value)
+		return (0);
+	else if (value < 0xFF)
+		return (value);
+	return (0xFF);
 }

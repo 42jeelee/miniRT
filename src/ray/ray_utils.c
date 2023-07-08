@@ -6,7 +6,7 @@
 /*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 15:46:49 by jeelee            #+#    #+#             */
-/*   Updated: 2023/07/07 21:04:40 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/07/08 19:42:36 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,26 +16,29 @@ static t_point	_get_n_vector(t_ray *ray, t_point p, \
 										t_shape hit_shape, t_object *obj)
 {
 	t_point	c;
-	t_point	p_sub_o;
-	t_point	q_sub_o;
+	t_point	p_sub_c;
+	t_point	q_sub_c;
 
 	(void)ray;
-	p_sub_o = set_vec(0, 0, 0);
-	q_sub_o = set_vec(0, 0, 0);
+	c = v_add_vec(obj->point, v_mul_val(obj->n_vector, -(obj->height / 2)));
+	p_sub_c = v_sub_vec(p, c);
+	q_sub_c = set_vec(0, 0, 0);
 	if (hit_shape == cylinder)
 	{
-		p_sub_o = v_sub_vec(p, obj->point);
-		q_sub_o = v_add_vec(obj->point, v_mul_val(obj->n_vector, \
-												v_dot(p_sub_o, obj->n_vector)));
+		if (v_dot(p_sub_c, obj->n_vector) != 0)
+			q_sub_c = v_mul_val(obj->n_vector, v_dot(p_sub_c, obj->n_vector));
+		else
+			return (v_unit(p_sub_c));
 	}
 	else if (hit_shape == cone)
 	{
-		c = v_add_vec(obj->point, v_mul_val(obj->n_vector, -(obj->height / 2)));
-		p_sub_o = v_sub_vec(p, c);
-		q_sub_o = v_add_vec(c, v_mul_val(obj->n_vector, \
-					v_length(p_sub_o) / v_dot(v_unit(p_sub_o), obj->n_vector)));
+		if (v_length(p_sub_c) != 0)
+			q_sub_c = v_mul_val(obj->n_vector, \
+				v_length(p_sub_c) / v_dot(v_unit(p_sub_c), obj->n_vector));
+		else
+			return (v_mul_val(obj->n_vector, -1));
 	}
-	return (v_sub_vec(p_sub_o, q_sub_o));
+	return (v_sub_vec(p_sub_c, q_sub_c));
 }
 
 static t_point	get_n_vector(t_ray *ray, t_point p, \
