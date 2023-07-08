@@ -6,7 +6,7 @@
 /*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 15:19:17 by jhwang2           #+#    #+#             */
-/*   Updated: 2023/07/07 21:13:02 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/07/08 19:29:36 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 uint32_t	get_color(t_data *data, t_rec *rec)
 {
-	t_color		color;
-	t_color		phong_color;
+	uint32_t	color;
+	uint32_t	phong_color;
 	int			i;
 
 	if (rec->t < 0)
 		return (0);
-	color = create_color(0, 0, 0);
-	phong_color = create_color(0, 0, 0);
+	color = ambient(&(data->a_light), rec);
+	phong_color = 0;
 	i = -1;
 	while (data->lights[++i])
 	{
@@ -30,21 +30,24 @@ uint32_t	get_color(t_data *data, t_rec *rec)
 			phong_color = add_color (phong_color, \
 			apply_phong (data->lights[i], rec, &(data->camera.ray)));
 	}
-	color = add_color(ambient(&(data->a_light)), phong_color);
-	return (ratio_color(rec->hit_obj->color, color));
+	color = add_color(color, phong_color);
+	return (color);
 }
 
-t_color	apply_phong(t_light *light, t_rec *rec, t_ray *ray)
+uint32_t	apply_phong(t_light *light, t_rec *rec, t_ray *ray)
 {
 	return (add_color(diffuse(light, rec), specular(light, rec, ray)));
 }
 
-t_color	ambient(t_light *a_light)
+uint32_t	ambient(t_light *a_light, t_rec *rec)
 {
-	return (create_ratio_color(a_light->color, a_light->light_ratio));
+	t_color	light_color;
+
+	light_color = create_ratio_color(a_light->color, a_light->light_ratio);
+	return (ratio_color(rec->hit_obj->color, light_color));
 }
 
-t_color	diffuse(t_light *light, t_rec *rec)
+uint32_t	diffuse(t_light *light, t_rec *rec)
 {
 	t_color	light_color;
 	double	diff;
@@ -53,10 +56,10 @@ t_color	diffuse(t_light *light, t_rec *rec)
 	diff = max (v_dot (rec->n_vector,
 				v_unit (v_sub_vec (light->point,
 						rec->frag_point))), 0.0);
-	return (ratio_color_val(light_color, diff));
+	return (ratio_color(rec->hit_obj->color, ratio_color_val(light_color, diff)));
 }
 
-t_color	specular(t_light *light, t_rec *rec, t_ray *ray)
+uint32_t	specular(t_light *light, t_rec *rec, t_ray *ray)
 {
 	t_color	light_color;
 	t_ray	reflect_ray;
@@ -71,5 +74,5 @@ t_color	specular(t_light *light, t_rec *rec, t_ray *ray)
 	reflect_ray.dir = v_add_vec(lightdir, \
 		v_mul_val(v_mul_val(rec->n_vector, v_dot(lightdir, rec->n_vector)), 2));
 	spec = max(v_dot(reflect_ray.dir, ray->dir), 0.0);
-	return (ratio_color_val(light_color, pow(spec, alpa)));
+	return (ratio_color(rec->hit_obj->color, ratio_color_val(light_color, pow(spec, alpa))));
 }

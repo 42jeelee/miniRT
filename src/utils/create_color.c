@@ -6,7 +6,7 @@
 /*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 19:51:38 by jeelee            #+#    #+#             */
-/*   Updated: 2023/07/07 19:52:19 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/07/08 19:30:28 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,13 @@ t_color	create_color(double r, double g, double b)
 	return (color);
 }
 
-t_color	create_ratio_color(uint32_t old_color, double ratio)
+t_color	create_ratio_color(uint32_t old_col, double ratio)
 {
 	t_color	color;
 
-	color = ratio_color_val(trans_color_struct(old_color), ratio);
-	color.r /= 255;
-	color.g /= 255;
-	color.b /= 255;
+	color = trans_color_struct(old_col);
+	color.r = max_ratio((color.r * ratio) / 0xFF);
+	color.g = max_ratio((color.g * ratio) / 0xFF);
+	color.b = max_ratio((color.b * ratio) / 0xFF);
 	return (color);
 }
