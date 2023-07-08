@@ -6,7 +6,7 @@
 /*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 15:19:17 by jhwang2           #+#    #+#             */
-/*   Updated: 2023/07/08 19:29:36 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/07/08 19:42:12 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,8 @@ uint32_t	diffuse(t_light *light, t_rec *rec)
 	diff = max (v_dot (rec->n_vector,
 				v_unit (v_sub_vec (light->point,
 						rec->frag_point))), 0.0);
-	return (ratio_color(rec->hit_obj->color, ratio_color_val(light_color, diff)));
+	return (ratio_color(rec->hit_obj->color, \
+		ratio_color_val(light_color, diff)));
 }
 
 uint32_t	specular(t_light *light, t_rec *rec, t_ray *ray)
@@ -74,5 +75,6 @@ uint32_t	specular(t_light *light, t_rec *rec, t_ray *ray)
 	reflect_ray.dir = v_add_vec(lightdir, \
 		v_mul_val(v_mul_val(rec->n_vector, v_dot(lightdir, rec->n_vector)), 2));
 	spec = max(v_dot(reflect_ray.dir, ray->dir), 0.0);
-	return (ratio_color(rec->hit_obj->color, ratio_color_val(light_color, pow(spec, alpa))));
+	return (ratio_color(rec->hit_obj->color, \
+		ratio_color_val(light_color, pow(spec, alpa))));
 }

@@ -6,7 +6,7 @@
 /*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 15:46:49 by jeelee            #+#    #+#             */
-/*   Updated: 2023/07/08 16:18:44 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/07/08 19:42:36 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ static t_point	_get_n_vector(t_ray *ray, t_point p, \
 	else if (hit_shape == cone)
 	{
 		if (v_length(p_sub_c) != 0)
-			q_sub_c = v_mul_val(obj->n_vector, v_length(p_sub_c) / v_dot(v_unit(p_sub_c), obj->n_vector));
+			q_sub_c = v_mul_val(obj->n_vector, \
+				v_length(p_sub_c) / v_dot(v_unit(p_sub_c), obj->n_vector));
 		else
 			return (v_mul_val(obj->n_vector, -1));
 	}
