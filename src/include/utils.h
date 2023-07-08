@@ -6,7 +6,7 @@
 /*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 21:55:54 by jeelee            #+#    #+#             */
-/*   Updated: 2023/07/05 22:12:14 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/07/07 19:50:35 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,16 @@
 
 # include "./types.h"
 
-u_int32_t	create_color(double r, double g, double b);
-u_int32_t	add_color_col(u_int32_t old_color, u_int32_t add_color);
-u_int32_t	add_color_val(u_int32_t old_color, double r, double g, double b);
-u_int32_t	mul_color(u_int32_t old_color, double value);
+t_color		trans_color_struct(uint32_t color);
+uint32_t	trans_color_int(t_color old_color);
+
+t_color		create_color(double r, double g, double b);
+t_color		create_ratio_color(uint32_t old_color, double ratio);
+
+t_color		ratio_color_val(t_color color, double value);
+uint32_t	ratio_color(uint32_t old_color, t_color ratio_color);
+
+t_color		add_color(t_color color, t_color add_color);
 
 double		max(double a, double b);
 
