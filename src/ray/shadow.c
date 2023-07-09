@@ -6,7 +6,7 @@
 /*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 15:19:17 by jhwang2           #+#    #+#             */
-/*   Updated: 2023/07/09 18:16:45 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/07/09 18:47:35 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ static double	check_block(t_ray *ray, t_object *obj)
 	if (obj->shape == cylinder || obj->shape == cone)
 	{
 		circle_dist = hit_circle(ray, obj);
-		if (0 <= circle_dist && circle_dist < t)
+		if ((t < 0 && 0 <= circle_dist) || \
+			(0 <= circle_dist && circle_dist < t))
 			return (circle_dist);
 	}
 	return (t);
