@@ -6,7 +6,7 @@
 /*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 18:38:03 by jeelee            #+#    #+#             */
-/*   Updated: 2023/06/29 13:28:27 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/07/10 01:27:37 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,6 @@ static int	cone_height(t_ray *ray, t_object *obj, double value[])
 		p_height = v_dot(v_sub_vec(p, c), obj->n_vector);
 		if (0 > p_height || obj->height < p_height)
 			value[i] = -1;
-		else
-			value[i] = v_length(p);
 	}
 	return (get_tmin(value));
 }
