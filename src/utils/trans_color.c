@@ -1,24 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   scene.h                                            :+:      :+:    :+:   */
+/*   trans_color.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/11 14:19:46 by jhwang2           #+#    #+#             */
-/*   Updated: 2023/07/05 20:46:59 by jeelee           ###   ########.fr       */
+/*   Created: 2023/07/07 19:50:53 by jeelee            #+#    #+#             */
+/*   Updated: 2023/07/08 19:31:41 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SCENE_H
-# define SCENE_H
-# include "./types.h"
+#include "../include/minirt.h"
 
-# define FOCAL_LENGTH 2
+t_color	trans_color_struct(uint32_t col)
+{
+	t_color	color;
 
-void		init_origin_point(t_ray *ray, t_point center);
-void		init_dir(t_camera *cam, double u, double v);
-void		set_cposition(t_data *data, double ratio);
-void		init_screen(t_camera *camera, t_point u, t_point v, t_point w);
+	color.r = col >> 16 & 0xFF;
+	color.g = col >> 8 & 0xFF;
+	color.b = col & 0xFF;
+	return (color);
+}
 
-#endif
+uint32_t	trans_color_int(t_color old_col)
+{
+	return (((int)old_col.r << 16) + \
+		((int)old_col.g << 8) + (int)old_col.b);
+}

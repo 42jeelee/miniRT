@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_img.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhwang2 <jhwang2@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 17:32:47 by ahkiler           #+#    #+#             */
-/*   Updated: 2023/07/04 15:18:55 by jhwang2          ###   ########.fr       */
+/*   Updated: 2023/07/07 20:22:47 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	print_img(t_data *data)
 {
-	u_int32_t	color;
+	uint32_t	color;
 	t_rec		rec;
 	int			i;
 	int			j;
@@ -29,8 +29,8 @@ void	print_img(t_data *data)
 		{
 			init_dir(&data->camera, (double)j / (data->params.width - 1),
 				(double)i / (data->params.height - 1));
-			color = create_trgb (data, &rec, 1);
-			color = diffuse (data, &rec);
+			rec = get_rec(data);
+			color = get_color (data, &rec);
 			my_mlx_pixel_put (data, j, i, color);
 			j++;
 		}
@@ -40,7 +40,7 @@ void	print_img(t_data *data)
 		data->params.win, data->params.img, 0, 0);
 }
 
-void	my_mlx_pixel_put(t_data *data, int x, int y, u_int32_t color)
+void	my_mlx_pixel_put(t_data *data, int x, int y, uint32_t color)
 {
 	char	*dst;
 

@@ -1,24 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   scene.h                                            :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/11 14:19:46 by jhwang2           #+#    #+#             */
-/*   Updated: 2023/07/05 20:46:59 by jeelee           ###   ########.fr       */
+/*   Created: 2023/07/05 21:36:04 by jeelee            #+#    #+#             */
+/*   Updated: 2023/07/08 19:06:14 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SCENE_H
-# define SCENE_H
-# include "./types.h"
+#include "../include/minirt.h"
 
-# define FOCAL_LENGTH 2
+double	max(double a, double b)
+{
+	if (a >= b)
+		return (a);
+	return (b);
+}
 
-void		init_origin_point(t_ray *ray, t_point center);
-void		init_dir(t_camera *cam, double u, double v);
-void		set_cposition(t_data *data, double ratio);
-void		init_screen(t_camera *camera, t_point u, t_point v, t_point w);
+double	max_ratio(double value)
+{
+	if (0.0 > value)
+		return (0.0);
+	else if (value < 1.0)
+		return (value);
+	return (1.0);
+}
 
-#endif
+int	max_color(int value)
+{
+	if (0 > value)
+		return (0);
+	else if (value < 0xFF)
+		return (value);
+	return (0xFF);
+}

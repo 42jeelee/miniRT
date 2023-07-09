@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   types.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhwang2 <jhwang2@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 21:28:57 by jeelee            #+#    #+#             */
-/*   Updated: 2023/07/03 17:12:10 by jhwang2          ###   ########.fr       */
+/*   Updated: 2023/07/07 21:33:05 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ typedef enum e_shape
 	cylinder,
 	cone,
 	hyperboloid,
-	paraboloid
+	paraboloid,
+	circle
 }	t_shape;
 
 typedef struct s_point
@@ -45,6 +46,13 @@ typedef struct s_point
 	double	y;
 	double	z;
 }	t_point;
+
+typedef struct s_color
+{
+	double	r;
+	double	g;
+	double	b;
+}	t_color;
 
 typedef struct s_light
 {
@@ -76,10 +84,10 @@ typedef struct s_mlx
 	int		endian;
 }	t_mlx;
 
-typedef struct s_ray //P(t) = A + tb; t_min(뷰포트 시작점)과 t_max고려
+typedef struct s_ray
 {
-	t_point	origin_point;//원점
-	t_point	dir;//b, 방향과 크기. t가 증가할수록 원점에서 거리가 더 먼 점을 나타냄
+	t_point	origin_point;
+	t_point	dir;
 }	t_ray;
 
 typedef struct s_rot
@@ -94,15 +102,14 @@ typedef struct s_camera
 {
 	t_ray	ray;
 	t_rot	rotate;
-	t_point	n_vector; //카메라가 보는 방향
+	t_point	n_vector;
 	t_point	center;
-	t_point	view_port_lb; //left bottom
-	t_point	horizontal;//수평길이
-	t_point	vertical;//수직길이
-	double	view_port_w; //fov 증가시 같이 증가
-	double	view_port_h; //fov 증가시 같이 증가
-	double	ratio; //종횡비, mlx의 width / height; view port의 한 길이를 설정했을때 다른 부분을 비율로 정함
-	double	focal_length; //뷰포인트까지의 거리, 1.0으로 고정
+	t_point	view_port_lb;
+	t_point	horizontal;
+	t_point	vertical;
+	double	view_port_w;
+	double	view_port_h;
+	double	ratio;
 	int		fov;
 }	t_camera;
 
@@ -117,17 +124,19 @@ typedef struct s_data
 
 typedef struct s_rec
 {
+	double		t;
 	t_point		frag_point;
+	t_shape		hit_shape;
 	t_point		n_vector;
-	u_int32_t	color;
+	t_object	*hit_obj;
 }	t_rec;
 
 t_object	**create_objlist(int n);
 void		add_objlist(t_object *obj, t_object ***objlist);
-//mlx 관련 함수 선언 (추후 분리 필요하면 분리)
+
 int			init_img(t_data *data);
 void		print_img(t_data *data);
-void		my_mlx_pixel_put(t_data *data, int x, int y, u_int32_t color);
+void		my_mlx_pixel_put(t_data *data, int x, int y, uint32_t color);
 void		mlx_hooks(t_data *data);
 int			key_hook(int keycode, t_data *data);
 int			close_win(t_data *data);
