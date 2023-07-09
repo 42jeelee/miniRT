@@ -6,37 +6,25 @@
 /*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 15:19:17 by jhwang2           #+#    #+#             */
-/*   Updated: 2023/07/07 21:37:56 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/07/09 18:16:45 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
 
-static double	only_hit_objs(t_ray *ray, t_object *obj)
+static double	check_block(t_ray *ray, t_object *obj)
 {
-	int		value_num;
-	double	value[2];
+	double	t;
+	double	circle_dist;
 
-	value_num = 0;
-	value[0] = -1;
-	value[1] = -1;
-	if (obj->shape == sphere)
-		value_num = hit_sphere(ray, obj, value);
-	else if (obj->shape == plane)
-		value_num = hit_plane(ray, obj, value);
-	else if (obj->shape == cylinder)
-		value_num = hit_cylinder(ray, obj, value) + \
-			only_hit_circle(ray, obj, value);
-	else if (obj->shape == cone)
-		value_num = hit_cone(ray, obj, value) + \
-			only_hit_circle(ray, obj, value);
-	if (value[0] < 0)
+	t = hit_objs(ray, obj);
+	if (obj->shape == cylinder || obj->shape == cone)
 	{
-		if (value_num == 2 && value[1] >= 0)
-			return (value[1]);
-		return (-1);
+		circle_dist = hit_circle(ray, obj);
+		if (0 <= circle_dist && circle_dist < t)
+			return (circle_dist);
 	}
-	return (value[0]);
+	return (t);
 }
 
 int	is_shadow(t_object **objs, t_light *light, t_point frag_point)
@@ -54,7 +42,7 @@ int	is_shadow(t_object **objs, t_light *light, t_point frag_point)
 	i = -1;
 	while (objs[++i])
 	{
-		t = only_hit_objs(&ray, objs[i]);
+		t = check_block(&ray, objs[i]);
 		if (0.00001 < t && t <= max)
 			return (1);
 	}

@@ -6,7 +6,7 @@
 /*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 15:46:49 by jeelee            #+#    #+#             */
-/*   Updated: 2023/07/08 19:42:36 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/07/09 18:10:17 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,22 @@ static t_point	get_n_vector(t_ray *ray, t_point p, \
 t_rec	get_intersection(t_ray *ray, t_object *obj)
 {
 	t_rec	rec;
+	double	circle_dist;
 
+	circle_dist = -1;
 	ft_memset(&rec, 0, sizeof(t_rec));
 	rec.hit_obj = obj;
 	rec.hit_shape = obj->shape;
-	rec.t = hit_objs(ray, obj, &rec);
+	rec.t = hit_objs(ray, obj);
+	if (obj->shape == cylinder || obj->shape == cone)
+	{
+		circle_dist = hit_circle(ray, obj);
+		if (0 <= circle_dist && circle_dist < rec.t)
+		{
+			rec.t = circle_dist;
+			rec.hit_shape = circle;
+		}
+	}
 	rec.frag_point = v_add_vec(ray->origin_point, v_mul_val(ray->dir, rec.t));
 	rec.n_vector = get_n_vector(ray, rec.frag_point, rec.hit_shape, obj);
 	return (rec);
