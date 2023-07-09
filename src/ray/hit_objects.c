@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   hit_objects.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhwang2 <jhwang2@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 16:44:45 by jeelee            #+#    #+#             */
-/*   Updated: 2023/07/06 18:11:57 by jhwang2          ###   ########.fr       */
+/*   Updated: 2023/07/09 18:29:54 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
 
-double	hit_objs(t_ray *ray, t_object *obj, t_rec *rec)
+double	hit_objs(t_ray *ray, t_object *obj)
 {
 	int		value_num;
 	double	value[2];
@@ -25,11 +25,9 @@ double	hit_objs(t_ray *ray, t_object *obj, t_rec *rec)
 	else if (obj->shape == plane)
 		value_num = hit_plane(ray, obj, value);
 	else if (obj->shape == cylinder)
-		value_num = hit_cylinder(ray, obj, value) + \
-			hit_circle(ray, obj, value, rec);
+		value_num = hit_cylinder(ray, obj, value);
 	else if (obj->shape == cone)
-		value_num = hit_cone(ray, obj, value) + \
-			hit_circle(ray, obj, value, rec);
+		value_num = hit_cone(ray, obj, value);
 	if (value[0] < 0)
 	{
 		if (value_num == 2 && value[1] >= 0)
@@ -37,18 +35,6 @@ double	hit_objs(t_ray *ray, t_object *obj, t_rec *rec)
 		return (-1);
 	}
 	return (value[0]);
-}
-
-int	is_front(t_camera *cam, t_object *obj, double t)
-{
-	t_point	hit_point;
-	t_point	obj_nv;
-
-	hit_point = v_add_vec (cam->ray.origin_point, v_mul_val (cam->ray.dir, t));
-	obj_nv = v_unit(v_sub_vec (hit_point, obj->point));
-	if (v_dot (cam->ray.dir, obj_nv) < 0)
-		return (1);
-	return (0);
 }
 
 int	r_formula(double a, double b, double c, double value[])

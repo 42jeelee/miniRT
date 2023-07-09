@@ -6,7 +6,7 @@
 /*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 14:58:16 by jeelee            #+#    #+#             */
-/*   Updated: 2023/07/07 21:01:58 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/07/09 18:18:21 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,51 +28,7 @@ static int	_hit_circle(t_point h, t_ray *ray, t_object *obj)
 	return (t);
 }
 
-static int	parse_value(double c_value, double value[], t_rec *rec)
-{
-	if (c_value < 0)
-		return (0);
-	else
-	{
-		if (value[0] < 0)
-		{
-			rec->hit_shape = circle;
-			return (1);
-		}
-		else if (value[1] < 0)
-			value[0] = c_value;
-		else
-		{
-			value[0] = c_value;
-			value[1] = -1;
-			return (-1);
-		}
-		rec->hit_shape = circle;
-	}
-	return (0);
-}
-
-static int	only_parse_value(double c_value, double value[])
-{
-	if (c_value < 0)
-		return (0);
-	else
-	{
-		if (value[0] < 0)
-			return (1);
-		else if (value[1] < 0)
-			value[0] = c_value;
-		else
-		{
-			value[0] = c_value;
-			value[1] = -1;
-			return (-1);
-		}
-	}
-	return (0);
-}
-
-int	hit_circle(t_ray *ray, t_object *obj, double value[], t_rec *rec)
+int	hit_circle(t_ray *ray, t_object *obj)
 {
 	double	b_value;
 	double	t_value;
@@ -86,28 +42,10 @@ int	hit_circle(t_ray *ray, t_object *obj, double value[], t_rec *rec)
 	{
 		h = v_add_vec(obj->point, v_mul_val(obj->n_vector, -(obj->height / 2)));
 		t_value = _hit_circle(h, ray, obj);
-		if (t_value != -1 && t_value < b_value)
+		if (t_value >= 0 && t_value < b_value)
 			b_value = t_value;
 	}
-	return (parse_value(b_value, value, rec));
-}
-
-int	only_hit_circle(t_ray *ray, t_object *obj, double value[])
-{
-	double	b_value;
-	double	t_value;
-	t_point	h;
-
-	if (v_dot(ray->dir, obj->n_vector) == 0)
-		return (0);
-	h = v_add_vec(obj->point, v_mul_val(obj->n_vector, obj->height / 2));
-	b_value = _hit_circle(h, ray, obj);
-	if (obj->shape == cylinder)
-	{
-		h = v_add_vec(obj->point, v_mul_val(obj->n_vector, -(obj->height / 2)));
-		t_value = _hit_circle(h, ray, obj);
-		if (t_value != -1 && t_value < b_value)
-			b_value = t_value;
-	}
-	return (only_parse_value(b_value, value));
+	if (b_value < 0)
+		return (-1);
+	return (b_value);
 }
