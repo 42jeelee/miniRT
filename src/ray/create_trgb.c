@@ -6,7 +6,7 @@
 /*   By: jhwang2 <jhwang2@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 15:11:06 by jeelee            #+#    #+#             */
-/*   Updated: 2023/07/03 21:43:06 by jhwang2          ###   ########.fr       */
+/*   Updated: 2023/07/04 16:51:27 by jhwang2          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ u_int32_t	create_trgb(t_data *data, t_rec *rec, int flag)
 		if (tmp >= 0 && t > tmp)
 		{
 			t = tmp;
-			rec->color = (data->objects)[i]->color;
+			rec->color = light_color (data->lights[0]->color, (data->objects)[i]->color);
 			rec->frag_point = v_add_vec (data->camera.ray.origin_point, v_mul_val(data->camera.ray.dir, t));
 			rec->n_vector = data->objects[i]->n_vector;
 			if (data->objects[i]->shape == sphere)
