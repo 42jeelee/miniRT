@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scene.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: jhwang2 <jhwang2@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 15:14:24 by jhwang2           #+#    #+#             */
-/*   Updated: 2023/07/05 20:43:16 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/07/09 21:25:36 by jhwang2          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ void	set_cposition(t_data *data, double ratio)
 	t_point	w;
 
 	vup = set_vec (0, 1, 0);
-	if (data->camera.n_vector.y > 0.0
-		&& data->camera.n_vector.x == 0.0 && data->camera.n_vector.z == 0.0)
-		vup = set_vec (0, 1, 0.1);
+	if ((data->camera.n_vector.y > 0.0 || data->camera.n_vector.y < 0.0)
+		&& (data->camera.n_vector.x == 0.0 && data->camera.n_vector.z == 0.0))
+		vup = set_vec (0, 0, 1);
 	w = v_mul_val (data->camera.n_vector, -1);
 	u = v_cross (data->camera.n_vector, vup);
 	v = v_cross (u, data->camera.n_vector);
