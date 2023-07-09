@@ -30,7 +30,7 @@ void	set_cposition(t_data *data, double ratio)
 	t_point	u;
 	t_point	v;
 	t_point	w;
-
+	
 	vup = set_vec (0, 1, 0);
 	if ((data->camera.n_vector.y > 0.0 || data->camera.n_vector.y < 0.0)
 		&& (data->camera.n_vector.x == 0.0 && data->camera.n_vector.z == 0.0))
