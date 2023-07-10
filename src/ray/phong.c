@@ -6,7 +6,7 @@
 /*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 15:19:17 by jhwang2           #+#    #+#             */
-/*   Updated: 2023/07/10 18:08:58 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/07/10 18:34:34 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ t_color	specular(t_light *light, t_rec *rec, t_ray *ray)
 	int		alpa;
 
 	light_color = ratio_color_val(light->color, light->light_ratio);
-	alpa = 8;
+	alpa = 2;
 	lightdir = v_unit(v_sub_vec(rec->frag_point, light->point));
 	reflect_ray.origin_point = rec->frag_point;
 	reflect_ray.dir = v_add_vec(lightdir, \
