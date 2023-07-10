@@ -6,7 +6,7 @@
 /*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 21:01:47 by jeelee            #+#    #+#             */
-/*   Updated: 2023/07/10 15:53:16 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/07/10 19:22:55 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,12 @@ static t_light	*new_light(t_line *line)
 	parse_coordi(line, &(new_light->point));
 	parse_ratio(line, &(new_light->light_ratio));
 	parse_color(line, &(new_light->color));
+	line->idx = shift_whitespace(line);
+	if (!is_comment(line, get_token(line) - line->idx))
+	{
+		if ((line->line)[line->idx] && (line->line)[line->idx] != '\n')
+			parse_error_exit("Invalid file.", line->line, 1);
+	}
 	return (new_light);
 }
 
@@ -51,6 +57,12 @@ static t_object	*new_object(t_line *line)
 	if (line->type == cylinder || line->type == cone)
 		parse_decimal(line, &(new_object->height));
 	parse_color(line, &(new_object->color));
+	line->idx = shift_whitespace(line);
+	if (!is_comment(line, get_token(line) - line->idx))
+	{
+		if ((line->line)[line->idx] && (line->line)[line->idx] != '\n')
+			parse_error_exit("Invalid file.", line->line, 1);
+	}
 	return (new_object);
 }
 
@@ -73,8 +85,11 @@ void	setting_bg(t_line *line, t_data *data, int *parsed)
 		parsed[1] = 1;
 	}
 	line->idx = shift_whitespace(line);
-	if ((line->line)[line->idx] && (line->line)[line->idx] != '\n')
-		parse_error_exit("Invalid file.", line->line, 1);
+	if (!is_comment(line, get_token(line) - line->idx))
+	{
+		if ((line->line)[line->idx] && (line->line)[line->idx] != '\n')
+			parse_error_exit("Invalid file.", line->line, 1);
+	}
 }
 
 void	setting_object(t_line *line, t_data *data)

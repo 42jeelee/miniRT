@@ -6,11 +6,37 @@
 /*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 01:36:02 by jeelee            #+#    #+#             */
-/*   Updated: 2023/07/10 16:15:01 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/07/10 19:31:20 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
+
+int	is_type(t_line *line)
+{
+	const char	*types[7] = {"A", "C", "L", "sp", "pl", "cy", "co"};
+	size_t		type_idx;
+	size_t		size;
+
+	line->idx = shift_whitespace(line);
+	size = get_token(line) - line->idx;
+	if (is_comment(line, size))
+		return (10);
+	if (size == 0 || size > 2)
+		return (0);
+	type_idx = -1;
+	while (++type_idx < 7)
+	{
+		if (!ft_strncmp((line->line) + (line->idx), types[type_idx], size))
+		{
+			line->idx += size;
+			line->type = type_idx + 1;
+			return (type_idx + 1);
+		}
+	}
+	line->idx += size;
+	return (0);
+}
 
 int	catchs_in_str(char *line, char *catchs)
 {
@@ -46,4 +72,11 @@ size_t	get_token(t_line *line)
 		(line->line)[idx] != ' ' && ft_isprint((line->line)[idx]))
 		idx++;
 	return (idx);
+}
+
+int	is_comment(t_line *line, size_t token_size)
+{
+	if (token_size > 0 && (line->line)[line->idx] == '#')
+		return (1);
+	return (0);
 }

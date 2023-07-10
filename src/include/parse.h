@@ -6,7 +6,7 @@
 /*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 21:14:41 by jeelee            #+#    #+#             */
-/*   Updated: 2023/07/10 16:11:44 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/07/10 19:28:52 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,11 @@ void	parse_integer(t_line *line, int *integer);
 int		parse_atoi(char *str, size_t idx, size_t size);
 float	parse_atof(char *str, size_t idx, size_t size);
 
+int		is_type(t_line *line);
 int		catchs_in_str(char *line, char *catchs);
 size_t	shift_whitespace(t_line *line);
 size_t	get_token(t_line *line);
+int		is_comment(t_line *line, size_t token_size);
 
 char	*parse_gnl(int fd, t_buffer *bf);
 
