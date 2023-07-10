@@ -6,7 +6,7 @@
 /*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 21:28:57 by jeelee            #+#    #+#             */
-/*   Updated: 2023/07/07 21:33:05 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/07/10 15:55:08 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,10 @@
 
 typedef enum e_shape
 {
-	sphere = 4,
+	amb = 1,
+	camera,
+	light,
+	sphere,
 	plane,
 	cylinder,
 	cone,
@@ -49,16 +52,16 @@ typedef struct s_point
 
 typedef struct s_color
 {
-	double	r;
-	double	g;
-	double	b;
+	int	r;
+	int	g;
+	int	b;
 }	t_color;
 
 typedef struct s_light
 {
 	struct s_point	point;
 	double			light_ratio;
-	uint32_t		color;
+	t_color			color;
 }	t_light;
 
 typedef struct s_object
@@ -68,7 +71,7 @@ typedef struct s_object
 	t_point		n_vector;
 	double		diameter;
 	double		height;
-	uint32_t	color;
+	t_color		color;
 }	t_object;
 
 typedef struct s_mlx

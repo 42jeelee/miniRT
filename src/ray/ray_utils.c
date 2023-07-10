@@ -6,7 +6,7 @@
 /*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 15:46:49 by jeelee            #+#    #+#             */
-/*   Updated: 2023/07/09 18:48:03 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/07/10 01:22:02 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,7 @@ t_rec	get_intersection(t_ray *ray, t_object *obj)
 	if (obj->shape == cylinder || obj->shape == cone)
 	{
 		circle_dist = hit_circle(ray, obj);
-		if ((rec.t < 0 && 0 <= circle_dist) || \
-			(0 <= circle_dist && circle_dist < rec.t))
+		if (0 <= circle_dist && (rec.t < 0 || circle_dist < rec.t))
 		{
 			rec.t = circle_dist;
 			rec.hit_shape = circle;

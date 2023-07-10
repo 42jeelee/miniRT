@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhwang2 <jhwang2@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 21:14:41 by jeelee            #+#    #+#             */
-/*   Updated: 2023/06/13 19:47:55 by jhwang2          ###   ########.fr       */
+/*   Updated: 2023/07/10 16:11:44 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,29 +35,40 @@ typedef struct s_buffer
 	size_t	idx;
 }	t_buffer;
 
+typedef struct s_line
+{
+	t_shape	type;
+	char	*line;
+	size_t	idx;
+}	t_line;
+
 int		valid_file(int ac, char **av);
 
-void	setting_bg(int type, char *line, t_data *data, int *parsed);
-void	setting_object(int type, char *line, t_data *data);
+void	setting_bg(t_line *line, t_data *data, int *parsed);
+void	setting_object(t_line *line, t_data *data);
 
 t_light	**create_llist(int n);
 void	add_llist(t_light *l, t_light ***llist);
 
-int		parse_ratio(char *line, double *ratio);
-int		parse_color(char *line, uint32_t *color);
-int		parse_coordi(char *line, t_point *coodi);
-int		parse_n_vector(char *line, t_point *coodi);
-int		parse_decimal(char *line, double *decimal);
-int		parse_integer(char *line, int *integer);
+void	parse_ratio(t_line *line, double *ratio);
+void	parse_color(t_line *line, t_color *color);
+void	parse_coordi(t_line *line, t_point *coodi);
+void	parse_n_vector(t_line *line, t_point *coodi);
+void	parse_decimal(t_line *line, double *decimal);
+void	parse_integer(t_line *line, int *integer);
 
-int		parse_atoi(char *str, size_t size);
-float	parse_atof(char *str, size_t size);
+int		parse_atoi(char *str, size_t idx, size_t size);
+float	parse_atof(char *str, size_t idx, size_t size);
+
 int		catchs_in_str(char *line, char *catchs);
+size_t	shift_whitespace(t_line *line);
+size_t	get_token(t_line *line);
+
 char	*parse_gnl(int fd, t_buffer *bf);
 
 int		parse_error(char *msg, int _ret);
 void	parse_perror_exit(int _exitcode);
-void	parse_error_exit(char *msg, int _exitcode);
+void	parse_error_exit(char *msg, char *line, int _exitcode);
 
 void	print_data(t_data *data);
 
