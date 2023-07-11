@@ -6,7 +6,7 @@
 /*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 21:14:41 by jeelee            #+#    #+#             */
-/*   Updated: 2023/07/10 19:28:52 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/07/11 15:54:50 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@
 # define ANSI_BLU "\e[34m"
 # define ANSI_MAG "\e[35m"
 # define ANSI_CYA "\e[36m"
+
+# define ANSI_DEL "\e[A\e[2K"
 
 typedef struct s_buffer
 {
