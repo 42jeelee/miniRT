@@ -6,7 +6,7 @@
 /*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 22:58:14 by jeelee            #+#    #+#             */
-/*   Updated: 2023/07/10 19:28:29 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/07/11 14:58:55 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,7 @@ static int	valid_line(t_line *line)
 	line->idx = 0;
 	if (!(line->line))
 		return (1);
-	while ((line->line)[line->idx] == ' ')
-		(line->idx)++;
+	line->idx = shift_whitespace(line);
 	if (!((line->line)[line->idx]))
 	{
 		free(line->line);
@@ -36,8 +35,7 @@ static void	parse_line(t_line *line, t_data *data, int *parsed)
 {
 	int		type;
 
-	while ((line->line)[line->idx] == ' ')
-		(line->idx)++;
+	line->idx = shift_whitespace(line);
 	type = is_type(line);
 	if (type == 0)
 		parse_error_exit("Invalid identifier.", line->line, 1);
