@@ -6,7 +6,7 @@
 /*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 21:55:54 by jeelee            #+#    #+#             */
-/*   Updated: 2023/07/10 16:59:22 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/07/12 01:16:57 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,9 @@ t_color		add_color(t_color old_col, t_color add_col);
 double		max(double a, double b);
 double		max_ratio(double value);
 int			max_color(int value);
+
+void		print_obj(t_object *obj);
+
+void		select_closestobj(int x, int y, t_data *data);
 
 #endif

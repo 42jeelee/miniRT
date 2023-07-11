@@ -3,17 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   hook.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhwang2 <jhwang2@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 17:45:57 by ahkiler           #+#    #+#             */
-/*   Updated: 2023/07/06 18:50:26 by jhwang2          ###   ########.fr       */
+/*   Updated: 2023/07/12 01:40:37 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
 
+static int	mouse_hook(int keycode, int x, int y, t_data *data)
+{
+	if (keycode != 1)
+		return (0);
+	if (x >= 0 && y >= 0)
+	{
+		select_closestobj(x, y, data);
+		print_img(data);
+	}
+	return (0);
+}
+
 void	mlx_hooks(t_data *data)
 {
+	mlx_hook (data->params.win, MOUSEDOWN, 0, &mouse_hook, data);
 	mlx_hook (data->params.win, KEY_PRESS, 0, &key_hook, data);
 	mlx_hook (data->params.win, CLOSE_WIN, 0, &close_win, data);
 }

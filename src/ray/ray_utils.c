@@ -6,7 +6,7 @@
 /*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 15:46:49 by jeelee            #+#    #+#             */
-/*   Updated: 2023/07/10 19:16:20 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/07/12 01:44:11 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,14 @@ static t_point	get_n_vector(t_ray *ray, t_point p, \
 	return (_get_n_vector(ray, p, hit_shape, obj));
 }
 
+void	get_hit_color(t_rec *rec, t_object *obj)
+{
+	if (obj->selected)
+		rec->hit_color = add_color(obj->color, create_color(0, 0, 100));
+	else
+		rec->hit_color = obj->color;
+}
+
 t_rec	get_intersection(t_ray *ray, t_object *obj)
 {
 	t_rec	rec;
@@ -82,6 +90,7 @@ t_rec	get_intersection(t_ray *ray, t_object *obj)
 	}
 	rec.frag_point = v_add_vec(ray->origin_point, v_mul_val(ray->dir, rec.t));
 	rec.n_vector = get_n_vector(ray, rec.frag_point, rec.hit_shape, obj);
+	get_hit_color(&rec, obj);
 	return (rec);
 }
 

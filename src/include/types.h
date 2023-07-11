@@ -6,7 +6,7 @@
 /*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 21:28:57 by jeelee            #+#    #+#             */
-/*   Updated: 2023/07/10 15:55:08 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/07/12 01:26:31 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include "../../mlx/mlx.h"
 # define ARR_SIZE 5
 # define KEY_PRESS 2
+# define MOUSEDOWN 4
 # define UP 126
 # define DOWN 125
 # define RIGHT 124
@@ -72,6 +73,7 @@ typedef struct s_object
 	double		diameter;
 	double		height;
 	t_color		color;
+	int			selected;
 }	t_object;
 
 typedef struct s_mlx
@@ -131,6 +133,7 @@ typedef struct s_rec
 	t_point		frag_point;
 	t_shape		hit_shape;
 	t_point		n_vector;
+	t_color		hit_color;
 	t_object	*hit_obj;
 }	t_rec;
 
