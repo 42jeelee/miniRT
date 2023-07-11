@@ -6,7 +6,7 @@
 #    By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/06 19:47:17 by jeelee            #+#    #+#              #
-#    Updated: 2023/07/12 02:28:31 by jeelee           ###   ########.fr        #
+#    Updated: 2023/07/12 03:04:31 by jeelee           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,14 +33,14 @@ SCENEDIR	=	$(SRCDIR)/scene
 
 INC			=	$(SRCDIR)/include
 
-PARSE		=	parse_file.c valid_file.c parse_gnl.c parse_token.c parse_setting.c light_utils.c parse_number.c parse_trans.c parse_utils.c parse_perror.c parse_print.c
+PARSE		=	parse_file.c valid_file.c parse_gnl.c parse_token.c parse_setting.c parse_number.c parse_trans.c parse_utils.c parse_perror.c parse_print.c
 PARSEFIX	=	$(PARSE:%.c=$(PARSEDIR)/%.c)
 
 
 RAY			=	hit_objects.c hit_cylinder.c hit_cone.c hit_circle.c get_rec.c ray_utils.c phong.c shadow.c
 RAYFIX		=	$(RAY:%.c=$(RAYDIR)/%.c)
 
-UTILS		=	object_utils.c data_free.c add_color.c create_color.c trans_color.c ratio_color.c utils.c select_closestobj.c print_obj.c
+UTILS		=	data_free.c add_color.c create_color.c trans_color.c ratio_color.c utils.c select_closestobj.c print_obj.c
 UTILSFIX	=	$(UTILS:%.c=$(UTILSDIR)/%.c)
 
 V_UTILS		=	add_and_sub.c dot_and_cross.c length_and_unit.c mul_and_div.c
@@ -66,7 +66,7 @@ $(NAME)		:	$(OBJ) $(LIBFT) $(MLX)
 	$(CC) $(CFLAGS) -I$(INC) -c $? -o $@
 
 $(LIBFT)	:
-	make -C $(LIBDIR)
+	make bonus -C $(LIBDIR)
 
 $(MLX)		:
 	make -C $(MLXDIR)

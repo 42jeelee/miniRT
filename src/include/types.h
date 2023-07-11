@@ -6,7 +6,7 @@
 /*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 21:28:57 by jeelee            #+#    #+#             */
-/*   Updated: 2023/07/12 01:26:31 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/07/12 02:46:03 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,18 +62,20 @@ typedef struct s_light
 {
 	struct s_point	point;
 	double			light_ratio;
-	t_color			color;
+	struct s_color	color;
+	struct s_light	*next;
 }	t_light;
 
 typedef struct s_object
 {
-	t_shape		shape;
-	t_point		point;
-	t_point		n_vector;
-	double		diameter;
-	double		height;
-	t_color		color;
-	int			selected;
+	t_shape			shape;
+	struct s_point	point;
+	struct s_point	n_vector;
+	double			diameter;
+	double			height;
+	struct s_color	color;
+	int				selected;
+	struct s_object	*next;
 }	t_object;
 
 typedef struct s_mlx
@@ -123,8 +125,8 @@ typedef struct s_data
 	struct s_light	a_light;
 	struct s_camera	camera;
 	struct s_mlx	params;
-	struct s_light	**lights;
-	struct s_object	**objects;
+	struct s_list	*lights;
+	struct s_list	*objects;
 }	t_data;
 
 typedef struct s_rec
@@ -136,9 +138,6 @@ typedef struct s_rec
 	t_color		hit_color;
 	t_object	*hit_obj;
 }	t_rec;
-
-t_object	**create_objlist(int n);
-void		add_objlist(t_object *obj, t_object ***objlist);
 
 int			init_img(t_data *data);
 void		print_img(t_data *data);

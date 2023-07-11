@@ -6,7 +6,7 @@
 /*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 15:46:49 by jeelee            #+#    #+#             */
-/*   Updated: 2023/07/12 01:44:11 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/07/12 03:13:56 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,27 +94,27 @@ t_rec	get_intersection(t_ray *ray, t_object *obj)
 	return (rec);
 }
 
-t_rec	find_closestobj(t_ray *ray, t_object **objs)
+t_rec	find_closestobj(t_ray *ray, t_list *objs)
 {
 	t_rec	rec;
 	t_rec	tmp;
+	t_list	*now;
 	double	t;
-	size_t	i;
 
 	rec.t = -1;
 	if (!objs)
 		return (rec);
 	t = MAXFLOAT;
-	i = 0;
-	while (objs[i])
+	now = objs;
+	while (now)
 	{
-		tmp = get_intersection(ray, objs[i]);
+		tmp = get_intersection(ray, (t_object *)(now->content));
 		if (tmp.t >= 0 && t > tmp.t)
 		{
 			rec = tmp;
 			t = tmp.t;
 		}
-		i++;
+		now = now->next;
 	}
 	return (rec);
 }

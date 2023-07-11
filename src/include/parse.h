@@ -6,7 +6,7 @@
 /*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 21:14:41 by jeelee            #+#    #+#             */
-/*   Updated: 2023/07/11 15:54:50 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/07/12 02:44:00 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,6 @@ int		valid_file(int ac, char **av);
 
 void	setting_bg(t_line *line, t_data *data, int *parsed);
 void	setting_object(t_line *line, t_data *data);
-
-t_light	**create_llist(int n);
-void	add_llist(t_light *l, t_light ***llist);
 
 void	parse_ratio(t_line *line, double *ratio);
 void	parse_color(t_line *line, t_color *color);

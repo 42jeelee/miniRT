@@ -6,30 +6,32 @@
 /*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 17:09:32 by jeelee            #+#    #+#             */
-/*   Updated: 2023/07/12 01:25:07 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/07/12 03:19:49 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
 
-static  t_point	get_raydir(double i, double j, t_camera *cam)
+static t_point	get_raydir(double i, double j, t_camera *cam)
 {
 	return (v_unit (v_sub_vec (v_add_vec (v_add_vec (cam->view_port_lb, \
 				v_mul_val (cam->horizontal, i)), \
 				v_mul_val (cam->vertical, j)), cam->ray.origin_point)));
 }
 
-static void	all_clear_select(t_object **objs)
+static void	all_clear_select(t_list *objs)
 {
-	size_t	i;
+	t_list		*now;
+	t_object	*obj;
 
 	if (!objs)
 		return ;
-	i = 0;
-	while (objs[i])
+	now = objs;
+	while (now)
 	{
-		objs[i]->selected = 0;
-		i++;
+		obj = (t_object *)(now->content);
+		obj->selected = 0;
+		now = now->next;
 	}
 }
 

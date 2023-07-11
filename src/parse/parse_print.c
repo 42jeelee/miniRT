@@ -6,7 +6,7 @@
 /*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 21:15:44 by jeelee            #+#    #+#             */
-/*   Updated: 2023/07/10 15:55:41 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/07/12 03:18:58 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,10 @@ static void	print_color(t_color *color)
 	printf("[ %d, %d, %d ]", color->r, color->g, color->b);
 }
 
-static void	print_lights(t_light **llist)
+static void	print_lights(t_list *llist)
 {
+	t_list	*now;
+	t_light	*light;
 	size_t	idx;
 
 	if (!llist)
@@ -33,20 +35,24 @@ static void	print_lights(t_light **llist)
 		return ;
 	}
 	idx = 0;
-	while (llist[idx])
+	now = llist;
+	while (now)
 	{
-		printf("light[%zu]\t| point: ", idx);
-		print_point(&(llist[idx]->point));
-		printf(", ratio: [ %f ], color: ", llist[idx]->light_ratio);
-		print_color(&(llist[idx]->color));
+		light = (t_light *)now->content;
+		printf("light[%zu]\t| point: ", idx++);
+		print_point(&(light->point));
+		printf(", ratio: [ %f ], color: ", light->light_ratio);
+		print_color(&(light->color));
 		printf("\n");
-		idx++;
+		now = now->next;
 	}
 }
 
-static void	print_objects(t_object **objlist)
+static void	print_objects(t_list *objlist)
 {
-	size_t	idx;
+	t_list		*now;
+	t_object	*obj;
+	size_t		idx;
 
 	if (!objlist)
 	{
@@ -54,22 +60,26 @@ static void	print_objects(t_object **objlist)
 		return ;
 	}
 	idx = 0;
-	while (objlist[idx])
+	now = objlist;
+	while (now)
 	{
-		printf("object[%zu]\t| shape: %d, point: ", idx, objlist[idx]->shape);
-		print_point(&(objlist[idx]->point));
+		obj = (t_object *)now->content;
+		printf("object[%zu]\t| shape: %d, point: ", idx++, obj->shape);
+		print_point(&(obj->point));
 		printf(", n_vector: ");
-		print_point(&(objlist[idx]->n_vector));
-		printf(", diameter: [ %f ], height: [ %f ], color: ", objlist[idx]->diameter, objlist[idx]->height);
-		print_color(&(objlist[idx]->color));
+		print_point(&(obj->n_vector));
+		printf(", diameter: [ %f ], height: [ %f ], color: ", \
+			obj->diameter, obj->height);
+		print_color(&(obj->color));
 		printf("\n");
-		idx++;
+		now = now->next;
 	}
 }
 
 void	print_data(t_data *data)
 {
-	printf("------------------------------------[data]------------------------------------\n");
+	printf("------------------------------------[data]-\
+		-----------------------------------\n");
 	printf("Ambient\t\t| ratio: [ %f ], color: ", data->a_light.light_ratio);
 	print_color(&(data->a_light.color));
 	printf("\ncamera\t\t| point: ");
@@ -79,5 +89,6 @@ void	print_data(t_data *data)
 	printf(", FOV: %d\n", data->camera.fov);
 	print_lights(data->lights);
 	print_objects(data->objects);
-	printf("------------------------------------------------------------------------------\n");
+	printf("-------------------------------------------\
+		-----------------------------------\n");
 }

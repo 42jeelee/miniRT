@@ -6,7 +6,7 @@
 /*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 17:45:57 by ahkiler           #+#    #+#             */
-/*   Updated: 2023/07/12 01:40:37 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/07/12 03:26:26 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int	mouse_hook(int keycode, int x, int y, t_data *data)
 	if (x >= 0 && y >= 0)
 	{
 		select_closestobj(x, y, data);
-		print_img(data);
+		// print_img(data); segmentation fault ..?
 	}
 	return (0);
 }

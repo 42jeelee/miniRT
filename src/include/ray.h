@@ -6,7 +6,7 @@
 /*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 17:37:53 by jeelee            #+#    #+#             */
-/*   Updated: 2023/07/10 17:11:36 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/07/12 03:11:29 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ int			hit_cone(t_ray *ray, t_object *obj, double value[]);
 double		hit_circle(t_ray *ray, t_object *obj);
 
 t_rec		get_intersection(t_ray *ray, t_object *obj);
-t_rec		find_closestobj(t_ray *ray, t_object **objs);
+t_rec		find_closestobj(t_ray *ray, t_list *objs);
 
-int			is_shadow(t_object **objs, t_light *light, t_point frag_point);
+int			is_shadow(t_list *objs, t_light *light, t_point frag_point);
 
 #endif

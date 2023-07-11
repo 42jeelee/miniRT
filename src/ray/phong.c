@@ -6,7 +6,7 @@
 /*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 15:19:17 by jhwang2           #+#    #+#             */
-/*   Updated: 2023/07/12 01:38:18 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/07/12 03:21:02 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,20 @@ uint32_t	get_color(t_data *data, t_rec *rec)
 {
 	t_color		color;
 	t_color		phong_color;
-	int			i;
+	t_list		*now;
 
 	if (rec->t < 0)
 		return (0);
 	color = ambient(&(data->a_light), rec);
 	phong_color = create_color(0, 0, 0);
-	i = -1;
-	while (data->lights[++i])
+	now = data->lights;
+	while (now)
 	{
 		if (!is_shadow(data->objects, \
-			(data->lights)[i], rec->frag_point))
+			(t_light *)(now->content), rec->frag_point))
 			phong_color = add_color (phong_color, \
-			apply_phong (data->lights[i], rec, &(data->camera.ray)));
+			apply_phong ((t_light *)(now->content), rec, &(data->camera.ray)));
+		now = now->next;
 	}
 	color = add_color(color, phong_color);
 	return (trans_color_int(color));
