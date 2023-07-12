@@ -6,7 +6,7 @@
 /*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 21:28:57 by jeelee            #+#    #+#             */
-/*   Updated: 2023/07/12 02:46:03 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/07/12 20:34:19 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <unistd.h>
 # include "../../libft/libft.h"
 # include "../../mlx/mlx.h"
-# define ARR_SIZE 5
+
 # define KEY_PRESS 2
 # define MOUSEDOWN 4
 # define UP 126
