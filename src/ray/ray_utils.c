@@ -6,7 +6,7 @@
 /*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 15:46:49 by jeelee            #+#    #+#             */
-/*   Updated: 2023/07/12 03:13:56 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/07/12 16:32:28 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,9 @@ static t_point	_get_n_vector(t_ray *ray, t_point p, \
 			q_sub_c = v_mul_val(obj->n_vector, \
 				v_length(p_sub_c) / v_dot(v_unit(p_sub_c), obj->n_vector));
 		else
-			return (v_mul_val(obj->n_vector, -1));
+			return (v_unit(v_mul_val(obj->n_vector, -1)));
 	}
-	return (v_sub_vec(p_sub_c, q_sub_c));
+	return (v_unit(v_sub_vec(p_sub_c, q_sub_c)));
 }
 
 static t_point	get_n_vector(t_ray *ray, t_point p, \
