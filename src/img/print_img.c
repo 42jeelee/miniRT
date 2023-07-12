@@ -3,14 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   print_img.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhwang2 <jhwang2@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 17:32:47 by ahkiler           #+#    #+#             */
-/*   Updated: 2023/07/09 19:21:21 by jhwang2          ###   ########.fr       */
+/*   Updated: 2023/07/11 16:26:36 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
+
+static void	print_status(int i, int h)
+{
+	if (i + 1 != h)
+		printf(ANSI_DEL);
+	printf("Rendering .. [%.2f%%]\n", ((((h - (float)i) / h) * 100)));
+}
 
 void	print_img(t_data *data)
 {
@@ -35,6 +42,7 @@ void	print_img(t_data *data)
 			j++;
 		}
 		i--;
+		print_status(i + 1, data->params.height);
 	}
 	mlx_put_image_to_window(data->params.mlx,
 		data->params.win, data->params.img, 0, 0);

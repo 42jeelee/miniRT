@@ -6,7 +6,7 @@
 /*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 21:01:47 by jeelee            #+#    #+#             */
-/*   Updated: 2023/07/10 19:22:55 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/07/12 02:42:57 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,15 +96,18 @@ void	setting_object(t_line *line, t_data *data)
 {
 	t_light		*l;
 	t_object	*obj;
+	t_list		*new;
 
 	if (line->type == light)
 	{
 		l = new_light(line);
-		add_llist(l, &(data->lights));
+		new = ft_lstnew(l);
+		ft_lstadd_back(&(data->lights), new);
 	}
 	else
 	{
 		obj = new_object(line);
-		add_objlist(obj, &(data->objects));
+		new = ft_lstnew(obj);
+		ft_lstadd_back(&(data->objects), new);
 	}
 }

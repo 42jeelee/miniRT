@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_rec.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhwang2 <jhwang2@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 15:11:06 by jeelee            #+#    #+#             */
-/*   Updated: 2023/07/09 21:25:44 by jhwang2          ###   ########.fr       */
+/*   Updated: 2023/07/12 00:54:41 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_rec	get_rec(t_data *data)
 	t_ray			viewport_ray;
 
 	rec = find_closestobj(&(data->camera.ray), data->objects);
-	if (rec.t < t_min)
+	if (0 <= rec.t && rec.t < t_min)
 	{
 		viewport_ray.dir = ((data->camera).ray).dir;
 		viewport_ray.origin_point = v_add_vec((data->camera).ray.origin_point, \

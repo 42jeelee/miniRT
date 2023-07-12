@@ -6,7 +6,7 @@
 /*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 15:19:17 by jhwang2           #+#    #+#             */
-/*   Updated: 2023/07/10 18:34:34 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/07/12 03:21:02 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,20 @@ uint32_t	get_color(t_data *data, t_rec *rec)
 {
 	t_color		color;
 	t_color		phong_color;
-	int			i;
+	t_list		*now;
 
 	if (rec->t < 0)
 		return (0);
 	color = ambient(&(data->a_light), rec);
 	phong_color = create_color(0, 0, 0);
-	i = -1;
-	while (data->lights[++i])
+	now = data->lights;
+	while (now)
 	{
 		if (!is_shadow(data->objects, \
-			(data->lights)[i], rec->frag_point))
+			(t_light *)(now->content), rec->frag_point))
 			phong_color = add_color (phong_color, \
-			apply_phong (data->lights[i], rec, &(data->camera.ray)));
+			apply_phong ((t_light *)(now->content), rec, &(data->camera.ray)));
+		now = now->next;
 	}
 	color = add_color(color, phong_color);
 	return (trans_color_int(color));
@@ -44,7 +45,7 @@ t_color	ambient(t_light *a_light, t_rec *rec)
 	t_color	light_color;
 
 	light_color = ratio_color_val(a_light->color, a_light->light_ratio);
-	return (ratio_color_col(rec->hit_obj->color, light_color));
+	return (ratio_color_col(rec->hit_color, light_color));
 }
 
 t_color	diffuse(t_light *light, t_rec *rec)
@@ -56,7 +57,7 @@ t_color	diffuse(t_light *light, t_rec *rec)
 	diff = max (v_dot (rec->n_vector,
 				v_unit (v_sub_vec (light->point,
 						rec->frag_point))), 0.0);
-	return (ratio_color_col(rec->hit_obj->color, \
+	return (ratio_color_col(rec->hit_color, \
 		ratio_color_val(light_color, diff)));
 }
 
@@ -75,6 +76,6 @@ t_color	specular(t_light *light, t_rec *rec, t_ray *ray)
 	reflect_ray.dir = v_add_vec(lightdir, \
 		v_mul_val(v_mul_val(rec->n_vector, v_dot(lightdir, rec->n_vector)), 2));
 	spec = max(v_dot(reflect_ray.dir, ray->dir), 0.0);
-	return (ratio_color_col(rec->hit_obj->color, \
+	return (ratio_color_col(rec->hit_color, \
 		ratio_color_val(light_color, pow(spec, alpa))));
 }
