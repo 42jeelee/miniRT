@@ -6,7 +6,7 @@
 /*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 14:58:16 by jeelee            #+#    #+#             */
-/*   Updated: 2023/07/10 04:06:25 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/07/14 22:04:24 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ static double	_hit_circle(t_point h, t_ray *ray, t_object *obj)
 	double	dist_p_h;
 	t_point	p;
 
-	t = fabs(v_dot(v_sub_vec(ray->origin_point, h), obj->n_vector)) / \
-		fabs(v_dot(ray->dir, obj->n_vector));
+	t = v_dot(v_sub_vec(h, ray->origin_point), obj->n_vector) / \
+		v_dot(ray->dir, obj->n_vector);
 	p = v_add_vec(ray->origin_point, v_mul_val(ray->dir, t));
 	dist_p_h = v_length(v_sub_vec(p, h));
 	if (dist_p_h > obj->diameter / 2)

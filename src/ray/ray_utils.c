@@ -6,42 +6,60 @@
 /*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 15:46:49 by jeelee            #+#    #+#             */
-/*   Updated: 2023/07/12 16:32:28 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/07/14 22:03:01 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
 
-static t_point	_get_n_vector(t_ray *ray, t_point p, \
-										t_shape hit_shape, t_object *obj)
+static t_point	cylinder_n_vector(t_ray *ray, t_point p, t_object *obj)
 {
 	t_point	c;
 	t_point	p_sub_c;
 	t_point	q_sub_c;
+	t_point	l_sub_c;
+	int		isin;
 
-	(void)ray;
+	isin = 1;
 	c = v_add_vec(obj->point, v_mul_val(obj->n_vector, -(obj->height / 2)));
 	p_sub_c = v_sub_vec(p, c);
 	q_sub_c = set_vec(0, 0, 0);
-	if (hit_shape == cylinder)
-	{
-		if (v_dot(p_sub_c, obj->n_vector) != 0)
-			q_sub_c = v_mul_val(obj->n_vector, v_dot(p_sub_c, obj->n_vector));
-		else
-			return (v_unit(p_sub_c));
-	}
-	else if (hit_shape == cone)
-	{
-		if (v_length(p_sub_c) != 0)
-			q_sub_c = v_mul_val(obj->n_vector, \
-				v_length(p_sub_c) / v_dot(v_unit(p_sub_c), obj->n_vector));
-		else
-			return (v_unit(v_mul_val(obj->n_vector, -1)));
-	}
-	return (v_unit(v_sub_vec(p_sub_c, q_sub_c)));
+	l_sub_c = v_sub_vec(ray->origin_point, c);
+	if (sqrt(pow(v_length(l_sub_c), 2) - pow(v_dot(l_sub_c, obj->n_vector), 2)) \
+		< obj->diameter / 2)
+		isin *= -1;
+	if (v_dot(p_sub_c, obj->n_vector) != 0)
+		q_sub_c = v_mul_val(obj->n_vector, v_dot(p_sub_c, obj->n_vector));
+	else
+		return (v_unit(v_mul_val(p_sub_c, isin)));
+	return (v_unit(v_mul_val(v_sub_vec(p_sub_c, q_sub_c), isin)));
 }
 
-static t_point	get_n_vector(t_ray *ray, t_point p, \
+static t_point	cone_n_vector(t_ray *ray, t_point p, t_object *obj)
+{
+	t_point	c;
+	t_point	p_sub_c;
+	t_point	q_sub_c;
+	double	l_dot_n;
+	int		isin;
+
+	isin = 1;
+	c = v_add_vec(obj->point, v_mul_val(obj->n_vector, -(obj->height / 2)));
+	p_sub_c = v_sub_vec(p, c);
+	q_sub_c = set_vec(0, 0, 0);
+	l_dot_n = v_dot(v_unit(v_sub_vec(ray->origin_point, c)), obj->n_vector);
+	if (l_dot_n < obj->height / \
+		(sqrt(pow(obj->height, 2) + pow(obj->diameter / 2, 2))))
+		isin *= -1;
+	if (v_length(p_sub_c) != 0)
+		q_sub_c = v_mul_val(obj->n_vector, \
+			v_length(p_sub_c) / v_dot(v_unit(p_sub_c), obj->n_vector));
+	else
+		return (v_unit(v_mul_val(obj->n_vector, -isin)));
+	return (v_unit(v_mul_val(v_sub_vec(p_sub_c, q_sub_c), isin)));
+}
+
+t_point	get_n_vector(t_ray *ray, t_point p, \
 										t_shape hit_shape, t_object *obj)
 {
 	if (hit_shape == plane || hit_shape == circle)
@@ -58,7 +76,11 @@ static t_point	get_n_vector(t_ray *ray, t_point p, \
 				obj->diameter / 2), -1));
 		return (v_div_val(v_sub_vec(p, obj->point), obj->diameter / 2));
 	}
-	return (_get_n_vector(ray, p, hit_shape, obj));
+	else if (hit_shape == cylinder)
+		return (cylinder_n_vector(ray, p, obj));
+	else if (hit_shape == cone)
+		return (cone_n_vector(ray, p, obj));
+	return (set_vec(0, 0, 0));
 }
 
 void	get_hit_color(t_rec *rec, t_object *obj)
@@ -67,54 +89,4 @@ void	get_hit_color(t_rec *rec, t_object *obj)
 		rec->hit_color = add_color(obj->color, create_color(0, 0, 100));
 	else
 		rec->hit_color = obj->color;
-}
-
-t_rec	get_intersection(t_ray *ray, t_object *obj)
-{
-	t_rec	rec;
-	double	circle_dist;
-
-	circle_dist = -1;
-	ft_memset(&rec, 0, sizeof(t_rec));
-	rec.hit_obj = obj;
-	rec.hit_shape = obj->shape;
-	rec.t = hit_objs(ray, obj);
-	if (obj->shape == cylinder || obj->shape == cone)
-	{
-		circle_dist = hit_circle(ray, obj);
-		if (0 <= circle_dist && (rec.t < 0 || circle_dist < rec.t))
-		{
-			rec.t = circle_dist;
-			rec.hit_shape = circle;
-		}
-	}
-	rec.frag_point = v_add_vec(ray->origin_point, v_mul_val(ray->dir, rec.t));
-	rec.n_vector = get_n_vector(ray, rec.frag_point, rec.hit_shape, obj);
-	get_hit_color(&rec, obj);
-	return (rec);
-}
-
-t_rec	find_closestobj(t_ray *ray, t_list *objs)
-{
-	t_rec	rec;
-	t_rec	tmp;
-	t_list	*now;
-	double	t;
-
-	rec.t = -1;
-	if (!objs)
-		return (rec);
-	t = MAXFLOAT;
-	now = objs;
-	while (now)
-	{
-		tmp = get_intersection(ray, (t_object *)(now->content));
-		if (tmp.t >= 0 && t > tmp.t)
-		{
-			rec = tmp;
-			t = tmp.t;
-		}
-		now = now->next;
-	}
-	return (rec);
 }

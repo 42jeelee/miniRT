@@ -6,7 +6,7 @@
 #    By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/06 19:47:17 by jeelee            #+#    #+#              #
-#    Updated: 2023/07/12 03:04:31 by jeelee           ###   ########.fr        #
+#    Updated: 2023/07/14 22:03:58 by jeelee           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ PARSE		=	parse_file.c valid_file.c parse_gnl.c parse_token.c parse_setting.c par
 PARSEFIX	=	$(PARSE:%.c=$(PARSEDIR)/%.c)
 
 
-RAY			=	hit_objects.c hit_cylinder.c hit_cone.c hit_circle.c get_rec.c ray_utils.c phong.c shadow.c
+RAY			=	hit_objects.c hit_cylinder.c hit_cone.c hit_circle.c get_rec.c find_closestobj.c ray_utils.c phong.c shadow.c
 RAYFIX		=	$(RAY:%.c=$(RAYDIR)/%.c)
 
 UTILS		=	data_free.c add_color.c create_color.c trans_color.c ratio_color.c utils.c select_closestobj.c print_obj.c
