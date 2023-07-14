@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shadow.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhwang2 <jhwang2@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 15:19:17 by jhwang2           #+#    #+#             */
-/*   Updated: 2023/07/14 17:29:58 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/07/14 22:00:56 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static double	check_block(t_ray *ray, t_object *obj)
 	double	t;
 	double	circle_dist;
 
-	t = hit_objs_shadow(ray, obj);
+	t = hit_objs(ray, obj);
 	if (obj->shape == cylinder || obj->shape == cone)
 	{
 		circle_dist = hit_circle(ray, obj);

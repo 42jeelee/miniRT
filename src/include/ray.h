@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhwang2 <jhwang2@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 17:37:53 by jeelee            #+#    #+#             */
-/*   Updated: 2023/07/14 16:58:16 by jhwang2          ###   ########.fr       */
+/*   Updated: 2023/07/14 22:00:03 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_color		specular(t_light *light, t_rec *rec, t_ray *ray);
 double		max(double a, double b);
 
 double		hit_objs(t_ray *ray, t_object *obj);
-double		hit_objs_shadow(t_ray *ray, t_object *obj);
+
 int			r_formula(double a, double b, double c, double value[]);
 
 int			hit_sphere(t_ray *ray, t_object *obj, double value[]);
@@ -35,6 +35,9 @@ int			hit_plane(t_ray *ray, t_object *obj, double value[]);
 int			hit_cylinder(t_ray *ray, t_object *obj, double value[]);
 int			hit_cone(t_ray *ray, t_object *obj, double value[]);
 double		hit_circle(t_ray *ray, t_object *obj);
+
+t_point		get_n_vector(t_ray *ray, t_point p, t_shape hit_shape, t_object *obj);
+void		get_hit_color(t_rec *rec, t_object *obj);
 
 t_rec		get_intersection(t_ray *ray, t_object *obj);
 t_rec		find_closestobj(t_ray *ray, t_list *objs);
