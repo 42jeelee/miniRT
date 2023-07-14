@@ -6,7 +6,7 @@
 /*   By: jhwang2 <jhwang2@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 15:14:24 by jhwang2           #+#    #+#             */
-/*   Updated: 2023/07/09 21:25:36 by jhwang2          ###   ########.fr       */
+/*   Updated: 2023/07/14 21:45:06 by jhwang2          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,19 +30,16 @@ void	set_cposition(t_data *data, double ratio)
 	t_point	u;
 	t_point	v;
 	t_point	w;
-	
+
 	vup = set_vec (0, 1, 0);
 	if ((data->camera.n_vector.y > 0.0 || data->camera.n_vector.y < 0.0)
 		&& (data->camera.n_vector.x == 0.0 && data->camera.n_vector.z == 0.0))
 		vup = set_vec (0, 0, 1);
-	w = v_mul_val (data->camera.n_vector, -1);
-	u = v_cross (data->camera.n_vector, vup);
-	v = v_cross (u, data->camera.n_vector);
+	w = v_unit (v_mul_val (data->camera.n_vector, -1));
+	u = v_mul_val (v_unit (v_cross (w, vup)), -1);
+	v = v_unit (v_unit (v_cross (u, w)));
 	data->camera.ratio = ratio;
 	init_screen (&data->camera, u, v, w);
-	data->camera.rotate.rotate_x = set_vec (u.x, v.x, data->camera.n_vector.x);
-	data->camera.rotate.rotate_y = set_vec (u.y, v.y, data->camera.n_vector.y);
-	data->camera.rotate.rotate_z = set_vec (u.z, v.z, data->camera.n_vector.z);
 }
 
 void	init_screen(t_camera *camera, t_point u, t_point v, t_point w)
@@ -50,7 +47,7 @@ void	init_screen(t_camera *camera, t_point u, t_point v, t_point w)
 	double	h;
 
 	init_origin_point (&camera->ray, camera->center);
-	h = tan ((camera->fov / 2) * PI / 180);
+	h = tan ((camera->fov / 2) * M_PI / 180);
 	camera->view_port_w = FOCAL_LENGTH * h;
 	camera->view_port_h = camera->view_port_w / camera->ratio;
 	camera->horizontal = v_mul_val (u, camera->view_port_w);
