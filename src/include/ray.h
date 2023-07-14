@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: jhwang2 <jhwang2@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 17:37:53 by jeelee            #+#    #+#             */
-/*   Updated: 2023/07/12 03:11:29 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/07/14 16:58:16 by jhwang2          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_color		specular(t_light *light, t_rec *rec, t_ray *ray);
 double		max(double a, double b);
 
 double		hit_objs(t_ray *ray, t_object *obj);
-
+double		hit_objs_shadow(t_ray *ray, t_object *obj);
 int			r_formula(double a, double b, double c, double value[]);
 
 int			hit_sphere(t_ray *ray, t_object *obj, double value[]);

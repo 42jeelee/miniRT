@@ -30,19 +30,16 @@ void	set_cposition(t_data *data, double ratio)
 	t_point	u;
 	t_point	v;
 	t_point	w;
-	
+
 	vup = set_vec (0, 1, 0);
 	if ((data->camera.n_vector.y > 0.0 || data->camera.n_vector.y < 0.0)
 		&& (data->camera.n_vector.x == 0.0 && data->camera.n_vector.z == 0.0))
 		vup = set_vec (0, 0, 1);
-	w = v_mul_val (data->camera.n_vector, -1);
-	u = v_cross (data->camera.n_vector, vup);
-	v = v_cross (u, data->camera.n_vector);
+	w = v_unit (v_mul_val (data->camera.n_vector, -1));
+	u = v_mul_val (v_unit (v_cross (w, vup)), -1);
+	v = v_unit (v_unit (v_cross (u, w)));
 	data->camera.ratio = ratio;
 	init_screen (&data->camera, u, v, w);
-	data->camera.rotate.rotate_x = set_vec (u.x, v.x, data->camera.n_vector.x);
-	data->camera.rotate.rotate_y = set_vec (u.y, v.y, data->camera.n_vector.y);
-	data->camera.rotate.rotate_z = set_vec (u.z, v.z, data->camera.n_vector.z);
 }
 
 void	init_screen(t_camera *camera, t_point u, t_point v, t_point w)
