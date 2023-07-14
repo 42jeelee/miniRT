@@ -6,7 +6,7 @@
 /*   By: jhwang2 <jhwang2@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 15:19:17 by jhwang2           #+#    #+#             */
-/*   Updated: 2023/07/14 17:17:11 by jhwang2          ###   ########.fr       */
+/*   Updated: 2023/07/14 17:29:58 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,13 @@ int	is_shadow(t_list *objs, t_light *light, t_point frag_point)
 
 	l_sub_p = v_sub_vec(light->point, frag_point);
 	max = v_length(l_sub_p);
-	ray.origin_point = frag_point;
 	ray.dir = v_unit(l_sub_p);
+	ray.origin_point = v_add_vec(frag_point, v_mul_val(ray.dir, EPSILON));
 	now = objs;
 	while (now)
 	{
 		t = check_block(&ray, (t_object *)(now->content));
-		if (0.00001 < t && t <= max)
+		if (0 < t && t <= max)
 			return (1);
 		now = now->next;
 	}
