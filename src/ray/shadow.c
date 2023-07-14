@@ -6,7 +6,7 @@
 /*   By: jhwang2 <jhwang2@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 15:19:17 by jhwang2           #+#    #+#             */
-/*   Updated: 2023/07/13 22:37:06 by jhwang2          ###   ########.fr       */
+/*   Updated: 2023/07/14 17:17:11 by jhwang2          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static double	check_block(t_ray *ray, t_object *obj)
 	double	t;
 	double	circle_dist;
 
-	t = hit_objs(ray, obj);
+	t = hit_objs_shadow(ray, obj);
 	if (obj->shape == cylinder || obj->shape == cone)
 	{
 		circle_dist = hit_circle(ray, obj);

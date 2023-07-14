@@ -6,13 +6,13 @@
 /*   By: jhwang2 <jhwang2@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 16:44:45 by jeelee            #+#    #+#             */
-/*   Updated: 2023/07/13 22:38:44 by jhwang2          ###   ########.fr       */
+/*   Updated: 2023/07/14 16:58:00 by jhwang2          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
 
-double	hit_objs(t_ray *ray, t_object *obj)
+double	hit_objs_shadow(t_ray *ray, t_object *obj)
 {
 	int		value_num;
 	double	value[2];
@@ -30,6 +30,31 @@ double	hit_objs(t_ray *ray, t_object *obj)
 		value_num = hit_cone(ray, obj, value);
 	if (v_length (v_sub_vec (v_add_vec (ray->origin_point, v_mul_val (ray->dir, value[0])), ray->origin_point)) < 0.00001)
 		return (-1);
+	if (value[0] < 0)
+	{
+		if (value_num == 2 && value[1] >= 0)
+			return (value[1]);
+		return (-1);
+	}
+	return (value[0]);
+}
+
+double	hit_objs(t_ray *ray, t_object *obj)
+{
+	int		value_num;
+	double	value[2];
+
+	value_num = 0;
+	value[0] = -1;
+	value[1] = -1;
+	if (obj->shape == sphere)
+		value_num = hit_sphere(ray, obj, value);
+	else if (obj->shape == plane)
+		value_num = hit_plane(ray, obj, value);
+	else if (obj->shape == cylinder)
+		value_num = hit_cylinder(ray, obj, value);
+	else if (obj->shape == cone)
+		value_num = hit_cone(ray, obj, value);
 	if (value[0] < 0)
 	{
 		if (value_num == 2 && value[1] >= 0)
