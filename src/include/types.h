@@ -6,7 +6,7 @@
 /*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 21:28:57 by jeelee            #+#    #+#             */
-/*   Updated: 2023/07/12 20:34:19 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/07/14 17:22:29 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@
 # define RIGHT 124
 # define LEFT 123
 # define CLOSE_WIN 17
-# define PI 3.1415926535
+
+# define EPSILON 1e-6
 
 typedef enum e_shape
 {
