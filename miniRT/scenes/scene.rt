@@ -3,7 +3,7 @@
 #	Lights
 #	[Type]	[Point]		[Ratio]										[Color]
 A 0.2 255,255,255 # Ambient
-L -10,10,5 0.7 # Light
+L -10,1,0 0.7 # Light
 
 #	Camera
 #	[Type]	[Point]		[n_vector]		[FOV]

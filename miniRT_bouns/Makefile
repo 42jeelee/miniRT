@@ -6,7 +6,7 @@
 #    By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/06 19:47:17 by jeelee            #+#    #+#              #
-#    Updated: 2023/07/17 14:22:35 by jeelee           ###   ########.fr        #
+#    Updated: 2023/07/17 21:31:20 by jeelee           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,29 +33,29 @@ SCENEDIR	=	$(SRCDIR)/scene
 
 INC			=	$(SRCDIR)/include
 
-PARSE		=	parse_file.c valid_file.c parse_gnl.c parse_token.c parse_setting.c parse_number.c parse_trans.c parse_utils.c parse_perror.c
+PARSE		=	parse_file_bonus.c valid_file_bonus.c parse_gnl_bonus.c parse_token_bonus.c parse_setting_bonus.c parse_checker_bonus.c parse_number_bonus.c parse_trans_bonus.c parse_utils_bonus.c parse_perror_bonus.c
 PARSEFIX	=	$(PARSE:%.c=$(PARSEDIR)/%.c)
 
 
-RAY			=	hit_objects.c hit_cylinder.c hit_cone.c hit_circle.c get_rec.c find_closestobj.c ray_utils.c phong.c shadow.c
+RAY			=	hit_objects_bonus.c hit_cylinder_bonus.c hit_cone_bonus.c hit_circle_bonus.c get_rec_bonus.c find_closestobj_bonus.c ray_utils_bonus.c phong_bonus.c shadow_bonus.c
 RAYFIX		=	$(RAY:%.c=$(RAYDIR)/%.c)
 
-UTILS		=	data_free.c add_color.c create_color.c trans_color.c ratio_color.c utils.c select_closestobj.c print_obj.c
+UTILS		=	data_free_bonus.c add_color_bonus.c create_color_bonus.c trans_color_bonus.c ratio_color_bonus.c utils_bonus.c select_closestobj_bonus.c print_obj_bonus.c
 UTILSFIX	=	$(UTILS:%.c=$(UTILSDIR)/%.c)
 
-V_UTILS		=	add_and_sub.c dot_and_cross.c length_and_unit.c mul_and_div.c
+V_UTILS		=	add_and_sub_bonus.c dot_and_cross_bonus.c length_and_unit_bonus.c mul_and_div_bonus.c
 V_UTILSFIX	=	$(V_UTILS:%.c=$(V_UTILSDIR)/%.c)
 
-HOOK		=	hook.c
+HOOK		=	hook_bonus.c
 HOOKFIX		=	$(HOOK:%.c=$(HOOKDIR)/%.c)
 
-IMG			=	init_img.c print_img.c
+IMG			=	init_img_bonus.c print_img_bonus.c
 IMGFIX		=	$(IMG:%.c=$(IMGDIR)/%.c)
 
-SCENE		=	scene.c
+SCENE		=	scene_bonus.c
 SCENEFIX	=	$(SCENE:%.c=$(SCENEDIR)/%.c)
 
-SRC			=	$(SRCDIR)/main.c $(PARSEFIX) $(UTILSFIX) $(V_UTILSFIX) $(HOOKFIX) $(IMGFIX) $(SCENEFIX) $(RAYFIX)
+SRC			=	$(SRCDIR)/main_bonus.c $(PARSEFIX) $(UTILSFIX) $(V_UTILSFIX) $(HOOKFIX) $(IMGFIX) $(SCENEFIX) $(RAYFIX)
 
 OBJ			=	$(SRC:.c=.o)
 
