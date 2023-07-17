@@ -6,7 +6,7 @@
 /*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 20:33:05 by jeelee            #+#    #+#             */
-/*   Updated: 2023/06/27 16:27:34 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/07/17 18:56:35 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,26 +30,12 @@ void	print_help(void)
 	exit(0);
 }
 
-size_t	count_charnum(char c, char *str)
-{
-	size_t	count;
-
-	count = 0;
-	while (*str)
-	{
-		if (*str == c)
-			count++;
-		str++;
-	}
-	return (count);
-}
-
 int	valid_filename(char *filename)
 {
 	size_t	size;
 
 	size = ft_strlen(filename);
-	if (size < 4 || count_charnum('.', filename) != 1)
+	if (size < 4)
 	{
 		if (!ft_strncmp(filename, "help", size))
 			print_help();

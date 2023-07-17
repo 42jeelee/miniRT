@@ -6,7 +6,7 @@
 /*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 01:36:02 by jeelee            #+#    #+#             */
-/*   Updated: 2023/07/10 19:31:20 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/07/17 19:08:23 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ size_t	shift_whitespace(t_line *line)
 
 	idx = line->idx;
 	while ((line->line)[idx] && (line->line)[idx] != '\n' && \
-		((line->line)[idx] == ' ' || !ft_isprint((line->line)[idx])))
+		((line->line)[idx] == ' '))
 		idx++;
 	return (idx);
 }
@@ -69,7 +69,7 @@ size_t	get_token(t_line *line)
 
 	idx = line->idx;
 	while ((line->line)[idx] && (line->line)[idx] != '\n' && \
-		(line->line)[idx] != ' ' && ft_isprint((line->line)[idx]))
+		(line->line)[idx] != ' ')
 		idx++;
 	return (idx);
 }
