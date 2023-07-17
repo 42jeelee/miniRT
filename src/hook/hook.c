@@ -6,7 +6,7 @@
 /*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 17:45:57 by ahkiler           #+#    #+#             */
-/*   Updated: 2023/07/12 03:26:26 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/07/17 14:18:23 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,7 @@ static int	mouse_hook(int keycode, int x, int y, t_data *data)
 	if (keycode != 1)
 		return (0);
 	if (x >= 0 && y >= 0)
-	{
 		select_closestobj(x, y, data);
-		// print_img(data); segmentation fault ..?
-	}
 	return (0);
 }
 
@@ -38,15 +35,6 @@ int	key_hook(int keycode, t_data *data)
 		mlx_destroy_window (data->params.mlx, data->params.win);
 		exit (0);
 	}
-	if (keycode == UP)
-		data->camera.center.y += 5;
-	if (keycode == DOWN)
-		data->camera.center.y -= 5;
-	if (keycode == RIGHT)
-		data->camera.center.x += 5;
-	if (keycode == LEFT)
-		data->camera.center.x -= 5;
-	// print_img (data);
 	return (0);
 }
 

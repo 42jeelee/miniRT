@@ -6,7 +6,7 @@
 /*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 19:47:26 by jeelee            #+#    #+#             */
-/*   Updated: 2023/07/12 21:38:55 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/07/17 14:22:44 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@ int	main(int ac, char **av)
 
 	if (parse_file(ac, av, &data))
 		return (1);
-	printf("arg: %s\nexecuting ...\n", av[1]);
-	print_data(&data);
 	init_img(&data);
 	print_img (&data);
 	mlx_hooks (&data);

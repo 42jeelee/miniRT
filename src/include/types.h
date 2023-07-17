@@ -6,7 +6,7 @@
 /*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 21:28:57 by jeelee            #+#    #+#             */
-/*   Updated: 2023/07/14 17:22:29 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/07/17 14:15:15 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,18 +98,9 @@ typedef struct s_ray
 	t_point	dir;
 }	t_ray;
 
-typedef struct s_rot
-{
-	t_point	rotate_x;
-	t_point	rotate_y;
-	t_point	rotate_z;
-	t_point	value;
-}	t_rot;
-
 typedef struct s_camera
 {
 	t_ray	ray;
-	t_rot	rotate;
 	t_point	n_vector;
 	t_point	center;
 	t_point	view_port_lb;

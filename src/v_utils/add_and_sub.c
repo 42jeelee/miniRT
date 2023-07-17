@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   add_and_sub.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhwang2 <jhwang2@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 13:40:41 by ahkiler           #+#    #+#             */
-/*   Updated: 2023/06/12 16:33:12 by jhwang2          ###   ########.fr       */
+/*   Updated: 2023/07/17 14:19:14 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_point	set_vec(double x, double y, double z)
 	return (vec);
 }
 
-t_point	v_add_vec (t_point vec_origin, t_point vec_value)
+t_point	v_add_vec(t_point vec_origin, t_point vec_value)
 {
 	vec_origin.x += vec_value.x;
 	vec_origin.y += vec_value.y;
@@ -30,7 +30,7 @@ t_point	v_add_vec (t_point vec_origin, t_point vec_value)
 	return (vec_origin);
 }
 
-t_point	v_add_val (t_point vec_origin, double x, double y, double z)
+t_point	v_add_val(t_point vec_origin, double x, double y, double z)
 {
 	vec_origin.x += x;
 	vec_origin.y += y;
@@ -38,7 +38,7 @@ t_point	v_add_val (t_point vec_origin, double x, double y, double z)
 	return (vec_origin);
 }
 
-t_point	v_sub_vec (t_point vec_origin, t_point vec_value)
+t_point	v_sub_vec(t_point vec_origin, t_point vec_value)
 {
 	vec_origin.x -= vec_value.x;
 	vec_origin.y -= vec_value.y;
@@ -46,7 +46,7 @@ t_point	v_sub_vec (t_point vec_origin, t_point vec_value)
 	return (vec_origin);
 }
 
-t_point	v_sub_val (t_point vec_origin, double x, double y, double z)
+t_point	v_sub_val(t_point vec_origin, double x, double y, double z)
 {
 	vec_origin.x -= x;
 	vec_origin.y -= y;

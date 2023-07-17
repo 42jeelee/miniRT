@@ -6,7 +6,7 @@
 /*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 15:14:24 by jhwang2           #+#    #+#             */
-/*   Updated: 2023/07/14 17:23:41 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/07/17 14:20:40 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ void	init_screen(t_camera *camera, t_point u, t_point v, t_point w)
 	camera->view_port_h = camera->view_port_w / camera->ratio;
 	camera->horizontal = v_mul_val (u, camera->view_port_w);
 	camera->vertical = v_mul_val (v, camera->view_port_h);
-	camera->view_port_lb = v_sub_vec (v_sub_vec (v_sub_vec (camera->ray.origin_point, w),
-		v_div_val (camera->horizontal, 2)), v_div_val (camera->vertical, 2));
+	camera->view_port_lb = v_sub_vec (v_sub_vec (v_sub_vec \
+		(camera->ray.origin_point, w), v_div_val (camera->horizontal, 2)), \
+			v_div_val (camera->vertical, 2));
 }

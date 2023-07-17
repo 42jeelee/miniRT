@@ -6,7 +6,7 @@
 /*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 17:37:53 by jeelee            #+#    #+#             */
-/*   Updated: 2023/07/14 22:00:03 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/07/17 14:21:00 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ int			hit_cylinder(t_ray *ray, t_object *obj, double value[]);
 int			hit_cone(t_ray *ray, t_object *obj, double value[]);
 double		hit_circle(t_ray *ray, t_object *obj);
 
-t_point		get_n_vector(t_ray *ray, t_point p, t_shape hit_shape, t_object *obj);
+t_point		get_n_vector(t_ray *ray, t_point p, \
+							t_shape hit_shape, t_object *obj);
 void		get_hit_color(t_rec *rec, t_object *obj);
 
 t_rec		get_intersection(t_ray *ray, t_object *obj);
