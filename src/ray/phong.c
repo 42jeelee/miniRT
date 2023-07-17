@@ -6,7 +6,7 @@
 /*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 15:19:17 by jhwang2           #+#    #+#             */
-/*   Updated: 2023/07/12 03:21:02 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/07/17 18:53:03 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,13 +69,18 @@ t_color	specular(t_light *light, t_rec *rec, t_ray *ray)
 	double	spec;
 	int		alpa;
 
-	light_color = ratio_color_val(light->color, light->light_ratio);
-	alpa = 2;
-	lightdir = v_unit(v_sub_vec(rec->frag_point, light->point));
-	reflect_ray.origin_point = rec->frag_point;
-	reflect_ray.dir = v_add_vec(lightdir, \
+	if (v_dot(ray->dir, rec->n_vector) > 0)
+	{
+		light_color = ratio_color_val(light->color, light->light_ratio);
+		alpa = 2;
+		lightdir = v_unit(v_sub_vec(rec->frag_point, light->point));
+		reflect_ray.origin_point = rec->frag_point;
+		reflect_ray.dir = v_add_vec(lightdir, \
 		v_mul_val(v_mul_val(rec->n_vector, v_dot(lightdir, rec->n_vector)), 2));
-	spec = max(v_dot(reflect_ray.dir, ray->dir), 0.0);
+		spec = max(v_dot(reflect_ray.dir, ray->dir), 0.0);
+	}
+	else
+		return (create_color(0, 0, 0));
 	return (ratio_color_col(rec->hit_color, \
 		ratio_color_val(light_color, pow(spec, alpa))));
 }
