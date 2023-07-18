@@ -6,7 +6,7 @@
 /*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 15:46:49 by jeelee            #+#    #+#             */
-/*   Updated: 2023/07/17 21:41:21 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/07/18 15:51:18 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ t_point	get_n_vector(t_ray *ray, t_point p, \
 			return (v_mul_val(obj->n_vector, -1));
 		return (obj->n_vector);
 	}
-	else if (hit_shape == sphere || hit_shape == checker)
+	else if (hit_shape == sphere)
 	{
 		if (v_length(\
 			v_sub_vec(ray->origin_point, obj->point)) < obj->diameter / 2)
@@ -81,21 +81,4 @@ t_point	get_n_vector(t_ray *ray, t_point p, \
 	else if (hit_shape == cone)
 		return (cone_n_vector(ray, p, obj));
 	return (set_vec(0, 0, 0));
-}
-
-void	get_hit_color(t_rec *rec, t_object *obj)
-{
-	int	u;
-	int	v;
-	int	mu;
-	int	mv;
-
-	mu = obj->point.x / v_length(obj->point);
-	mv = obj->point.y / v_length(obj->point);
-	u = rec->frag_point.x / v_length(obj->point);
-	v = rec->frag_point.y / v_length(obj->point);
-	if (u / mu == (1 / (obj->num_of_tile[0])) || v / mv == (1 / obj->num_of_tile[1]))
-		rec->hit_color = obj->sub_color;
-	else
-		rec->hit_color = obj->color;
 }

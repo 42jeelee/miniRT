@@ -6,7 +6,7 @@
 /*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 01:36:02 by jeelee            #+#    #+#             */
-/*   Updated: 2023/07/17 20:36:30 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/07/18 15:49:56 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	is_type(t_line *line)
 {
-	const char	*types[8] = {"A", "C", "l", "sp", "pl", "cy", "co", "ch"};
+	const char	*types[7] = {"A", "C", "l", "sp", "pl", "cy", "co"};
 	size_t		type_idx;
 	size_t		size;
 
@@ -25,7 +25,7 @@ int	is_type(t_line *line)
 	if (size == 0 || size > 2)
 		return (0);
 	type_idx = -1;
-	while (++type_idx < 8)
+	while (++type_idx < 7)
 	{
 		if (!ft_strncmp((line->line) + (line->idx), types[type_idx], size))
 		{

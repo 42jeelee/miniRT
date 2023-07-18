@@ -6,7 +6,7 @@
 /*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 16:44:45 by jeelee            #+#    #+#             */
-/*   Updated: 2023/07/17 20:49:50 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/07/18 15:50:54 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ double	hit_objs(t_ray *ray, t_object *obj)
 	value_num = 0;
 	value[0] = -1;
 	value[1] = -1;
-	if (obj->shape == sphere || obj->shape == checker)
+	if (obj->shape == sphere)
 		value_num = hit_sphere(ray, obj, value);
 	else if (obj->shape == plane)
 		value_num = hit_plane(ray, obj, value);

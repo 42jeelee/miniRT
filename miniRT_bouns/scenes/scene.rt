@@ -13,8 +13,7 @@ C 0,10,35 0,-0.3,-1 70 # Camera
 #	Objects
 #	[Type]	[Point]		[n_vector]	[Diameter]	[Height]	[FOV]	[Color]
 cy -6,0,0 0,1,0 5 10 166,62,102 # Cylinder
-# sp 0,0,0 5 66,132,202 # Sphere
-ch 0,0,0 5 66,132,202 53,202,0 5 5
+sp 0,0,0 5 66,132,202 # Sphere
 co 6,0,0 0,-1,0 5 10 66,232,102 # Cone
 
 #	Plane

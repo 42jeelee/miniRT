@@ -6,7 +6,7 @@
 /*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 21:14:41 by jeelee            #+#    #+#             */
-/*   Updated: 2023/07/17 20:48:25 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/07/18 15:50:49 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,5 @@ char		*parse_gnl(int fd, t_buffer *bf);
 int			parse_error(char *msg, int _ret);
 void		parse_perror_exit(int _exitcode);
 void		parse_error_exit(char *msg, char *line, int _exitcode);
-
-t_object	*new_checker(t_line *line);
 
 #endif

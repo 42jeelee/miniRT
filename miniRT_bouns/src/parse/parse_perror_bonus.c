@@ -6,7 +6,7 @@
 /*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 21:22:57 by jeelee            #+#    #+#             */
-/*   Updated: 2023/07/17 21:40:31 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/07/18 15:49:14 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,6 @@ void	print_help_type(int type)
 	else if (type == cone)
 		printf(ANSI_GRE \
 			"co\t[point]\t[n_vector]\t[diameter]\t[height]\t[color]" ANSI_RES "\n");
-	else if (type == checker)
-		printf(ANSI_GRE \
-			"sp\t[point]\t[diameter]\t[color]\t[color]\t[x]\t[y]" ANSI_RES "\n");
 }
 
 void	parse_perror_exit(int _exitcode)

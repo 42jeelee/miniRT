@@ -6,7 +6,7 @@
 /*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 18:59:41 by jeelee            #+#    #+#             */
-/*   Updated: 2023/07/17 21:33:44 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/07/18 15:50:35 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,6 @@ t_rec	get_intersection(t_ray *ray, t_object *obj)
 	rec.frag_point = v_add_vec(ray->origin_point, v_mul_val(ray->dir, rec.t));
 	rec.n_vector = get_n_vector(ray, rec.frag_point, rec.hit_shape, obj);
 	rec.hit_color = obj->color;
-	if (obj->shape == checker)
-		get_hit_color(&rec, obj);
 	return (rec);
 }
 

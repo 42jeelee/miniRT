@@ -6,7 +6,7 @@
 /*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 21:28:57 by jeelee            #+#    #+#             */
-/*   Updated: 2023/07/17 20:43:31 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/07/18 15:48:09 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ typedef enum e_shape
 	plane,
 	cylinder,
 	cone,
-	checker,
 	circle
 }	t_shape;
 
@@ -74,8 +73,6 @@ typedef struct s_object
 	double			diameter;
 	double			height;
 	struct s_color	color;
-	struct s_color	sub_color;
-	int				num_of_tile[2];
 	struct s_object	*next;
 }	t_object;
 

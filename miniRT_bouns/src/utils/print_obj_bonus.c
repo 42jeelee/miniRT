@@ -6,7 +6,7 @@
 /*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 17:20:04 by jeelee            #+#    #+#             */
-/*   Updated: 2023/07/17 21:41:51 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/07/18 15:51:04 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,6 @@ static void	print_shape(t_shape shape)
 		printf("[ cylinder ]");
 	else if (shape == cone)
 		printf("[ cone ]");
-	else if (shape == checker)
-		printf("[ checker ]");
 	else if (shape == circle)
 		printf("[ circle ]");
 	else

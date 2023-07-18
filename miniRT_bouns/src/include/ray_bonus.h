@@ -6,7 +6,7 @@
 /*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 17:37:53 by jeelee            #+#    #+#             */
-/*   Updated: 2023/07/17 20:07:10 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/07/18 15:51:40 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ double		hit_circle(t_ray *ray, t_object *obj);
 
 t_point		get_n_vector(t_ray *ray, t_point p, \
 							t_shape hit_shape, t_object *obj);
-void		get_hit_color(t_rec *rec, t_object *obj);
 
 t_rec		get_intersection(t_ray *ray, t_object *obj);
 t_rec		find_closestobj(t_ray *ray, t_list *objs);

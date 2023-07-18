@@ -6,7 +6,7 @@
 #    By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/06 19:47:17 by jeelee            #+#    #+#              #
-#    Updated: 2023/07/17 21:31:20 by jeelee           ###   ########.fr        #
+#    Updated: 2023/07/18 15:48:58 by jeelee           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ SCENEDIR	=	$(SRCDIR)/scene
 
 INC			=	$(SRCDIR)/include
 
-PARSE		=	parse_file_bonus.c valid_file_bonus.c parse_gnl_bonus.c parse_token_bonus.c parse_setting_bonus.c parse_checker_bonus.c parse_number_bonus.c parse_trans_bonus.c parse_utils_bonus.c parse_perror_bonus.c
+PARSE		=	parse_file_bonus.c valid_file_bonus.c parse_gnl_bonus.c parse_token_bonus.c parse_setting_bonus.c parse_number_bonus.c parse_trans_bonus.c parse_utils_bonus.c parse_perror_bonus.c
 PARSEFIX	=	$(PARSE:%.c=$(PARSEDIR)/%.c)
 
 
