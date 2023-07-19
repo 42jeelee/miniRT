@@ -6,7 +6,7 @@
 /*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 15:19:17 by jhwang2           #+#    #+#             */
-/*   Updated: 2023/07/17 19:34:43 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/07/18 18:38:32 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ uint32_t	get_color(t_data *data, t_rec *rec)
 
 	if (rec->t < 0)
 		return (0);
-	color = ambient(&(data->a_light), rec);
-	phong_color = create_color(0, 0, 0);
+	color = rec->hit_color;
+	phong_color = ambient(&(data->a_light));
 	now = data->lights;
 	while (now)
 	{
@@ -31,8 +31,7 @@ uint32_t	get_color(t_data *data, t_rec *rec)
 			apply_phong ((t_light *)(now->content), rec));
 		now = now->next;
 	}
-	color = add_color(color, phong_color);
-	return (trans_color_int(color));
+	return (trans_color_int(ratio_color_col(phong_color, color)));
 }
 
 t_color	apply_phong(t_light *light, t_rec *rec)
@@ -40,12 +39,9 @@ t_color	apply_phong(t_light *light, t_rec *rec)
 	return (diffuse(light, rec));
 }
 
-t_color	ambient(t_light *a_light, t_rec *rec)
+t_color	ambient(t_light *a_light)
 {
-	t_color	light_color;
-
-	light_color = ratio_color_val(a_light->color, a_light->light_ratio);
-	return (ratio_color_col(rec->hit_color, light_color));
+	return (ratio_color_val(a_light->color, a_light->light_ratio));
 }
 
 t_color	diffuse(t_light *light, t_rec *rec)
@@ -57,6 +53,5 @@ t_color	diffuse(t_light *light, t_rec *rec)
 	diff = max (v_dot (rec->n_vector,
 				v_unit (v_sub_vec (light->point,
 						rec->frag_point))), 0.0);
-	return (ratio_color_col(rec->hit_color, \
-		ratio_color_val(light_color, diff)));
+	return (ratio_color_val(light_color, diff));
 }

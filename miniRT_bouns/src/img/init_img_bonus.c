@@ -6,7 +6,7 @@
 /*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 17:27:27 by ahkiler           #+#    #+#             */
-/*   Updated: 2023/07/17 20:14:18 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/07/18 16:01:56 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	init_img(t_data *data)
 	if (!data->params.addr)
 		return (0);
 	data->params.win = mlx_new_window (data->params.mlx, \
-		data->params.width, data->params.height, "miniRT");
+		data->params.width, data->params.height, "miniRT_bonus");
 	if (data->params.win == NULL)
 		return (0);
 	return (1);

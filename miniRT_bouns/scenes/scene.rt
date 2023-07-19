@@ -3,8 +3,8 @@
 #	Lights
 #	[Type]	[Point]		[Ratio]										[Color]
 A 0.2 255,255,255 # Ambient
-l -10,10,5 0.7 255,255,255 # Light
-l 10,10,5 0.7 255,255,255 # Light
+#l -10,10,25 0.7 255,255,255 # Light
+l -10,20,5 0.7 255,255,255 # Light
 
 #	Camera
 #	[Type]	[Point]		[n_vector]		[FOV]
@@ -17,4 +17,4 @@ sp 0,0,0 5 66,132,202 # Sphere
 co 6,0,0 0,-1,0 5 10 66,232,102 # Cone
 
 #	Plane
-#pl 0,0,0 0,1,0 210,210,50 # Plane
+pl 0,-10,0 0,1,0 210,210,50 # Plane

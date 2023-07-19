@@ -6,11 +6,11 @@
 #    By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/06 19:47:17 by jeelee            #+#    #+#              #
-#    Updated: 2023/07/18 15:48:58 by jeelee           ###   ########.fr        #
+#    Updated: 2023/07/18 16:01:37 by jeelee           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		=	miniRT
+NAME		=	miniRT_bonus
 
 CC			=	CC
 CFLAGS		=	-Wall -Wextra -Werror

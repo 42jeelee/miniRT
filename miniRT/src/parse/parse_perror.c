@@ -6,7 +6,7 @@
 /*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 21:22:57 by jeelee            #+#    #+#             */
-/*   Updated: 2023/07/17 19:43:06 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/07/18 16:33:30 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	print_help_type(int type)
 	else if (type == camera)
 		printf(ANSI_GRE "C\t[point]\t[n_vector]\t[FOV]" ANSI_RES "\n");
 	else if (type == light)
-		printf(ANSI_GRE "L\t[point]\t[ratio_range]\t[color]" ANSI_RES "\n");
+		printf(ANSI_GRE "L\t[point]\t[ratio_range]" ANSI_RES "\n");
 	else if (type == sphere)
 		printf(ANSI_GRE "sp\t[point]\t[diameter]\t[color]" ANSI_RES "\n");
 	else if (type == plane)

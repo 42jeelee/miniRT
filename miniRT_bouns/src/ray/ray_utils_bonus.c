@@ -6,7 +6,7 @@
 /*   By: jeelee <jeelee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 15:46:49 by jeelee            #+#    #+#             */
-/*   Updated: 2023/07/18 15:51:18 by jeelee           ###   ########.fr       */
+/*   Updated: 2023/07/18 17:37:19 by jeelee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static t_point	cone_n_vector(t_ray *ray, t_point p, t_object *obj)
 	p_sub_c = v_sub_vec(p, c);
 	q_sub_c = set_vec(0, 0, 0);
 	l_dot_n = v_dot(v_unit(v_sub_vec(ray->origin_point, c)), obj->n_vector);
-	if (l_dot_n < obj->height / \
+	if (l_dot_n > obj->height / \
 		(sqrt(pow(obj->height, 2) + pow(obj->diameter / 2, 2))))
 		isin *= -1;
 	if (v_length(p_sub_c) != 0)
